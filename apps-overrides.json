@@ -141,6 +141,13 @@
       "summary": "やるべきことを整理して処理するためのInbox型ツール。",
       "tags": ["タスク", "Inbox", "仕事"],
       "color": "purple"
+    },
+    "kodomo-henshin-koubou": {
+      "title": "ビートポン工房",
+      "category": "Learning",
+      "summary": "子どもが自分の手でリズムを組み立てる、時間管理付きの4×16ステップ音楽スタジオ。",
+      "tags": ["音楽", "創作", "子ども", "リズム"],
+      "color": "green"
     }
   }
 }
