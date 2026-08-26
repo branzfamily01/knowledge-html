@@ -6,11 +6,8 @@ on:
     - cron: '17 18 * * *'
   push:
     branches: [main]
-    paths:
-      - 'scripts/build-apps-registry.mjs'
-      - 'apps-overrides.json'
-      - 'registry.json'
-      - 'hub-sync.json'
+    paths-ignore:
+      - 'apps-registry.json'
 
 permissions:
   contents: write
