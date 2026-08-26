@@ -1,0 +1,24 @@
+{
+  "title": "Supabaseって何？",
+  "slug": "supabase-basics",
+  "type": "knowledge-html",
+  "category": "IT・AI",
+  "tags": [
+    "Supabase",
+    "データベース",
+    "PostgreSQL",
+    "Webアプリ",
+    "GitHub Pages",
+    "Auth",
+    "RLS"
+  ],
+  "summary": "Supabaseの役割、GitHub Pagesとの違い、Database・Auth・Storage・RLS・APIキーの基本を初心者向けに図解。",
+  "level": "入門",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "supabase-basics/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/supabase-basics/",
+  "sourceType": "chatgpt-conversation",
+  "sourceSummary": "『Supabaseってどんなもの？』という疑問から始まったChatGPTとの問答をもとに、理解につながった説明を再構成。"
+}
