@@ -1,10 +1,26 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-26T11:53:01.033Z",
+  "generatedAt": "2026-08-26T16:43:45.258Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
-  "count": 37,
+  "count": 39,
   "items": [
+    {
+      "title": "Motion Atlas",
+      "slug": "motion-atlas",
+      "type": "web-app",
+      "category": "Web Apps",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "orange",
+      "githubRepo": "motion-atlas",
+      "repoUrl": "https://github.com/branzfamily01/motion-atlas",
+      "publicUrl": "https://branzfamily01.github.io/motion-atlas/",
+      "updatedAt": "2026-08-26",
+      "sourceType": "github-pages-auto-index"
+    },
     {
       "title": "My Hub — Knowledge, Apps & Tools",
       "slug": "my-hub",
@@ -41,6 +57,29 @@
       "publicUrl": "https://branzfamily01.github.io/second-brain-bridge/",
       "updatedAt": "2026-08-26",
       "sourceType": "github-pages-auto-index"
+    },
+    {
+      "title": "UI Forge",
+      "slug": "ui-forge-registry",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [
+        "UI",
+        "React",
+        "shadcn",
+        "Component Registry",
+        "AI",
+        "アニメーション"
+      ],
+      "summary": "アニメーション付きReact UIをプレビュー・検索・shadcn CLIで再利用できる、AI-nativeなコンポーネントRegistry。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "ui-forge-registry",
+      "repoUrl": "https://github.com/branzfamily01/ui-forge-registry",
+      "publicUrl": "https://branzfamily01.github.io/ui-forge-registry/",
+      "updatedAt": "2026-08-26",
+      "sourceType": "github-pages-manifest"
     },
     {
       "title": "ビートポン工房",
