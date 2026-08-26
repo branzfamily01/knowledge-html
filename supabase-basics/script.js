@@ -3,9 +3,17 @@
   let speaking = false;
   let speechSession = 0;
   const RATE_KEY = 'knowledgeHtml.speechRate';
+  const VOICE_PROFILE_KEY = 'knowledgeHtml.voiceProfile';
   const MIN_RATE = 0.7;
   const MAX_RATE = 3.0;
   const STEP = 0.1;
+
+  // SpeechSynthesisVoice には標準の gender 情報がないため、
+  // 既知の音声名をヒントに「日本語と英語で同じ声質傾向」を優先する。
+  // 現在の標準は feminine。将来UIから切替可能な構造にしている。
+  const DEFAULT_VOICE_PROFILE = 'feminine';
+  const FEMININE_HINTS = /kyoko|nanami|haruka|sayaka|samantha|ava|allison|susan|zira|karen|moira|tessa|fiona|victoria|female|woman/i;
+  const MASCULINE_HINTS = /otoya|ichiro|alex|daniel|david|fred|jorge|thomas|male|man/i;
 
   function clampRate(value) {
     const n = Number(value);
@@ -23,6 +31,11 @@
     const output = document.querySelector('#speechRateValue');
     if (output) output.textContent = `${rate.toFixed(1)}×`;
     return rate;
+  }
+
+  function getVoiceProfile() {
+    const saved = localStorage.getItem(VOICE_PROFILE_KEY);
+    return saved === 'masculine' || saved === 'feminine' ? saved : DEFAULT_VOICE_PROFILE;
   }
 
   function installSpeechRateControl() {
@@ -151,7 +164,21 @@
     return out;
   }
 
-  function voiceScore(voice, lang) {
+  function profileScore(name, profile) {
+    const feminine = FEMININE_HINTS.test(name);
+    const masculine = MASCULINE_HINTS.test(name);
+    if (profile === 'feminine') {
+      if (feminine) return 120;
+      if (masculine) return -120;
+    }
+    if (profile === 'masculine') {
+      if (masculine) return 120;
+      if (feminine) return -120;
+    }
+    return 0;
+  }
+
+  function voiceScore(voice, lang, profile) {
     const locale = String(voice.lang || '').toLowerCase();
     const name = String(voice.name || '').toLowerCase();
     const targetPrefix = lang === 'en' ? 'en' : 'ja';
@@ -160,6 +187,7 @@
     let score = 0;
     if (lang === 'ja' && locale === 'ja-jp') score += 40;
     if (lang === 'en' && (locale === 'en-us' || locale === 'en-gb')) score += 35;
+    score += profileScore(name, profile);
     if (/natural|neural|premium|enhanced/.test(name)) score += 60;
     if (/microsoft|google|apple/.test(name)) score += 8;
     if (voice.localService) score += 2;
@@ -168,8 +196,9 @@
 
   function bestVoice(lang) {
     const voices = synth?.getVoices?.() || [];
+    const profile = getVoiceProfile();
     return voices
-      .map(voice => ({ voice, score: voiceScore(voice, lang) }))
+      .map(voice => ({ voice, score: voiceScore(voice, lang, profile) }))
       .filter(item => item.score > -1000)
       .sort((a, b) => b.score - a.score)[0]?.voice || null;
   }
