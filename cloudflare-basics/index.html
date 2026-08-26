@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Cloudflareとは何か、GitHub Pagesとの違い、DNS・CDN・Reverse Proxy・Workers・Access・Zero Trust、Public/Private Knowledge構成を初心者向けに図解する実務入門。">
+  <meta name="theme-color" content="#ffffff">
+  <title>Cloudflare入門｜Public / Private Knowledgeを理解する</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap hero-inner">
+    <div>
+      <p class="eyebrow">LEVEL 1｜30秒で全体像</p>
+      <h1>Cloudflareとは何か</h1>
+      <p class="lead"><strong>一言でいうと、Webの「入口・高速道路・門番・実行場所」をまとめて提供するネットワーク基盤。</strong><br>今回のPrivate Knowledgeでは、<span lang="en">Cloudflare Workers</span> がHTMLを配信し、<span lang="en">Cloudflare Access</span> が「誰に見せるか」を判定する構成が中心です。</p>
+      <div class="hero-actions">
+        <button class="btn primary" data-speak-target="#level1">🔊 要点を聞く</button>
+        <button class="btn" id="stopSpeech">■ 停止</button>
+        <a class="btn" href="#level2">3〜5分で理解 ↓</a>
+      </div>
+    </div>
+    <aside class="status-card" aria-label="最新確認情報">
+      <span class="label important">重要</span>
+      <strong>公式仕様確認：2026-08-26</strong>
+      <p>新規静的サイトは <span lang="en">Workers Static Assets</span> が公式推奨。<span lang="en">Pages</span> は継続利用可能です。</p>
+      <p>2026-08-14以降、Worker単位で <span lang="en">Access</span> を有効化し、関連URLをまとめて保護できます。</p>
+    </aside>
+  </div>
+</header>
+
+<nav class="toc" aria-label="ページ内目次">
+  <div class="wrap toc-scroll">
+    <a href="#level1">30秒</a><a href="#level2">全体像</a><a href="#level3">仕組み</a><a href="#build">構築手順</a><a href="#security">安全性</a><a href="#check">理解チェック</a><a href="#sources">公式情報</a>
+  </div>
+</nav>
+
+<main class="wrap">
+<section id="level1" class="section-block">
+  <span class="level one">LEVEL 1｜30秒</span>
+  <h2>最初に、5つだけ</h2>
+  <div class="grid-5 quick-grid">
+    <article class="card"><span class="label required">必須</span><h3><span lang="en">Cloudflare</span></h3><p>Webサイトの前に立ち、通信・配信・防御・認証・実行を担える巨大なネットワーク。</p></article>
+    <article class="card"><span class="label basic">基本</span><h3><span lang="en">GitHub</span></h3><p>HTMLやコードの<strong>保存・履歴管理</strong>。Web閲覧者の認証門番とは別の役割。</p></article>
+    <article class="card"><span class="label basic">基本</span><h3><span lang="en">Workers</span></h3><p>Cloudflare上でコードを動かし、今は静的HTMLも直接配信できる。</p></article>
+    <article class="card"><span class="label important">重要</span><h3><span lang="en">Access</span></h3><p>URLの入口で本人確認し、「許可された人だけ」を通す。</p></article>
+    <article class="card"><span class="label advanced">発展</span><h3><span lang="en">Zero Trust</span></h3><p>「ネットワーク内だから信用」ではなく、アクセスごとに本人・条件を確認する考え方。</p></article>
+  </div>
+
+  <article class="card anchor-card">
+    <span class="label important">結論</span>
+    <h3>今回のPrivate Knowledgeで覚える一本線</h3>
+    <div class="flow vertical-mobile" aria-label="Private Knowledgeの最小構成">
+      <div class="flow-box source"><strong><span lang="en">GitHub Private</span></strong><small>保存・履歴</small></div><div class="arrow">→</div>
+      <div class="flow-box worker"><strong><span lang="en">Cloudflare Workers</span></strong><small>ビルド・配信</small></div><div class="arrow">→</div>
+      <div class="flow-box access"><strong><span lang="en">Cloudflare Access</span></strong><small>認証・許可判定</small></div><div class="arrow">→</div>
+      <div class="flow-box viewer"><strong>許可された閲覧者</strong><small>ブラウザで表示</small></div>
+    </div>
+    <p class="callout-line"><strong>URLを知っている ≠ 閲覧権限を持っている。</strong> Accessが入口で止めるため、URLを共有されただけでは通れない設計にできます。</p>
+  </article>
+
+  <div class="grid-2">
+    <article class="card">
+      <h3>① <span lang="en">GitHub Pages</span>だけ</h3>
+      <div class="mini-flow"><span>利用者</span><b>↓</b><span><span lang="en">GitHub Pages</span></span><b>↓</b><span class="public-chip">公開HTML</span></div>
+      <p>手軽な公開には強い。一方、通常のGitHub Pagesは<strong>閲覧者を家族数人だけに絞る門番</strong>としては設計されていません。</p>
+    </article>
+    <article class="card private-card">
+      <h3>② Private Knowledge</h3>
+      <div class="mini-flow"><span>利用者</span><b>↓</b><span><span lang="en">Cloudflare</span></span><b>↓</b><span><span lang="en">Access</span> 認証</span><b>↓</b><span class="private-chip">許可OK → HTML</span></div>
+      <p>公開URL自体は存在しても、Accessの許可ポリシーを通過しない限りHTMLへ到達させない。</p>
+    </article>
+  </div>
+
+  <article class="card split-brain">
+    <h3>Public / Private Knowledge の二層</h3>
+    <div class="tree" role="img" aria-label="Second Brain BridgeからPublic KnowledgeとPrivate Knowledgeへ分岐">
+      <div class="tree-root">Second Brain Bridge</div>
+      <div class="tree-branches">
+        <div class="branch public"><strong>🌐 Public Knowledge</strong><span>GitHub Public</span><span>↓</span><span>GitHub Pages</span></div>
+        <div class="branch private"><strong>🔒 Private Knowledge</strong><span>GitHub Private</span><span>↓</span><span>Workers Static Assets</span><span>↓</span><span>Cloudflare Access</span></div>
+      </div>
+    </div>
+  </article>
+</section>
+
+<section id="level2" class="section-block">
+  <span class="level two">LEVEL 2｜3〜5分</span>
+  <div class="section-head"><div><h2>Cloudflareの全体像</h2><p>「何の会社か」ではなく「通信のどこにいるか」で理解すると混乱しません。</p></div><button class="btn" data-speak-target="#level2">🔊 この章を聞く</button></div>
+
+  <article class="card role-map">
+    <h3>Cloudflareは「1個のサーバー」ではない</h3>
+    <div class="flow vertical-mobile">
+      <div class="flow-box viewer">ブラウザ</div><div class="arrow">→</div>
+      <div class="flow-box cloud"><strong><span lang="en">Cloudflare global network</span></strong><small>DNS / CDN / Reverse Proxy / Access / Workers / WAF…</small></div><div class="arrow">→</div>
+      <div class="flow-box source">Origin または Cloudflare上のAssets</div>
+    </div>
+    <p><strong>答え：</strong>Cloudflareにはサーバー群がありますが、初心者がイメージする「1台のレンタルサーバー」ではありません。世界中のデータセンターで通信を受け、必要に応じて<strong>その場で返す・別サーバーへ転送する・認証する・コードを実行する</strong>ネットワーク型プラットフォームです。</p>
+  </article>
+
+  <div class="grid-3 concept-grid">
+    <article class="card term"><span class="label basic">基本</span><div class="easy">📍 住所案内</div><div class="formal"><span lang="en">DNS</span></div><div class="exact"><span lang="en">Domain Name System</span>。人が読むドメイン名を、通信先を特定する情報へ対応づける仕組み。Cloudflareは権威DNSとして最終回答を返せます。</div></article>
+    <article class="card term"><span class="label basic">基本</span><div class="easy">🚚 近い場所から配る配送網</div><div class="formal"><span lang="en">CDN</span></div><div class="exact"><span lang="en">Content Delivery Network</span>。世界各地にコピーをキャッシュし、利用者に近い地点から静的コンテンツ等を配信して遅延とOrigin負荷を下げます。</div></article>
+    <article class="card term"><span class="label important">重要</span><div class="easy">🛂 Webサーバーの前に立つ受付</div><div class="formal"><span lang="en">Reverse Proxy</span></div><div class="exact">利用者からのHTTP/HTTPS要求をCloudflareが先に受け、必要ならOriginへ転送。キャッシュ・TLS・攻撃防御・Access等を途中で適用できます。</div></article>
+    <article class="card term"><span class="label basic">基本</span><div class="easy">📄 静的サイト公開サービス</div><div class="formal"><span lang="en">Cloudflare Pages</span></div><div class="exact">Git連携や直接アップロードで静的サイトを公開する従来の開発者向け製品。現在も利用可能。ただし新規プロジェクトの重点はWorkersへ移っています。</div></article>
+    <article class="card term"><span class="label important">重要</span><div class="easy">⚙️ Cloudflare上で処理を動かす場所</div><div class="formal"><span lang="en">Cloudflare Workers</span></div><div class="exact">Cloudflareの分散実行環境。リクエスト処理、API、SSR等を実行でき、Static AssetsによりHTML/CSS/JSだけのサイトもWorkerプロジェクトとして配信できます。</div></article>
+    <article class="card term"><span class="label important">重要</span><div class="easy">🚪 本人確認する門番</div><div class="formal"><span lang="en">Cloudflare Access</span></div><div class="exact">Identity-aware proxy型のアクセス制御。アプリより前でポリシーを評価し、許可されたユーザーだけを通します。Zero Trust製品群の一部です。</div></article>
+  </div>
+
+  <article class="card compare-major">
+    <h3><span lang="en">GitHub Pages</span> / <span lang="en">Cloudflare</span> / <span lang="en">Netlify</span> の違い</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>観点</th><th><span lang="en">GitHub Pages</span></th><th><span lang="en">Cloudflare Workers</span></th><th><span lang="en">Netlify</span></th></tr></thead>
+      <tbody>
+        <tr><td>中心用途</td><td>GitHubから静的サイトを公開</td><td>静的配信＋サーバーレス処理＋ネットワーク/セキュリティ連携</td><td>Git連携型Webホスティング＋ビルド/Functions/Deploy管理</td></tr>
+        <tr><td>コード保存</td><td>GitHub</td><td>GitHub/GitLabでも、Cloudflareへ直接Deployでも可</td><td>Git連携または直接Deploy</td></tr>
+        <tr><td>限定公開</td><td>一般のPagesは公開前提。GitHub Enterprise Cloudにはprivate Pages機能あり</td><td><strong>AccessでIDベースの限定公開が可能</strong></td><td>Project visibilityやPassword protection等の機能あり（プラン差あり）</td></tr>
+        <tr><td>今回との相性</td><td>Public Knowledge向け</td><td><strong>Private Knowledge向けの本命</strong></td><td>代替候補。今回のAccess中心設計とは別系統</td></tr>
+      </tbody>
+    </table></div>
+    <p class="note"><span class="label caution">注意</span> <span lang="en">Netlify</span>にも限定公開機能はあります。Cloudflareが「唯一の正解」ではありません。今回Cloudflareを選ぶ理由は、<strong>配信・認証・DNS・将来の防御/Worker処理を同じ基盤へ寄せられる</strong>ためです。</p>
+  </article>
+
+  <article class="card role-split">
+    <h3>GitHubとCloudflareの役割分担</h3>
+    <div class="grid-3">
+      <div class="role-cell"><span class="role-icon">🗃️</span><strong><span lang="en">GitHub</span></strong><p>保存<br>バージョン管理<br>変更履歴<br>共同編集</p></div>
+      <div class="role-cell"><span class="role-icon">☁️</span><strong><span lang="en">Cloudflare</span></strong><p>入口<br>配信<br>認証<br>防御<br>実行</p></div>
+      <div class="role-cell"><span class="role-icon">🌐</span><strong>ブラウザ</strong><p>URLへアクセス<br>認証画面<br>HTML表示<br>音声・操作</p></div>
+    </div>
+  </article>
+
+  <article class="card current-choice">
+    <span class="label important">2026年8月の推奨</span>
+    <h3><span lang="en">Pages</span> と <span lang="en">Workers</span>、今はどちら？</h3>
+    <div class="decision-grid">
+      <div><strong>新規で作る</strong><p>→ <span lang="en">Workers Static Assets</span> を第一候補</p></div>
+      <div><strong>既存Pagesが動いている</strong><p>→ 急いで移行する必要はない。Pagesは継続動作</p></div>
+      <div><strong>Private Knowledge</strong><p>→ <span lang="en">Workers Static Assets + Access</span> が現在は分かりやすい</p></div>
+    </div>
+    <p>Cloudflare公式は「新規プロジェクトではWorkers Static Assetsを使う」ことを明記しています。WorkersはPagesより機能面が広く、2026年8月にはWorker単位のAccess保護も追加されました。</p>
+  </article>
+
+  <article class="card pricing-card">
+    <h3>無料枠の基本</h3>
+    <div class="grid-3">
+      <div><span class="label important">Access</span><p><strong>Freeは50ユーザーまで</strong>。家族数人規模なら人数面では無料枠内。</p></div>
+      <div><span class="label basic">Static Assets</span><p>静的アセットへのリクエストは<strong>無料・無制限</strong>。Freeでは1 Worker versionあたり20,000ファイル、1ファイル25 MiB。</p></div>
+      <div><span class="label basic">Worker code</span><p>Workerスクリプトを実行するリクエストはFreeで<strong>100,000/日</strong>などの制約あり。</p></div>
+    </div>
+    <p class="note"><span class="label caution">要確認</span> 料金・上限・含まれる機能は変更されます。構築直前に公式Pricing/Limitページで再確認してください。</p>
+  </article>
+
+  <section class="faq-group">
+    <h2>よくある誤解を先に潰す</h2>
+    <div class="faq-cards">
+      <details class="card"><summary>Private GitHubなのに、どうしてWebで見られるの？</summary><div><p>Cloudflareのビルドシステムが、あなたが許可したGitHubリポジトリを読み、HTML/CSS/JSなどの<strong>デプロイ成果物をCloudflare側へ配置</strong>するからです。閲覧者がGitHub Private repoを直接読むわけではありません。</p></div></details>
+      <details class="card"><summary>CloudflareはPrivate GitHubの中身をコピーするの？</summary><div><p>概念的には「ビルド時にソースを取得し、配信用成果物をCloudflareへデプロイする」と理解すると正確です。GitHubは正本、Cloudflareは配信用コピー/成果物を保持します。</p></div></details>
+      <details class="card"><summary>URLを知っている人全員が見られる？</summary><div><p>Accessを正しく設定すれば<strong>いいえ</strong>。Cloudflareはリクエストごとに有効なAccessトークンを確認し、なければログインへ誘導または拒否します。</p></div></details>
+      <details class="card"><summary>独自ドメインは必須？</summary><div><p><strong>Workersでは必須ではありません。</strong> <span lang="en">workers.dev</span> で開始でき、Accessで保護できます。ただしCloudflareは本番用途では独自ドメインまたはRouteを推奨しています。</p></div></details>
+    </div>
+  </section>
+</section>
+
+<section id="level3" class="section-block">
+  <span class="level three">LEVEL 3｜しっかり理解</span>
+  <div class="section-head"><div><h2>ブラウザからHTMLが届くまで</h2><p>「どこでAccessが止めているのか」を通信順に追います。</p></div><button class="btn" data-speak-target="#level3">🔊 この章を聞く</button></div>
+
+  <article class="card request-flow">
+    <h3>Private Knowledgeへアクセスする実際の流れ</h3>
+    <ol class="steps">
+      <li><span class="step-no">1</span><div><strong>ブラウザがURLへアクセス</strong><p>例：<code>private.example.com</code> または保護された <code>workers.dev</code> URL。</p></div></li>
+      <li><span class="step-no">2</span><div><strong><span lang="en">DNS</span> が入口を案内</strong><p>独自ドメインならDNSによりCloudflareへルーティング。WorkersのCustom DomainではCloudflareがDNSレコードと証明書を設定できます。</p></div></li>
+      <li><span class="step-no">3</span><div><strong>Cloudflareが先に受け取る</strong><p>ここがReverse Proxy / Edgeの位置。Originや静的アセットに届く前にCloudflareがHTTPリクエストを処理できます。</p></div></li>
+      <li><span class="step-no">4</span><div><strong><span lang="en">Access</span> が認証状態を確認</strong><p>保護されたサイトでは、各HTTPリクエストに有効な <code>CF_Authorization</code> Cookieがあるかを確認。なければHTMLを出さずログインへ。</p></div></li>
+      <li><span class="step-no">5</span><div><strong>本人確認</strong><p><span lang="en">One-Time PIN</span> やGoogle/Microsoft/Okta等のIdentity Providerで本人を確認します。</p></div></li>
+      <li><span class="step-no">6</span><div><strong>Access Policyで許可判定</strong><p>メールアドレス・メールドメイン・グループ・端末条件などを評価。Access applicationはdeny by defaultで、Allowに一致した人だけ通ります。</p></div></li>
+      <li><span class="step-no">7</span><div><strong>許可されたらHTMLを返す</strong><p>Workers Static Assetsのファイルを返す、またはWorker処理へ進む。閲覧者はGitHubへアクセスしていません。</p></div></li>
+    </ol>
+  </article>
+
+  <div class="grid-2">
+    <article class="card">
+      <h3><span lang="en">DNS</span>をもう一段正確に</h3>
+      <div class="definition-stack"><span>やさしい意味：住所案内</span><span>↓</span><strong><span lang="en">DNS</span></strong><span>↓</span><span><span lang="en">Domain Name System</span></span></div>
+      <p>ブラウザが「このドメインはどこへ通信すればよい？」と問い合わせ、権威DNSが最終的な記録を返します。Cloudflareを権威DNSにすると、DNSレコードをCloudflare側で管理できます。</p>
+      <p>プロキシ対象のDNSレコードでは、OriginのIPではなくCloudflareのAnycast IPを返し、HTTP/HTTPS通信をCloudflare経由にできます。</p>
+    </article>
+    <article class="card">
+      <h3><span lang="en">Reverse Proxy</span>をもう一段正確に</h3>
+      <div class="definition-stack"><span>やさしい意味：前に立つ受付</span><span>↓</span><strong><span lang="en">Reverse Proxy</span></strong><span>↓</span><span>ClientとOriginの間で要求を代理処理</span></div>
+      <p>利用者はCloudflareに接続し、Cloudflareが必要に応じてOriginへ接続します。これによりOrigin IPの秘匿、TLS終端、キャッシュ、WAF、Access等を途中で適用できます。</p>
+    </article>
+  </div>
+
+  <article class="card auth-card">
+    <h3><span lang="en">Access</span>認証：Cookie / Session / Token</h3>
+    <div class="auth-flow">
+      <div class="auth-node"><strong>未認証</strong><span>CF_Authorizationなし</span></div><div class="arrow">→</div>
+      <div class="auth-node"><strong>ログイン</strong><span>OTP / IdP</span></div><div class="arrow">→</div>
+      <div class="auth-node"><strong>Policy判定</strong><span>Allow?</span></div><div class="arrow">→</div>
+      <div class="auth-node ok"><strong>JWT発行</strong><span>Cookieへ保存</span></div><div class="arrow">→</div>
+      <div class="auth-node ok"><strong>以後の要求</strong><span>有効期限中は再利用</span></div>
+    </div>
+    <div class="grid-3">
+      <div><span class="label basic">Cookie</span><p>ブラウザがサイトごとに保持する小さなデータ。Accessでは <code>CF_Authorization</code> に署名済みJWTが入ります。</p></div>
+      <div><span class="label basic">Session</span><p>「ログイン済みとして扱う期間」。AccessにはGlobal tokenとApplication tokenがあり、期限切れで再認証が発生します。</p></div>
+      <div><span class="label advanced">JWT</span><p><span lang="en">JSON Web Token</span>。署名により改ざん検出できるトークン。Accessはユーザー情報と許可状態を表すために使います。</p></div>
+    </div>
+  </article>
+
+  <article class="card otp-card">
+    <h3><span lang="en">One-Time PIN</span> は何をしている？</h3>
+    <div class="flow vertical-mobile">
+      <div class="flow-box">メールアドレス入力</div><div class="arrow">→</div><div class="flow-box">Allow Policyに一致？</div><div class="arrow">→</div><div class="flow-box">CloudflareがPIN送信</div><div class="arrow">→</div><div class="flow-box">PIN入力</div><div class="arrow">→</div><div class="flow-box access">Access許可</div>
+    </div>
+    <ul class="compact-list">
+      <li>PINは<strong>単回使用</strong>で、公式ドキュメントでは要求から<strong>10分で期限切れ</strong>。</li>
+      <li>許可ポリシーに一致しないメールには送信しませんが、アカウント列挙防止のため画面上は「送った」と表示します。</li>
+      <li><strong>Gmail限定ではありません。</strong> メールを受信できる許可アドレスなら利用可能です。</li>
+      <li>家族数人なら、個々のメールアドレスをAllow Policyに登録する運用が理解しやすいです。</li>
+    </ul>
+  </article>
+
+  <article class="card github-private">
+    <h3>Private GitHub → Cloudflare はどう接続する？</h3>
+    <div class="flow vertical-mobile">
+      <div class="flow-box source"><strong>GitHub repository</strong><small>正本</small></div><div class="arrow">→</div>
+      <div class="flow-box"><strong>Cloudflare GitHub App</strong><small>許可したRepoを取得</small></div><div class="arrow">→</div>
+      <div class="flow-box worker"><strong>Workers Builds</strong><small>Build / Deploy</small></div><div class="arrow">→</div>
+      <div class="flow-box cloud"><strong>Static Assets</strong><small>Cloudflare側へ配置</small></div>
+    </div>
+    <p>Cloudflare公式はGitHub Appの権限を<strong>必要なリポジトリだけに限定</strong>することを推奨しています。Pages公式はpublic/private両方のGitHub repositoryを明示的にサポートしています。Workers Buildsは現在GitHub/GitLab統合を提供し、許可済みリポジトリを選択して自動デプロイします。</p>
+    <p class="note"><span class="label caution">要確認</span> Private Knowledgeを実際に作る時は、Workersの作成画面で対象Private repositoryが選択可能かをアカウント上で最終確認し、GitHub AppのRepository accessを「Only select repositories」に絞ります。</p>
+  </article>
+
+  <article class="card pages-workers">
+    <h3><span lang="en">Pages</span> と <span lang="en">Workers Static Assets</span> の技術的違い</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th></th><th><span lang="en">Pages</span></th><th><span lang="en">Workers Static Assets</span></th></tr></thead>
+      <tbody>
+        <tr><td>プロジェクトモデル</td><td>Pages project</td><td>Worker projectの一部としてAssetsを持つ</td></tr>
+        <tr><td>静的配信</td><td>得意</td><td>得意。静的Assets要求は無料・無制限</td></tr>
+        <tr><td>サーバー側処理</td><td>Pages Functions（Workers料金体系）</td><td>Worker scriptを同じプロジェクトへ統合</td></tr>
+        <tr><td>新機能の重点</td><td>継続提供</td><td><strong>Cloudflareの新規推奨</strong></td></tr>
+        <tr><td>Access</td><td>ホスト名ベース等で利用可能</td><td><strong>Worker単位・全Workers・hostname単位で保護可能</strong></td></tr>
+        <tr><td>今回のPrivate Knowledge</td><td>可能性はある</td><td><strong>現在の第一候補</strong></td></tr>
+      </tbody>
+    </table></div>
+    <p><strong>Static Assetsとは：</strong>HTML、CSS、JavaScript、画像など「そのまま返せるファイル」をWorker deploymentの一部としてCloudflareへ置き、Cloudflareがキャッシュ・配信する機能です。純粋な静的サイトならWorker scriptなしでも構成できます。</p>
+  </article>
+
+  <article class="card domain-card">
+    <h3>独自ドメイン / <span lang="en">workers.dev</span> / <span lang="en">pages.dev</span></h3>
+    <div class="grid-3">
+      <div><span class="label basic">workers.dev</span><p>Workersをすぐ公開する既定URL。独自ドメイン不要。Accessで保護可能。ただしCloudflareは本番の重要用途ではCustom Domain/Routeを推奨。</p></div>
+      <div><span class="label basic">pages.dev</span><p>Pagesの既定ドメイン。Pagesプロジェクトに付与される。Pagesは現在も利用可能。</p></div>
+      <div><span class="label important">Custom Domain</span><p>自分のドメイン/サブドメイン。WorkerをOriginとして接続でき、CloudflareがDNSレコードとTLS証明書を管理可能。Accessで保護できます。</p></div>
+    </div>
+  </article>
+
+  <article class="card direct-deploy">
+    <h3>GitHubを使わずCloudflareだけでHTMLを管理できる？</h3>
+    <p><strong>できます。</strong> Workers Static AssetsはWrangler CLI等でローカルの静的ファイルを直接Cloudflareへdeployできます。GitHubは必須ではありません。</p>
+    <div class="grid-2">
+      <div class="choice-card"><strong>GitHubあり</strong><p>履歴・差分・復旧・自動deployが欲しい。今回の知識HTML運用はこちらが本命。</p></div>
+      <div class="choice-card"><strong>GitHubなし</strong><p>単発ファイルやローカル管理から直接deploy。仕組みは減るが、正本・履歴管理を自分で考える必要がある。</p></div>
+    </div>
+  </article>
+</section>
+
+<section id="security" class="section-block">
+  <span class="level risk">SECURITY｜重要</span>
+  <div class="section-head"><div><h2>「Accessを付ければ何でも置ける」ではない</h2><p>ここはPrivate Knowledgeで最も重要な境界です。</p></div><button class="btn" data-speak-target="#security">🔊 この章を聞く</button></div>
+
+  <article class="card danger-card">
+    <span class="label danger">危険</span>
+    <h3>Accessは強力な入口だが、データ分類の代わりではない</h3>
+    <p>Accessは「許可された人以外を入口で止める」仕組みです。しかし、設定ミス、アカウント乗っ取り、誤共有、端末紛失、ブラウザからの保存・スクリーンショット、Git履歴への残存など、別の漏えい経路は残ります。</p>
+  </article>
+
+  <div class="security-ladder">
+    <article class="card"><span class="label important">低〜中機密</span><h3>限定共有の知識HTML</h3><p>家族内メモ、一般には出したくない学習情報、個人名を含むが致命的ではない内容。</p><p><strong>候補：</strong>Private GitHub + Workers Static Assets + Access + OTP/IdP。</p></article>
+    <article class="card"><span class="label caution">高機密</span><h3>医療・詳細な個人情報</h3><p>診療情報、心理検査、住所、詳細な家族情報など。法令・契約・組織ポリシーが絡む可能性があります。</p><p><strong>追加検討：</strong>MFA、短いSession、最小権限、監査、端末管理、暗号化、保存場所、データ処理契約。</p></article>
+    <article class="card danger-card"><span class="label danger">最高機密</span><h3>秘密鍵・パスワード・認証情報</h3><p>API Secret、秘密鍵、復旧コード、金融認証情報など。</p><p><strong>原則：</strong>HTML/Gitへ置かない。専用Secret Manager / Password Manager等へ分離。</p></article>
+  </div>
+
+  <article class="card caution-card">
+    <h3>Private KnowledgeをGitHub Pagesへ置くのが危険な理由</h3>
+    <p>GitHub公式は、GitHub Pagesサイトは<strong>リポジトリがPrivateでも通常インターネット上で公開される</strong>と警告しています。GitHub Enterprise CloudにはPrivate Pages機能がありますが、一般の個人運用で「Private repoだからPagesもPrivate」と考えるのは危険です。</p>
+    <p><strong>覚え方：</strong>「リポジトリの公開範囲」と「Webサイトの公開範囲」は別設定。</p>
+  </article>
+
+  <article class="card hardening">
+    <h3>将来、Private Knowledgeを作る時の最低限チェック</h3>
+    <ul class="checklist-static">
+      <li>GitHub repositoryはPrivate</li><li>Cloudflare GitHub Appは対象repoだけ許可</li><li>Worker/hostnameにAccessを設定</li><li>Allow policyは必要なメールだけ</li><li>OTPまたは信頼するIdPを設定</li><li>Session durationを必要以上に長くしない</li><li>workers.dev / Preview / Custom Domainの「抜け道」がないか確認</li><li>SecretはHTMLやGitに入れない</li><li>公開URLをログアウト/シークレット環境で検証</li><li>高機密データは別の保存方式も検討</li>
+    </ul>
+  </article>
+</section>
+
+<section id="build" class="section-block">
+  <span class="level build">NEXT｜実際に作る時</span>
+  <div class="section-head"><div><h2>将来のPrivate Knowledge構築手順</h2><p>今回は実行しません。次に何を設定するかだけ理解します。</p></div><button class="btn" data-speak-target="#build">🔊 この章を聞く</button></div>
+
+  <ol class="roadmap">
+    <li><span>1</span><div><strong>Private GitHub repositoryを作る</strong><p>Private Knowledgeの正本。Public Knowledgeとは分離。</p></div></li>
+    <li><span>2</span><div><strong>Cloudflare Zero Trustを有効化</strong><p>Free planでも家族数人規模なら人数上限内。チーム名などを設定。</p></div></li>
+    <li><span>3</span><div><strong>WorkersにPrivate repoを接続</strong><p>Workers BuildsでGitHub Appを許可し、対象repoのみ選択。Static Assetsとしてdeploy。</p></div></li>
+    <li><span>4</span><div><strong>まず <span lang="en">workers.dev</span> で確認</strong><p>独自ドメインなしでも動作確認可能。</p></div></li>
+    <li><span>5</span><div><strong>WorkerをAccessで保護</strong><p>2026-08以降はWorker単位で全関連URLをまとめて保護できる。必要に応じhostname単位も。</p></div></li>
+    <li><span>6</span><div><strong>OTP / IdP とAllow Policy</strong><p>家族なら個別メールAllow + OTPから始めると理解しやすい。</p></div></li>
+    <li><span>7</span><div><strong>未認証・未許可テスト</strong><p>ログアウト状態、許可外メール、Preview URL等を確認。</p></div></li>
+    <li><span>8</span><div><strong>必要なら独自ドメイン</strong><p>運用が固まってから <code>private.example.com</code> のようなCustom Domainへ。</p></div></li>
+  </ol>
+
+  <article class="card final-architecture">
+    <span class="label important">推奨案</span>
+    <h3>Private Knowledge v1 の設計</h3>
+    <div class="architecture">
+      <div class="arch-col"><span class="arch-title">保存</span><strong>Private GitHub</strong><small>source of truth</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-col"><span class="arch-title">自動配信</span><strong>Workers Builds</strong><small>Git push → deploy</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-col"><span class="arch-title">HTML配信</span><strong>Static Assets</strong><small>Cloudflare edge</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-col"><span class="arch-title">認証</span><strong>Access</strong><small>email / OTP</small></div>
+      <div class="arch-arrow">→</div>
+      <div class="arch-col"><span class="arch-title">閲覧</span><strong>Browser</strong><small>authorized users only</small></div>
+    </div>
+    <p><strong>この構成の利点：</strong>GitHubは編集と履歴に集中し、CloudflareはWeb公開時の配信と認証に集中できます。役割が分かれるため、Public / Privateの境界を設計しやすくなります。</p>
+  </article>
+</section>
+
+<section class="section-block questions-answered">
+  <h2>最初の疑問に一問一答</h2>
+  <div class="qa-grid">
+    <details class="card" open><summary>Cloudflareってサーバーなの？</summary><p>「1台のサーバー」ではなく、世界中のサーバーとネットワークを使うプラットフォーム。DNS、CDN、Reverse Proxy、Workers、Accessなど複数の役割があります。</p></details>
+    <details class="card"><summary>GitHub Pagesと何が違う？</summary><p>GitHub PagesはGitHubから静的サイトを公開する機能。Cloudflareは配信だけでなく、通信の入口、認証、防御、サーバーレス実行まで担当できます。</p></details>
+    <details class="card"><summary>Netlifyとは何が違う？</summary><p>NetlifyもGit連携・静的/フルスタック配信・限定公開機能を持つ競合サービスです。CloudflareはDNS・Reverse Proxy・Zero Trust Access・世界規模ネットワークとWorkersを一体化しやすい点が今回の設計に合います。</p></details>
+    <details class="card"><summary>Accessはどこで止めている？</summary><p>アプリのHTMLやOriginへ到達する前、Cloudflareのネットワーク上でHTTPリクエストを評価します。Worker保護では「Workerが走る前」にAccessがチェックします。</p></details>
+    <details class="card"><summary>Gmail以外でもOTPは使える？</summary><p>はい。Access Policyで許可された受信可能なメールアドレスなら、Gmailに限定されません。</p></details>
+    <details class="card"><summary>家族数人だけなら無料？</summary><p>Zero Trust Freeは50ユーザー上限なので、人数面では家族数人は範囲内です。Workersや他機能には別のFree上限があるため、実装時に再確認します。</p></details>
+    <details class="card"><summary><span lang="en">*.workers.dev</span>でもAccessできる？</summary><p>はい。2026年8月現在、workers.devのproduction/previewをAccessで保護できます。Worker単位保護なら関連するworkers.dev・Custom Domain・route・previewをまとめて保護できます。</p></details>
+    <details class="card"><summary><span lang="en">*.pages.dev</span>は？</summary><p>Pagesの既定URLとして利用できます。Pagesは継続利用可能ですが、新規静的サイトはWorkers Static Assetsが公式推奨です。Private Knowledgeの新規設計ではWorkers側を優先します。</p></details>
+    <details class="card"><summary>CloudflareだけでHTMLを置ける？</summary><p>はい。GitHubを使わずWrangler等で直接Workers Static Assetsへdeployできます。ただし履歴・差分管理を考えるとGitHubを正本にする利点があります。</p></details>
+    <details class="card"><summary>医療情報なら何でもAccessへ置いてよい？</summary><p>いいえ。Accessは認証レイヤーであり、法令・契約・保存地域・監査・端末管理・MFA・Git履歴などの要件を自動的に満たすわけではありません。高機密情報は別途リスク評価が必要です。</p></details>
+  </div>
+</section>
+
+<section id="check" class="section-block">
+  <span class="level check">理解チェック</span>
+  <h2>5問だけ確認</h2>
+  <p>答えを考えてからクリックしてください。</p>
+  <div class="quiz-list">
+    <details class="quiz"><summary>Q1. GitHubとCloudflareの役割の違いは？</summary><div><strong>A.</strong> GitHubは主にソースの保存・履歴管理。CloudflareはWebの入口・配信・認証・防御・実行を担当できます。</div></details>
+    <details class="quiz"><summary>Q2. Cloudflare Accessは何をする？</summary><div><strong>A.</strong> アプリより前で本人確認とAccess Policyを評価し、許可された人だけを通します。</div></details>
+    <details class="quiz"><summary>Q3. URLを知っているだけでPrivate Knowledgeを見られる？</summary><div><strong>A.</strong> 正しくAccessが設定されていれば見られません。有効な認証と許可ポリシーの一致が必要です。</div></details>
+    <details class="quiz"><summary>Q4. Public KnowledgeとPrivate Knowledgeの配信先は？</summary><div><strong>A.</strong> PublicはGitHub Pages、PrivateはPrivate GitHubを正本にし、Workers Static Assets + Accessを第一候補とします。</div></details>
+    <details class="quiz"><summary>Q5. 機密情報なら何でもAccessの裏へ置いてよい？</summary><div><strong>A.</strong> いいえ。Accessは入口の認証であり、秘密鍵・パスワードは専用Secret管理へ。医療等の高機密情報は追加の法務・セキュリティ要件を検討します。</div></details>
+  </div>
+</section>
+
+<section id="sources" class="section-block sources">
+  <span class="level source-level">公式情報</span>
+  <h2>2026-08-26時点で確認した主な一次情報</h2>
+  <p>仕様変更が多い分野なので、このHTMLは「理解の地図」として使い、実際の設定前には下記公式文書を再確認してください。</p>
+  <div class="source-list">
+    <a href="https://developers.cloudflare.com/fundamentals/" target="_blank" rel="noopener">Cloudflare Fundamentals</a>
+    <a href="https://developers.cloudflare.com/fundamentals/concepts/how-cloudflare-works/" target="_blank" rel="noopener">How Cloudflare DNS / reverse proxy works</a>
+    <a href="https://developers.cloudflare.com/dns/" target="_blank" rel="noopener">Cloudflare DNS</a>
+    <a href="https://developers.cloudflare.com/cache/" target="_blank" rel="noopener">Cloudflare Cache / CDN</a>
+    <a href="https://developers.cloudflare.com/workers/static-assets/" target="_blank" rel="noopener">Workers Static Assets</a>
+    <a href="https://developers.cloudflare.com/workers/best-practices/workers-best-practices/" target="_blank" rel="noopener">Workers Best Practices — Static Assets for new projects</a>
+    <a href="https://developers.cloudflare.com/workers/configuration/cloudflare-access/" target="_blank" rel="noopener">Cloudflare Access for Workers</a>
+    <a href="https://developers.cloudflare.com/workers/ci-cd/builds/" target="_blank" rel="noopener">Workers Builds</a>
+    <a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/" target="_blank" rel="noopener">Cloudflare Access web applications</a>
+    <a href="https://developers.cloudflare.com/cloudflare-one/integrations/identity-providers/one-time-pin/" target="_blank" rel="noopener">One-time PIN login</a>
+    <a href="https://developers.cloudflare.com/cloudflare-one/access-controls/applications/http-apps/authorization-cookie/" target="_blank" rel="noopener">Access authorization cookie</a>
+    <a href="https://www.cloudflare.com/plans/zero-trust-services/" target="_blank" rel="noopener">Zero Trust pricing</a>
+    <a href="https://developers.cloudflare.com/workers/platform/limits/" target="_blank" rel="noopener">Workers limits</a>
+    <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener">GitHub Pages publishing source — public warning</a>
+    <a href="https://docs.netlify.com/manage/security/secure-access-to-sites/project-visibility/" target="_blank" rel="noopener">Netlify project visibility</a>
+  </div>
+  <div class="review-note"><span class="label caution">要確認</span><p><strong>将来の構築時に再確認：</strong>Private GitHub repositoryのWorkers Builds接続画面、Access Free planの最新人数/機能、独自ドメイン要否、Access Session/MFA方針、Cloudflareの利用規約・データ処理条件。</p></div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div><strong>Cloudflare入門｜Public / Private Knowledge</strong><p>一般公開用・個人情報なし。最終更新 2026-08-26。</p></div>
+    <a href="#top">ページ上部へ ↑</a>
+  </div>
+</footer>
+
+<div class="speech-bar" aria-label="読み上げ設定">
+  <label for="speechRate">読み上げ速度</label>
+  <input id="speechRate" type="range" min="0.7" max="3.0" step="0.1" value="1.0">
+  <output id="speechRateValue">1.0×</output>
+  <button class="btn small" id="stopSpeechBottom">停止</button>
+</div>
+<script src="./script.js"></script>
+</body>
+</html>
