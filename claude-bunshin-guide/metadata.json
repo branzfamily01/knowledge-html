@@ -1,0 +1,23 @@
+{
+  "title": "Claudeで「自分の分身」を作る方法｜図解ガイド",
+  "slug": "claude-bunshin-guide",
+  "type": "knowledge-html",
+  "category": "IT・AI",
+  "tags": [
+    "Claude",
+    "AI",
+    "プロジェクト",
+    "パーソナライズ",
+    "プロンプト"
+  ],
+  "summary": "Claudeに自分の考え方や前提を持たせ、分身のように使うための構成と手順を図解したガイド。",
+  "level": "実践",
+  "sourceRepo": "claude-bunshin-guide",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "claude-bunshin-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/claude-bunshin-guide/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/claude-bunshin-guide without substantive content changes."
+}

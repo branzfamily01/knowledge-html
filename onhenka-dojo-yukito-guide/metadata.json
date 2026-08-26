@@ -1,0 +1,23 @@
+{
+  "title": "音変化道場｜Yukito Quest 遊び方",
+  "slug": "onhenka-dojo-yukito-guide",
+  "type": "knowledge-html",
+  "category": "英語学習",
+  "tags": [
+    "英語",
+    "リスニング",
+    "音変化",
+    "Yukito Quest",
+    "学習ガイド"
+  ],
+  "summary": "Yukito Questの始め方、練習モード、ゲームルール、学習ルーティンをまとめた遊び方ガイド。",
+  "level": "入門",
+  "sourceRepo": "onhenka-dojo-yukito-guide",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "onhenka-dojo-yukito-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/onhenka-dojo-yukito-guide/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/onhenka-dojo-yukito-guide without substantive content changes."
+}

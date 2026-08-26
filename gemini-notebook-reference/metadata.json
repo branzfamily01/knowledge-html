@@ -1,0 +1,24 @@
+{
+  "title": "Gemini Notebook 実践リファレンス",
+  "slug": "gemini-notebook-reference",
+  "type": "knowledge-html",
+  "category": "AI・仕事術",
+  "tags": [
+    "Gemini Notebook",
+    "NotebookLM",
+    "プロンプト",
+    "GEM",
+    "AI",
+    "仕事術"
+  ],
+  "summary": "Gemini Notebookの理解・構築・活用を11モジュール、プロンプト、GEM、関連記事、用語集で横断できる実践リファレンス。",
+  "level": "実践",
+  "sourceRepo": "gemini-notebook-reference",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "gemini-notebook-reference/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/gemini-notebook-reference/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/gemini-notebook-reference without substantive content changes."
+}

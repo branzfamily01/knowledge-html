@@ -1,0 +1,23 @@
+{
+  "title": "Gemini Notebook｜スライドは「盛る」より「削る」",
+  "slug": "gemini-notebook-minimal-prompt",
+  "type": "knowledge-html",
+  "category": "AI・資料作成",
+  "tags": [
+    "Gemini Notebook",
+    "スライド",
+    "プロンプト",
+    "資料作成",
+    "AI"
+  ],
+  "summary": "Gemini Notebookでスライドを作る際、過剰指定を減らし最小プロンプトと構成設計を使う実践原則をまとめた資料。",
+  "level": "実践",
+  "sourceRepo": "gemini-notebook-minimal-prompt",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "gemini-notebook-minimal-prompt/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/gemini-notebook-minimal-prompt/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/gemini-notebook-minimal-prompt without substantive content changes."
+}

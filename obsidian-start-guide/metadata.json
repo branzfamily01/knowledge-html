@@ -1,0 +1,23 @@
+{
+  "title": "Obsidian はじめの一歩｜図解ガイド",
+  "slug": "obsidian-start-guide",
+  "type": "knowledge-html",
+  "category": "Second Brain",
+  "tags": [
+    "Obsidian",
+    "Second Brain",
+    "メモ",
+    "知識管理",
+    "初心者"
+  ],
+  "summary": "Obsidianの基本、リンク、Vault、テンプレート、7日間入門を図解で学ぶガイド。",
+  "level": "入門",
+  "sourceRepo": "obsidian-start-guide",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "obsidian-start-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/obsidian-start-guide/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/obsidian-start-guide without substantive content changes."
+}

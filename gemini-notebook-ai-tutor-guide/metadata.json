@@ -1,0 +1,23 @@
+{
+  "title": "Gemini Notebookでつくる「専属家庭教師」｜資格勉強の仕組み化ガイド",
+  "slug": "gemini-notebook-ai-tutor-guide",
+  "type": "knowledge-html",
+  "category": "AI・学習",
+  "tags": [
+    "Gemini Notebook",
+    "AI家庭教師",
+    "資格勉強",
+    "学習法",
+    "AI"
+  ],
+  "summary": "Gemini Notebookを専属家庭教師のように使い、資格学習を仕組み化する方法をまとめたガイド。",
+  "level": "実践",
+  "sourceRepo": "gemini-notebook-ai-tutor-guide",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "gemini-notebook-ai-tutor-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/gemini-notebook-ai-tutor-guide/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/gemini-notebook-ai-tutor-guide without substantive content changes."
+}

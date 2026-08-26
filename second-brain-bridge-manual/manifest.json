@@ -1,0 +1,9 @@
+{
+  "name": "Second Brain Bridge 図解マニュアル",
+  "short_name": "Brain Manual",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#fffafc",
+  "theme_color": "#7b78ff",
+  "icons": []
+}

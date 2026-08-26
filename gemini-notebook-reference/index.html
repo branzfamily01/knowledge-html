@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Gemini Notebookの理解から実務活用までを、書籍と付属資料から再構成した個人利用向けリファレンス。">
+  <title>Gemini Notebook 実践リファレンス</title>
+  <link rel="stylesheet" href="styles.css?v=black-orange-v2">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" data-view-link="home"><b>G</b><span><strong>Gemini Notebook</strong><small>実践リファレンス</small></span></a>
+    <button class="menu-button" id="menuButton" type="button" aria-expanded="false">目次</button>
+    <nav id="mainNav" aria-label="メインメニュー">
+      <a href="#guide" data-view-link="guide">本文ガイド</a>
+      <a href="#prompts" data-view-link="prompts">プロンプト</a>
+      <a href="#gems" data-view-link="gems">GEM</a>
+      <a href="#articles" data-view-link="articles">関連記事</a>
+      <a href="#glossary" data-view-link="glossary">用語集</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="view active" id="view-home">
+      <div class="hero page-width">
+        <div><a class="rename-badge" href="https://blog.google/innovation-and-ai/products/gemini-notebook/notebooklm-gemini-notebook/" target="_blank" rel="noreferrer">✦ NotebookLMから名称が変わりました <b>公式情報 ↗</b></a><p class="kicker">BOOK RECONSTRUCTED AS A PRACTICAL REFERENCE</p><h1><span>Gemini Notebook</span>を、<br>このサイトだけで<br>理解し、使う。</h1><p class="lead">『AI仕事最速大全 NotebookLM即戦力スキル』と付属資料を、原資料の内容に沿って「理解・構築・活用・実務・応用」の順に再構成しました。</p><div class="hero-actions"><a href="#guide" data-view-link="guide">本文ガイドを読む</a><a class="secondary" href="#prompts" data-view-link="prompts">61プロンプトを検索</a></div></div>
+        <div class="counter"><div class="mini-book"><span>G</span><p>Gemini<br>Notebook</p><small>Practical Reference</small></div><p>COLLECTION</p><dl><div><dt>本文モジュール</dt><dd>11</dd></div><div><dt>プロンプト</dt><dd>61</dd></div><div><dt>GEM</dt><dd>24</dd></div><div><dt>関連X記事</dt><dd>52</dd></div><div><dt>用語</dt><dd>14</dd></div></dl></div>
+      </div>
+      <section class="rename-note page-width"><span>2026.07.16</span><div><strong>NotebookLMは「Gemini Notebook」へ。</strong><p>本サイトは現在の製品名に更新しました。書籍名・プロンプト・GEM名・記事名など、原資料に含まれる名称は内容を改変せず「NotebookLM」のまま掲載しています。</p></div></section>
+      <section class="policy page-width"><p class="kicker">このサイトの方針 ✦</p><h2>プロンプト集だけではなく、書籍本文の論理と手順を読み直せる構成</h2><div><p>章の順番を短縮するのではなく、Gemini Notebookを初めて理解するところから、日常業務・組織利用・自動化へ進む学習順に組み替えています。</p><p>説明は原資料の主張と例を基にし、体験談は著者の記述として区別しています。</p></div></section>
+      <section class="home-modules page-width"><div class="section-title"><div><p class="kicker">CORE MODULES</p><h2>11モジュールで全体を学ぶ</h2></div><a href="#guide" data-view-link="guide">すべて読む →</a></div><div class="module-preview-grid" id="homeModules"></div></section>
+      <section class="library-links page-width"><a href="#prompts" data-view-link="prompts"><strong>61</strong><span>プロンプト</span><b>検索・コピー →</b></a><a href="#gems" data-view-link="gems"><strong>24</strong><span>GEM</span><b>用途から探す →</b></a><a href="#articles" data-view-link="articles"><strong>52</strong><span>関連記事</span><b>章・テーマから探す →</b></a></section>
+    </section>
+
+    <section class="view" id="view-guide"><div class="guide-shell page-width"><aside id="guideToc"></aside><div><header class="page-heading"><p class="kicker">COMPLETE GUIDE</p><h1>Gemini Notebook 実践ガイド</h1><p>書籍の内容を学習順に組み替えた全11モジュールです。</p></header><div id="guideModules"></div></div></div></section>
+    <section class="view" id="view-prompts"><div class="library-page page-width"><header class="page-heading"><p class="kicker">PROMPT LIBRARY / 61 ITEMS</p><h1>プロンプト集</h1><p>章・使用ツール・語句から検索し、本文をそのままコピーできます。</p></header><div class="filter-bar"><label class="search"><span>キーワード検索</span><input id="promptSearch" placeholder="例：会議、スライド、Fast Research"></label><label><span>章</span><select id="promptChapter"><option value="all">すべての章</option></select></label><label><span>ツール</span><select id="promptTool"><option value="all">すべてのツール</option></select></label><button id="favoriteOnly" type="button">☆ 保存済みのみ</button></div><p class="result-count" id="promptCount"></p><div class="prompt-list" id="promptList"></div></div></section>
+    <section class="view" id="view-gems"><div class="library-page page-width"><header class="page-heading"><p class="kicker">GEM COLLECTION / 24 ITEMS</p><h1>GEM集</h1><p>特典資料に収録されたGEMを、役割・説明・利用手順とともに一覧化しています。</p></header><div class="filter-bar one"><label class="search"><span>キーワード検索</span><input id="gemSearch" placeholder="例：プロンプト、議事録、画像"></label></div><p class="result-count" id="gemCount"></p><div class="gem-grid" id="gemList"></div></div></section>
+    <section class="view" id="view-articles"><div class="library-page page-width"><header class="page-heading"><p class="kicker">RELATED ARTICLES / 52 ITEMS</p><h1>関連記事</h1><p>書籍解説セミナー特典のX記事を、書籍の章とテーマ別に整理しています。</p></header><div class="filter-bar"><label class="search"><span>キーワード検索</span><input id="articleSearch" placeholder="例：カスタムプロンプト、スライド"></label><label><span>章</span><select id="articleChapter"><option value="all">すべての章</option></select></label><label><span>テーマ</span><select id="articleCategory"><option value="all">すべてのテーマ</option></select></label></div><p class="result-count" id="articleCount"></p><div class="article-list" id="articleList"></div></div></section>
+    <section class="view" id="view-glossary"><div class="library-page page-width"><header class="page-heading"><p class="kicker">GLOSSARY / 14 TERMS</p><h1>Gemini Notebook 用語集</h1><p>本文を読むときに確認したい基本語をまとめています。</p></header><div class="glossary-list" id="glossaryList"></div></div></section>
+  </main>
+
+  <footer class="site-footer page-width"><div><strong>Gemini Notebook 実践リファレンス</strong><p>『AI仕事最速大全 NotebookLM即戦力スキル』（えーたん著）および付属資料を、個人利用向けの汎用リファレンスとして再構成しています。</p></div><p>個人利用向け · 原資料内の「NotebookLM」は、現在の「Gemini Notebook」を指します。重要な事実・数値・規程は原資料の引用箇所も確認してください。</p></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

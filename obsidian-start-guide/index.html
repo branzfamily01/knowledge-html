@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#6d5dfc" />
+  <meta name="description" content="Obsidianを初歩から学ぶ、図解・実践型の初心者ガイド。iPhone対応。" />
+  <title>Obsidian はじめの一歩｜図解ガイド</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="ページ先頭へ">
+      <span class="brand-mark">◆</span>
+      <span>Obsidian はじめの一歩</span>
+    </a>
+    <nav class="topnav" aria-label="主要メニュー">
+      <a href="#start">開始</a>
+      <a href="#concepts">基本</a>
+      <a href="#practice">実践</a>
+      <a href="#templates">型</a>
+    </nav>
+    <button id="printBtn" class="ghost-btn" type="button">印刷 / PDF</button>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <div class="hero-copy">
+        <p class="eyebrow">BEGINNER VISUAL GUIDE</p>
+        <h1>Obsidianは、<br><span>メモを「つなぐ」道具</span>です。</h1>
+        <p class="lead">フォルダにきれいに収納するより、思いついたことをまず書き、<code>[[リンク]]</code>で関連づける。散らかった考えを、あとから育てられる「自分専用の知識基地」に変えます。</p>
+        <div class="hero-actions">
+          <a class="primary-btn" href="#start">30分で始める</a>
+          <a class="secondary-btn" href="#personal-flow">あなた向けの使い方</a>
+        </div>
+        <div class="mini-note">基本機能は無料。ノートは端末内のMarkdownファイルとして保存されます。</div>
+      </div>
+
+      <div class="network-card" aria-label="ノートがつながる図解">
+        <svg class="network-lines" viewBox="0 0 520 400" role="img" aria-label="困りごと、アイデア、教材、家庭、仕事のノートがリンクでつながる図">
+          <line x1="260" y1="200" x2="110" y2="85" />
+          <line x1="260" y1="200" x2="410" y2="85" />
+          <line x1="260" y1="200" x2="95" y2="310" />
+          <line x1="260" y1="200" x2="425" y2="305" />
+          <line x1="110" y1="85" x2="410" y2="85" />
+          <line x1="95" y1="310" x2="425" y2="305" />
+        </svg>
+        <div class="node node-main">アイデア<br>母艦</div>
+        <div class="node node-a">困りごと</div>
+        <div class="node node-b">教材</div>
+        <div class="node node-c">家庭</div>
+        <div class="node node-d">仕事</div>
+        <div class="network-caption">ノート＝点　　リンク＝線</div>
+      </div>
+    </section>
+
+    <section class="section compact" id="start">
+      <div class="section-head">
+        <p class="eyebrow">STEP 0</p>
+        <h2>最初の30分でやること</h2>
+        <p>完璧な整理ルールは作りません。まず、書く・つなぐ・見返すを1回ずつ体験します。</p>
+      </div>
+
+      <div class="device-switcher" role="tablist" aria-label="端末別の開始方法">
+        <button class="device-tab active" data-tab="iphone" role="tab" aria-selected="true">iPhone / iPad中心</button>
+        <button class="device-tab" data-tab="multi" role="tab" aria-selected="false">複数端末</button>
+      </div>
+
+      <div class="device-panel active" id="iphone" role="tabpanel">
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-num">1</div>
+            <h3>アプリを入れる</h3>
+            <p>App StoreからObsidianをインストール。最初はアカウント登録なしでも使えます。</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">2</div>
+            <h3>保管庫を作る</h3>
+            <p><b>Create new vault</b>を選び、名前は「アイデア母艦」などにします。Apple端末間で使うなら<b>Store in iCloud</b>をオン。</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">3</div>
+            <h3>最初のノート</h3>
+            <p>「00_INBOX」というノートを作り、今気になっていることを3つ、箇条書きで入力します。</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">4</div>
+            <h3>リンクする</h3>
+            <p>気になる語を <code>[[子どもの国語力]]</code> のように二重角括弧で囲み、タップして新しいノートを作ります。</p>
+          </article>
+        </div>
+        <aside class="warning-box"><b>iCloudの保存場所：</b>「iCloud Drive → Obsidian → 保管庫名」の中に置きます。Apple端末だけなら始めやすい方法です。</aside>
+      </div>
+
+      <div class="device-panel" id="multi" role="tabpanel" hidden>
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-num">1</div>
+            <h3>各端末にアプリ</h3>
+            <p>Windows・Mac・iPhone・iPadなど、編集する端末にObsidianを入れます。</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">2</div>
+            <h3>同期方法を1つ選ぶ</h3>
+            <p>異なるOSをまたぐなら、最も単純なのは有料のObsidian Sync。Apple端末間ならiCloudも候補です。</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">3</div>
+            <h3>二重同期は禁止</h3>
+            <p>同じ保管庫にiCloudとObsidian Syncなど、複数の同期方式を重ねないようにします。</p>
+          </article>
+          <article class="step-card">
+            <div class="step-num">4</div>
+            <h3>ブラウザ利用の注意</h3>
+            <p>Obsidianは基本的にアプリで編集します。ブラウザだけの学校PCでは、iPhone側を入力端末にする運用が現実的です。</p>
+          </article>
+        </div>
+        <aside class="warning-box"><b>おすすめ判断：</b>当面iPhone・iPad中心ならiCloud。将来Windows PCでも本格運用するならObsidian Syncを検討。</aside>
+      </div>
+    </section>
+
+    <section class="section" id="concepts">
+      <div class="section-head">
+        <p class="eyebrow">FOUR BASICS</p>
+        <h2>覚える言葉は、まず4つだけ</h2>
+      </div>
+
+      <div class="concept-map">
+        <article class="concept concept-vault">
+          <div class="concept-icon">1</div>
+          <h3>保管庫 Vault</h3>
+          <p>Obsidian全体を入れる「大きな箱」。実体は、端末内のフォルダです。</p>
+          <div class="example">例：アイデア母艦</div>
+        </article>
+        <div class="map-arrow">→</div>
+        <article class="concept concept-note">
+          <div class="concept-icon">2</div>
+          <h3>ノート Note</h3>
+          <p>1つのテーマを扱うページ。小さく作り、あとから育てます。</p>
+          <div class="example">例：音読アプリ案</div>
+        </article>
+        <div class="map-arrow">→</div>
+        <article class="concept concept-link">
+          <div class="concept-icon">3</div>
+          <h3>リンク Link</h3>
+          <p><code>[[ノート名]]</code>でノート同士をつなぎます。これがObsidianの核心です。</p>
+          <div class="example">[[国語力]] ↔ [[音読]]</div>
+        </article>
+        <div class="map-arrow">→</div>
+        <article class="concept concept-meta">
+          <div class="concept-icon">4</div>
+          <h3>タグ・プロパティ</h3>
+          <p>タグは横断的な目印。プロパティは状態・日付などの整理された情報です。</p>
+          <div class="example">#アイデア　status: 種</div>
+        </article>
+      </div>
+
+      <div class="compare-wrap">
+        <div class="compare-card good">
+          <h3>リンクが向くもの</h3>
+          <p>意味のあるテーマ・人物・企画・概念</p>
+          <code>[[中学受験コーチ]]</code>
+          <code>[[記号接地]]</code>
+        </div>
+        <div class="compare-card neutral">
+          <h3>タグが向くもの</h3>
+          <p>複数ノートをまとめて絞り込む状態や種類</p>
+          <code>#アイデア</code>
+          <code>#要検討</code>
+        </div>
+        <div class="compare-card caution">
+          <h3>フォルダが向くもの</h3>
+          <p>保管場所が明確な大分類。最初は少数で十分</p>
+          <code>Daily / Projects / Archive</code>
+        </div>
+      </div>
+    </section>
+
+    <section class="section deep" id="personal-flow">
+      <div class="section-head light">
+        <p class="eyebrow">YOUR WORKFLOW</p>
+        <h2>あなたには、この流れが合います</h2>
+        <p>困りごとや着想が大量に見つかるタイプは、整理してから書こうとすると止まります。入口と出口を分けます。</p>
+      </div>
+
+      <div class="flow-diagram">
+        <article class="flow-step">
+          <div class="flow-label">CAPTURE</div>
+          <div class="flow-symbol">↓</div>
+          <h3>全部INBOXへ</h3>
+          <p>思いつき・不満・URL・会話メモを、判断せず投入。</p>
+        </article>
+        <div class="flow-arrow">→</div>
+        <article class="flow-step">
+          <div class="flow-label">CONNECT</div>
+          <div class="flow-symbol">◇</div>
+          <h3>関連語をリンク</h3>
+          <p>「これは何と関係する？」を1つだけ考え、<code>[[ ]]</code>を付ける。</p>
+        </article>
+        <div class="flow-arrow">→</div>
+        <article class="flow-step">
+          <div class="flow-label">DISTILL</div>
+          <div class="flow-symbol">◎</div>
+          <h3>核を1文にする</h3>
+          <p>困っている人・痛み・理想状態を短く言語化。</p>
+        </article>
+        <div class="flow-arrow">→</div>
+        <article class="flow-step">
+          <div class="flow-label">ACT</div>
+          <div class="flow-symbol">✓</div>
+          <h3>1つだけ実験</h3>
+          <p>今週試す案に昇格。残りは捨てずに「種」として保存。</p>
+        </article>
+      </div>
+
+      <div class="sample-note">
+        <div class="note-window-bar">
+          <span></span><span></span><span></span>
+          <b>困りごと｜子どもが難語で読書を止める.md</b>
+        </div>
+        <pre><code>---
+type: pain
+status: seed
+tags: [教育, 読書]
+---
+
+# 困りごと｜子どもが難語で読書を止める
+
+## 観察
+難しい語が出るたびに、物語への集中が切れる。
+
+## 本当の痛み
+辞書を引く作業ではなく、読書の流れが切れること。
+
+## 関連
+- [[語彙力]]
+- [[音声読み上げ]]
+- [[青空文庫プロジェクト]]
+
+## 小さな実験
+選択した語だけ、読み・意味・音声を即表示する。</code></pre>
+      </div>
+    </section>
+
+    <section class="section" id="practice">
+      <div class="section-head">
+        <p class="eyebrow">SEVEN-DAY PRACTICE</p>
+        <h2>7日間の超入門コース</h2>
+        <p>チェックはこの端末に保存されます。全部やる必要はありません。</p>
+      </div>
+
+      <div class="week-layout">
+        <div class="checklist" id="checklist">
+          <label class="check-item"><input type="checkbox" data-key="d1"><span><b>Day 1</b> 保管庫と「00_INBOX」を作る</span></label>
+          <label class="check-item"><input type="checkbox" data-key="d2"><span><b>Day 2</b> 気になることを5件、1行ずつ書く</span></label>
+          <label class="check-item"><input type="checkbox" data-key="d3"><span><b>Day 3</b> 2つの語を <code>[[リンク]]</code> にする</span></label>
+          <label class="check-item"><input type="checkbox" data-key="d4"><span><b>Day 4</b> デイリーノートを有効にする</span></label>
+          <label class="check-item"><input type="checkbox" data-key="d5"><span><b>Day 5</b> テンプレートを1つ登録する</span></label>
+          <label class="check-item"><input type="checkbox" data-key="d6"><span><b>Day 6</b> ローカルグラフで1つのノート周辺を見る</span></label>
+          <label class="check-item"><input type="checkbox" data-key="d7"><span><b>Day 7</b> 今週育てるノートを1つ決める</span></label>
+        </div>
+        <div class="progress-card">
+          <div class="progress-ring" id="progressRing"><span id="progressText">0%</span></div>
+          <h3>今週の到達点</h3>
+          <p>「きれいに整理できた」ではなく、<b>メモが1本のリンクでつながった</b>なら成功です。</p>
+          <button class="secondary-btn small" id="resetProgress" type="button">チェックをリセット</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft" id="templates">
+      <div class="section-head">
+        <p class="eyebrow">COPY & USE</p>
+        <h2>最初に使うテンプレートは3つ</h2>
+        <p>ボタンを押すと本文をコピーできます。Obsidianの新規ノートへ貼り付けてください。</p>
+      </div>
+
+      <div class="template-grid">
+        <article class="template-card">
+          <div class="template-head">
+            <span>01</span><h3>デイリーノート</h3>
+          </div>
+          <pre id="tplDaily"># {{date:YYYY-MM-DD}}
+
+## 今日いちばん大事なこと
+- [ ] 
+
+## INBOX
+- 
+
+## 気づき
+- 
+
+## 明日へ送る
+- [ ] </pre>
+          <button class="copy-btn" data-copy="tplDaily" type="button">コピー</button>
+        </article>
+
+        <article class="template-card">
+          <div class="template-head">
+            <span>02</span><h3>困りごと採掘</h3>
+          </div>
+          <pre id="tplPain">---
+type: pain
+status: seed
+tags: []
+---
+
+# 困りごと｜
+
+## 誰が困る？
+
+## 何が面倒？
+
+## 現在の回避策
+
+## 理想状態
+
+## 関連
+- [[]]
+
+## 次の一手</pre>
+          <button class="copy-btn" data-copy="tplPain" type="button">コピー</button>
+        </article>
+
+        <article class="template-card">
+          <div class="template-head">
+            <span>03</span><h3>アイデア育成</h3>
+          </div>
+          <pre id="tplIdea">---
+type: idea
+status: seed
+---
+
+# アイデア｜
+
+## ひとことで
+
+## 解決する困りごと
+- [[]]
+
+## 最小版
+
+## 強み
+
+## 懸念
+
+## 判定
+- [ ] 維持
+- [ ] 修正
+- [ ] 廃止
+- [ ] 保留</pre>
+          <button class="copy-btn" data-copy="tplIdea" type="button">コピー</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="section-head">
+        <p class="eyebrow">WHEN TO USE WHAT</p>
+        <h2>機能は、必要になった順に足す</h2>
+      </div>
+
+      <div class="timeline">
+        <div class="time-row">
+          <div class="time-badge now">最初</div>
+          <div class="time-content"><h3>ノート・内部リンク・検索</h3><p>まずはここだけ。Obsidianの価値の8割を体験できます。</p></div>
+        </div>
+        <div class="time-row">
+          <div class="time-badge soon">1週間後</div>
+          <div class="time-content"><h3>デイリーノート・テンプレート</h3><p>毎回同じ入口を作り、思いつきを逃さなくします。</p></div>
+        </div>
+        <div class="time-row">
+          <div class="time-badge later">必要時</div>
+          <div class="time-content"><h3>Canvas・ローカルグラフ</h3><p>複数の案を視覚的に並べる時に使います。全体グラフは鑑賞より発見用。</p></div>
+        </div>
+        <div class="time-row">
+          <div class="time-badge last">最後</div>
+          <div class="time-content"><h3>コミュニティプラグイン</h3><p>「標準機能では具体的に何ができないか」が言えるまで、入れなくて構いません。</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section danger-zone">
+      <div class="section-head">
+        <p class="eyebrow">AVOID THESE TRAPS</p>
+        <h2>初心者が止まりやすい4つの罠</h2>
+      </div>
+      <div class="trap-grid">
+        <article><b>罠1</b><h3>最初にフォルダ設計</h3><p>正解を決めようとして、肝心のメモが始まりません。フォルダは後から動かせます。</p></article>
+        <article><b>罠2</b><h3>プラグイン収集</h3><p>機能を増やすほど運用ルールも増えます。最初の7日間は標準機能だけで十分です。</p></article>
+        <article><b>罠3</b><h3>全部を長文にする</h3><p>一行メモでも価値があります。重要なノートだけ、あとで育てます。</p></article>
+        <article><b>罠4</b><h3>グラフを完成品と思う</h3><p>きれいな宇宙図を作ることが目的ではありません。次の関連を見つける道具です。</p></article>
+      </div>
+    </section>
+
+    <section class="section quick-ref">
+      <div class="section-head">
+        <p class="eyebrow">CHEAT SHEET</p>
+        <h2>最低限の書き方</h2>
+      </div>
+      <div class="cheat-grid">
+        <div><code># 見出し1</code><span>大見出し</span></div>
+        <div><code>## 見出し2</code><span>小見出し</span></div>
+        <div><code>- 箇条書き</code><span>リスト</span></div>
+        <div><code>- [ ] やること</code><span>未完了タスク</span></div>
+        <div><code>[[ノート名]]</code><span>内部リンク</span></div>
+        <div><code>![[画像.png]]</code><span>埋め込み</span></div>
+        <div><code>#タグ</code><span>横断的な分類</span></div>
+        <div><code>**太字**</code><span>強調</span></div>
+      </div>
+    </section>
+
+    <section class="section sources">
+      <div class="section-head">
+        <p class="eyebrow">OFFICIAL SOURCES</p>
+        <h2>公式情報</h2>
+        <p>画面名や仕様が変わった場合は、以下のObsidian公式ヘルプを確認してください。</p>
+      </div>
+      <div class="source-links">
+        <a href="https://obsidian.md/help/" target="_blank" rel="noopener">公式ヘルプ</a>
+        <a href="https://obsidian.md/help/links" target="_blank" rel="noopener">内部リンク</a>
+        <a href="https://obsidian.md/help/plugins/daily-notes" target="_blank" rel="noopener">デイリーノート</a>
+        <a href="https://obsidian.md/help/plugins/templates" target="_blank" rel="noopener">テンプレート</a>
+        <a href="https://obsidian.md/help/plugins/graph" target="_blank" rel="noopener">グラフビュー</a>
+        <a href="https://obsidian.md/help/plugins/canvas" target="_blank" rel="noopener">Canvas</a>
+        <a href="https://obsidian.md/help/properties" target="_blank" rel="noopener">プロパティ</a>
+        <a href="https://obsidian.md/help/sync-notes" target="_blank" rel="noopener">同期</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <b>Obsidian はじめの一歩</b>
+      <p>書く → つなぐ → 育てる。最初はそれだけで十分です。</p>
+    </div>
+    <a href="#top">ページ先頭へ ↑</a>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite">コピーしました</div>
+  <script src="script.js"></script>
+</body>
+</html>
