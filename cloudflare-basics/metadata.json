@@ -1,0 +1,16 @@
+{
+  "title": "Cloudflare入門｜Public / Private Knowledgeを理解する",
+  "slug": "cloudflare-basics",
+  "type": "knowledge-html",
+  "category": "IT・AI",
+  "tags": ["Cloudflare","Cloudflare Workers","Workers Static Assets","Cloudflare Access","Zero Trust","DNS","CDN","Reverse Proxy","GitHub","GitHub Pages","Private Knowledge"],
+  "summary": "CloudflareのDNS・CDN・Reverse Proxy・Workers・Access・Zero Trustを、GitHub Pagesとの違いとPublic/Private Knowledge構成を軸に初心者向けに図解。2026年8月のWorkers Static Assets推奨とWorker単位Accessにも対応。",
+  "level": "入門〜実務基礎",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "cloudflare-basics/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/cloudflare-basics/",
+  "sourceType": "official-web-research+user-brief",
+  "sourceSummary": "Cloudflare公式ドキュメント、GitHub Pages公式ドキュメント、Netlify公式ドキュメントを2026-08-26に確認し、Public/Private Knowledge構想に沿って再構成。"
+}

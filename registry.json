@@ -7,15 +7,7 @@
       "slug": "supabase-basics",
       "type": "knowledge-html",
       "category": "IT・AI",
-      "tags": [
-        "Supabase",
-        "データベース",
-        "PostgreSQL",
-        "Webアプリ",
-        "GitHub Pages",
-        "Auth",
-        "RLS"
-      ],
+      "tags": ["Supabase","データベース","PostgreSQL","Webアプリ","GitHub Pages","Auth","RLS"],
       "summary": "Supabaseの役割、GitHub Pagesとの違い、Database・Auth・Storage・RLS・APIキーの基本を初心者向けに図解。",
       "level": "入門",
       "createdAt": "2026-08-26",
@@ -31,13 +23,7 @@
       "slug": "obsidian-start-guide",
       "type": "knowledge-html",
       "category": "Second Brain",
-      "tags": [
-        "Obsidian",
-        "Second Brain",
-        "メモ",
-        "知識管理",
-        "初心者"
-      ],
+      "tags": ["Obsidian","Second Brain","メモ","知識管理","初心者"],
       "summary": "Obsidianの基本、リンク、Vault、テンプレート、7日間入門を図解で学ぶガイド。",
       "level": "入門",
       "sourceRepo": "obsidian-start-guide",
@@ -54,14 +40,7 @@
       "slug": "gemini-notebook-reference",
       "type": "knowledge-html",
       "category": "AI・仕事術",
-      "tags": [
-        "Gemini Notebook",
-        "NotebookLM",
-        "プロンプト",
-        "GEM",
-        "AI",
-        "仕事術"
-      ],
+      "tags": ["Gemini Notebook","NotebookLM","プロンプト","GEM","AI","仕事術"],
       "summary": "Gemini Notebookの理解・構築・活用を11モジュール、プロンプト、GEM、関連記事、用語集で横断できる実践リファレンス。",
       "level": "実践",
       "sourceRepo": "gemini-notebook-reference",
@@ -78,13 +57,7 @@
       "slug": "onhenka-dojo-yukito-guide",
       "type": "knowledge-html",
       "category": "英語学習",
-      "tags": [
-        "英語",
-        "リスニング",
-        "音変化",
-        "Yukito Quest",
-        "学習ガイド"
-      ],
+      "tags": ["英語","リスニング","音変化","Yukito Quest","学習ガイド"],
       "summary": "Yukito Questの始め方、練習モード、ゲームルール、学習ルーティンをまとめた遊び方ガイド。",
       "level": "入門",
       "sourceRepo": "onhenka-dojo-yukito-guide",
@@ -101,13 +74,7 @@
       "slug": "gemini-notebook-minimal-prompt",
       "type": "knowledge-html",
       "category": "AI・資料作成",
-      "tags": [
-        "Gemini Notebook",
-        "スライド",
-        "プロンプト",
-        "資料作成",
-        "AI"
-      ],
+      "tags": ["Gemini Notebook","スライド","プロンプト","資料作成","AI"],
       "summary": "Gemini Notebookでスライドを作る際、過剰指定を減らし最小プロンプトと構成設計を使う実践原則をまとめた資料。",
       "level": "実践",
       "sourceRepo": "gemini-notebook-minimal-prompt",
@@ -124,13 +91,7 @@
       "slug": "claude-bunshin-guide",
       "type": "knowledge-html",
       "category": "IT・AI",
-      "tags": [
-        "Claude",
-        "AI",
-        "プロジェクト",
-        "パーソナライズ",
-        "プロンプト"
-      ],
+      "tags": ["Claude","AI","プロジェクト","パーソナライズ","プロンプト"],
       "summary": "Claudeに自分の考え方や前提を持たせ、分身のように使うための構成と手順を図解したガイド。",
       "level": "実践",
       "sourceRepo": "claude-bunshin-guide",
@@ -147,13 +108,7 @@
       "slug": "gemini-notebook-ai-tutor-guide",
       "type": "knowledge-html",
       "category": "AI・学習",
-      "tags": [
-        "Gemini Notebook",
-        "AI家庭教師",
-        "資格勉強",
-        "学習法",
-        "AI"
-      ],
+      "tags": ["Gemini Notebook","AI家庭教師","資格勉強","学習法","AI"],
       "summary": "Gemini Notebookを専属家庭教師のように使い、資格学習を仕組み化する方法をまとめたガイド。",
       "level": "実践",
       "sourceRepo": "gemini-notebook-ai-tutor-guide",
@@ -170,14 +125,7 @@
       "slug": "second-brain-bridge-manual",
       "type": "knowledge-html",
       "category": "Second Brain",
-      "tags": [
-        "Second Brain Bridge",
-        "Second Brain",
-        "Obsidian",
-        "ChatGPT",
-        "Codex",
-        "GitHub"
-      ],
+      "tags": ["Second Brain Bridge","Second Brain","Obsidian","ChatGPT","Codex","GitHub"],
       "summary": "Second Brain Bridge、ChatGPT、Codex、Obsidian、GitHubの役割分担と実践フローを図解したマニュアル。",
       "level": "入門",
       "sourceRepo": "second-brain-bridge-manual",
@@ -194,14 +142,7 @@
       "slug": "notebooklm-slide-library-offline-archive-v6",
       "type": "knowledge-html",
       "category": "AI・資料作成",
-      "tags": [
-        "NotebookLM",
-        "スライド",
-        "デザイン",
-        "スタイル",
-        "YAML",
-        "アーカイブ"
-      ],
+      "tags": ["NotebookLM","スライド","デザイン","スタイル","YAML","アーカイブ"],
       "summary": "160種類のスライドデザイン画像とYAMLを検索・閲覧・コピーできるオフライン保存版リファレンス。",
       "level": "実践",
       "sourceRepo": "notebooklm-slide-library-offline-archive-v6",
@@ -218,15 +159,7 @@
       "slug": "cloudflare-os-ai-command-center",
       "type": "knowledge-html",
       "category": "IT・AI",
-      "tags": [
-        "Cloudflare",
-        "AI",
-        "GPT",
-        "Claude",
-        "Google Drive",
-        "社内AI",
-        "図解"
-      ],
+      "tags": ["Cloudflare","AI","GPT","Claude","Google Drive","社内AI","図解"],
       "summary": "GPT・Claude・Google Driveなどをつなぐ会社専用AI司令塔としてのCloudflare OSを初心者向けに図解した資料。",
       "level": "入門",
       "sourceRepo": "cloudflare-os-ai-command-center",
@@ -237,6 +170,22 @@
       "publicUrl": "https://branzfamily01.github.io/knowledge-html/cloudflare-os-ai-command-center/",
       "sourceType": "github-existing-html",
       "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/cloudflare-os-ai-command-center without substantive content changes."
+    },
+    {
+      "title": "Cloudflare入門｜Public / Private Knowledgeを理解する",
+      "slug": "cloudflare-basics",
+      "type": "knowledge-html",
+      "category": "IT・AI",
+      "tags": ["Cloudflare","Cloudflare Workers","Workers Static Assets","Cloudflare Access","Zero Trust","DNS","CDN","Reverse Proxy","GitHub","GitHub Pages","Private Knowledge"],
+      "summary": "CloudflareのDNS・CDN・Reverse Proxy・Workers・Access・Zero Trustを、GitHub Pagesとの違いとPublic/Private Knowledge構成を軸に初心者向けに図解。2026年8月のWorkers Static Assets推奨とWorker単位Accessにも対応。",
+      "level": "入門〜実務基礎",
+      "createdAt": "2026-08-26",
+      "updatedAt": "2026-08-26",
+      "githubRepo": "knowledge-html",
+      "githubPath": "cloudflare-basics/",
+      "publicUrl": "https://branzfamily01.github.io/knowledge-html/cloudflare-basics/",
+      "sourceType": "official-web-research+user-brief",
+      "sourceSummary": "Cloudflare公式ドキュメント中心に2026-08-26時点の仕様を確認し、Public/Private Knowledge構想と初心者の疑問に沿って再構成。"
     }
   ]
 }
