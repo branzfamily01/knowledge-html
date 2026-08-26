@@ -10,6 +10,7 @@ on:
       - 'scripts/build-apps-registry.mjs'
       - 'apps-overrides.json'
       - 'registry.json'
+      - 'hub-sync.json'
 
 permissions:
   contents: write
