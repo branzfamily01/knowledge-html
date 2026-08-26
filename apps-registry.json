@@ -1,25 +1,55 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-26T20:06:02.075Z",
+  "generatedAt": "2026-08-26T23:07:40.405Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
-  "count": 39,
+  "count": 41,
   "items": [
+    {
+      "title": "Book Capture AI",
+      "slug": "book-capture-ai",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [
+        "Windows",
+        "PDF",
+        "OCR",
+        "Kindle",
+        "電子書籍",
+        "自動キャプチャ"
+      ],
+      "summary": "Windows上の電子書籍画面を自動ページ送りで保存し、見開き分割・ヘッダー/フッター除去・PDF化・日本語OCRまでローカルで行うツール。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "book-capture-ai",
+      "repoUrl": "https://github.com/branzfamily01/book-capture-ai",
+      "publicUrl": "https://branzfamily01.github.io/book-capture-ai/",
+      "updatedAt": "2026-08-26",
+      "sourceType": "github-pages-manifest"
+    },
     {
       "title": "Motion Atlas",
       "slug": "motion-atlas",
       "type": "web-app",
-      "category": "Web Apps",
-      "tags": [],
-      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "category": "Tools",
+      "tags": [
+        "アニメーション",
+        "CSS",
+        "UI",
+        "AI",
+        "Web制作",
+        "比較"
+      ],
+      "summary": "52種類のWebモーションを見て選び、比較・調整して、AI指示文やHTML/CSSとしてコピーできるモーション設計ツール。",
       "visibility": "public",
       "status": "active",
-      "color": "orange",
+      "color": "blue",
       "githubRepo": "motion-atlas",
       "repoUrl": "https://github.com/branzfamily01/motion-atlas",
       "publicUrl": "https://branzfamily01.github.io/motion-atlas/",
       "updatedAt": "2026-08-26",
-      "sourceType": "github-pages-auto-index"
+      "sourceType": "github-pages-manifest"
     },
     {
       "title": "My Hub — Knowledge, Apps & Tools",
@@ -36,6 +66,28 @@
       "publicUrl": "https://branzfamily01.github.io/my-hub/",
       "updatedAt": "2026-08-26",
       "sourceType": "github-pages-auto-index"
+    },
+    {
+      "title": "Paper Surface Lab",
+      "slug": "paper-surface-lab",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [
+        "Paper UI",
+        "Reading",
+        "PWA",
+        "Accessibility",
+        "Display"
+      ],
+      "summary": "Normal・Matte・Book・E-Ink・Night・Focusの6種類を切り替え、読みやすい紙質のWeb画面を比較できる実験アプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "paper-surface-lab",
+      "repoUrl": "https://github.com/branzfamily01/paper-surface-lab",
+      "publicUrl": "https://branzfamily01.github.io/paper-surface-lab/",
+      "updatedAt": "2026-08-26",
+      "sourceType": "github-pages-manifest"
     },
     {
       "title": "Second Brain Bridge",
@@ -104,6 +156,26 @@
       "sourceType": "github-pages-auto-index"
     },
     {
+      "title": "蔵書レファレンスナビ",
+      "slug": "library-reference-navigator",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [
+        "蔵書",
+        "検索",
+        "レファレンス"
+      ],
+      "summary": "蔵書を検索し、必要な資料へたどり着くためのナビゲーションツール。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "library-reference-navigator",
+      "repoUrl": "https://github.com/branzfamily01/library-reference-navigator",
+      "publicUrl": "https://branzfamily01.github.io/library-reference-navigator/",
+      "updatedAt": "2026-08-26",
+      "sourceType": "github-pages-manifest"
+    },
+    {
       "title": "受験クエストOS",
       "slug": "juken-quest-os",
       "type": "web-app",
@@ -141,26 +213,6 @@
       "repoUrl": "https://github.com/branzfamily01/blend-english-reader",
       "publicUrl": "https://branzfamily01.github.io/blend-english-reader/",
       "updatedAt": "2026-08-22",
-      "sourceType": "github-pages-auto-index"
-    },
-    {
-      "title": "蔵書レファレンスナビ",
-      "slug": "library-reference-navigator",
-      "type": "web-app",
-      "category": "Tools",
-      "tags": [
-        "蔵書",
-        "検索",
-        "レファレンス"
-      ],
-      "summary": "蔵書を検索し、必要な資料へたどり着くためのナビゲーションツール。",
-      "visibility": "public",
-      "status": "active",
-      "color": "blue",
-      "githubRepo": "library-reference-navigator",
-      "repoUrl": "https://github.com/branzfamily01/library-reference-navigator",
-      "publicUrl": "https://branzfamily01.github.io/library-reference-navigator/",
-      "updatedAt": "2026-08-21",
       "sourceType": "github-pages-auto-index"
     },
     {
