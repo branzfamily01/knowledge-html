@@ -14,9 +14,9 @@
 | ✅ | 4 | `gemini-notebook-reference` | Gemini Notebook 実践リファレンス |
 | ✅ | 3 | `notebooklm-slide-library-offline-archive-v6` | Slide Style Library — Offline Archive v6 |
 | ✅ | 3 | `onhenka-dojo-yukito-guide` | 音変化道場｜Yukito Quest 遊び方 |
+| ✅ | 2 | `cloudflare-os-ai-command-center` | Cloudflare OSとは？｜会社専用AI司令塔を図解 |
 | ✅ | 0 | `gemini-notebook-minimal-prompt` | Gemini Notebook｜スライドは「盛る」より「削る」 |
 |  | 4 | `library-reference-navigator` | 蔵書レファレンスナビ |
-|  | 2 | `cloudflare-os-ai-command-center` | Cloudflare OSとは？｜会社専用AI司令塔を図解 |
 |  | 2 | `jikai-yonka-matome` | 字界 — 忘却の遺跡 — 四科のまとめ編 |
 |  | 0 | `action-inbox` | Action Inbox |
 |  | 0 | `blend-english-reader` | Blend English |

@@ -185,6 +185,29 @@
       }
     },
     {
+      "repo": "cloudflare-os-ai-command-center",
+      "title": "Cloudflare OSとは？｜会社専用AI司令塔を図解",
+      "indexSize": 23280,
+      "rootFiles": [
+        "README.md",
+        "index.html"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 2,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
       "repo": "gemini-notebook-minimal-prompt",
       "title": "Gemini Notebook｜スライドは「盛る」より「削る」",
       "indexSize": 11922,
@@ -233,29 +256,6 @@
         "hasGameTerms": false,
         "hasQuizTerms": false,
         "hasSearchTerms": true
-      }
-    },
-    {
-      "repo": "cloudflare-os-ai-command-center",
-      "title": "Cloudflare OSとは？｜会社専用AI司令塔を図解",
-      "indexSize": 23280,
-      "rootFiles": [
-        "README.md",
-        "index.html"
-      ],
-      "migratedToKnowledge": false,
-      "candidateScore": 2,
-      "markers": {
-        "hasSeparateJs": false,
-        "hasManifest": false,
-        "hasServiceWorker": false,
-        "hasInput": false,
-        "hasLocalStorage": false,
-        "hasFirebase": false,
-        "hasSupabase": false,
-        "hasGameTerms": false,
-        "hasQuizTerms": true,
-        "hasSearchTerms": false
       }
     },
     {
