@@ -66,6 +66,11 @@ jobs:
           cp "$TMP/second-brain-bridge-manual/styles.css" second-brain-bridge-manual/
           cp "$TMP/second-brain-bridge-manual/sw.js" second-brain-bridge-manual/
 
+          clone_repo notebooklm-slide-library-offline-archive-v6
+          mkdir -p notebooklm-slide-library-offline-archive-v6
+          rsync -a --delete --exclude='.git' --exclude='.github' --exclude='README.md' \
+            "$TMP/notebooklm-slide-library-offline-archive-v6/" notebooklm-slide-library-offline-archive-v6/
+
       - name: Create metadata and update registry
         shell: bash
         run: |
@@ -111,6 +116,11 @@ jobs:
               'tags':['Second Brain Bridge','Second Brain','Obsidian','ChatGPT','Codex','GitHub'],
               'summary':'Second Brain Bridge、ChatGPT、Codex、Obsidian、GitHubの役割分担と実践フローを図解したマニュアル。','level':'入門','sourceRepo':'second-brain-bridge-manual'
             },
+            {
+              'title':'Slide Style Library — Offline Archive v6','slug':'notebooklm-slide-library-offline-archive-v6','type':'knowledge-html','category':'AI・資料作成',
+              'tags':['NotebookLM','スライド','デザイン','スタイル','YAML','アーカイブ'],
+              'summary':'160種類のスライドデザイン画像とYAMLを検索・閲覧・コピーできるオフライン保存版リファレンス。','level':'実践','sourceRepo':'notebooklm-slide-library-offline-archive-v6'
+            },
           ]
 
           for x in items:
@@ -144,6 +154,8 @@ jobs:
           test -f claude-bunshin-guide/index.html
           test -f gemini-notebook-ai-tutor-guide/index.html
           test -f second-brain-bridge-manual/index.html
+          test -f notebooklm-slide-library-offline-archive-v6/data/archive-data.js
+          test -d notebooklm-slide-library-offline-archive-v6/images
           python -m json.tool registry.json >/dev/null
           for f in */metadata.json; do python -m json.tool "$f" >/dev/null; done
 
@@ -153,7 +165,7 @@ jobs:
           set -euo pipefail
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add obsidian-start-guide gemini-notebook-reference onhenka-dojo-yukito-guide gemini-notebook-minimal-prompt claude-bunshin-guide gemini-notebook-ai-tutor-guide second-brain-bridge-manual registry.json
+          git add obsidian-start-guide gemini-notebook-reference onhenka-dojo-yukito-guide gemini-notebook-minimal-prompt claude-bunshin-guide gemini-notebook-ai-tutor-guide second-brain-bridge-manual notebooklm-slide-library-offline-archive-v6 registry.json
           if git diff --cached --quiet; then
             echo 'No migration changes to commit.'
           else
