@@ -1,0 +1,248 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f9fc">
+  <meta name="description" content="初心者向けHTML化・保存プロジェクトの使い方を、会話や資料からHTML化、GitHub保存、registry登録、GitHub Pages公開、My Hub掲載まで一本道で説明する完全ガイド。">
+  <title>初心者向けHTML化・保存｜完全ガイド — 会話からMy Hubまで</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="shell">
+      <p class="eyebrow"><span lang="en">KNOWLEDGE HTML WORKFLOW</span></p>
+      <h1>初心者向けHTML化・保存<br><span class="subline">完全ガイド</span></h1>
+      <p class="lead speakable">難しい会話・資料・技術説明を、初心者が読めるHTMLへ再設計し、GitHubへ保存し、最後はMy Hubから探せる状態まで持っていくための使い方です。</p>
+
+      <div class="tts-bar" aria-label="読み上げ操作">
+        <button class="primary" type="button" data-speak-target="#level1">要点を聞く</button>
+        <button class="ghost" type="button" id="stopSpeech">停止</button>
+        <label class="speed">速度 <input id="speechRate" type="range" min="0.7" max="3" step="0.1" value="1"><strong id="rateValue">1.0×</strong></label>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="level level1" id="level1" data-section-title="30秒でわかる">
+      <div class="section-head">
+        <div><span class="level-chip">LEVEL 1｜30秒</span><h2>まず、これだけ覚える</h2></div>
+        <button class="listen" type="button" data-speak-section>この章を聞く</button>
+      </div>
+
+      <div class="answer-card speakable">
+        <span class="importance must">必須</span>
+        <p class="big-answer">あなたは素材を渡して、<strong>「この話を初心者向けHTMLにして保存して」</strong>と言えばいい。</p>
+      </div>
+
+      <div class="flow speakable" aria-label="全体フロー">
+        <div class="flow-step"><b>1</b><span>会話・資料</span></div><i>→</i>
+        <div class="flow-step"><b>2</b><span>再設計</span></div><i>→</i>
+        <div class="flow-step"><b>3</b><span>HTML</span></div><i>→</i>
+        <div class="flow-step"><b>4</b><span lang="en">GitHub</span></div><i>→</i>
+        <div class="flow-step"><b>5</b><span lang="en">registry</span></div><i>→</i>
+        <div class="flow-step"><b>6</b><span lang="en">Pages</span></div><i>→</i>
+        <div class="flow-step"><b>7</b><span lang="en">My Hub</span></div>
+      </div>
+
+      <div class="three-cards">
+        <article><span class="importance basic">基本</span><h3>読むもの</h3><p class="speakable">知識・解説・マニュアルは <code>knowledge-html</code> に保存します。</p></article>
+        <article><span class="importance important">重要</span><h3>使うもの</h3><p class="speakable">入力・生成・ゲーム・同期などを行う本格Webアプリは、原則「1アプリ＝1リポジトリ」です。</p></article>
+        <article><span class="importance caution">注意</span><h3>個人情報</h3><p class="speakable">家庭・学校・医療などの個人情報を含むものは、Publicへそのまま公開しません。</p></article>
+      </div>
+    </section>
+
+    <section class="level" id="level2" data-section-title="実際の使い方">
+      <div class="section-head">
+        <div><span class="level-chip">LEVEL 2｜3〜5分</span><h2>最初から最後までの実際の使い方</h2></div>
+        <button class="listen" type="button" data-speak-section>この章を聞く</button>
+      </div>
+
+      <div class="step-list">
+        <article class="step-card">
+          <div class="step-no">01</div>
+          <div><h3>素材を渡す</h3><p class="speakable">ChatGPTとの会話、PDF、画像、URL、メモ、コード、教科書、授業資料などを素材にできます。会話の場合は全文をそのまま並べず、疑問・誤解・理解につながった説明・結論を抽出して再構成します。</p></div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">02</div>
+          <div><h3>一言で依頼する</h3><div class="prompt-box"><code>この話を初心者向けHTMLにして保存して</code><button type="button" class="copy" data-copy="この話を初心者向けHTMLにして保存して">コピー</button></div><p class="note speakable">これが基本コマンドです。特別な指定があるときだけ「Publicで」「図を多めに」「このコードは省略しない」などを足します。</p></div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">03</div>
+          <div><h3>ChatGPTが内容を再設計する</h3><p class="speakable">入力をそのままHTML化するのではなく、情報抽出、重複整理、構造化、因果整理、重要度判定、図解方法選択、初心者向け再設計の順に処理します。</p><div class="mini-flow"><span>抽出</span>→<span>整理</span>→<span>構造化</span>→<span>図解</span>→<span>HTML</span></div></div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">04</div>
+          <div><h3>「Knowledge」か「Web App」かを判定する</h3>
+            <table class="compare">
+              <thead><tr><th>判定</th><th>主目的</th><th>保存先</th></tr></thead>
+              <tbody>
+                <tr><td><strong>Knowledge</strong></td><td>読む・理解する・調べる</td><td><code>knowledge-html/&lt;slug&gt;/</code></td></tr>
+                <tr><td><strong>Web App</strong></td><td>入力・保存・生成・同期・ゲーム進行・作業実行</td><td>原則 1アプリ＝1 GitHubリポジトリ</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">05</div>
+          <div><h3>Knowledge HTMLをGitHubへ保存する</h3><p class="speakable">Knowledgeの場合は、英小文字とハイフンでslugを決め、4ファイルを作ります。</p>
+            <pre class="tree"><code>&lt;slug&gt;/
+├─ index.html
+├─ style.css
+├─ script.js
+└─ metadata.json</code></pre>
+          </div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">06</div>
+          <div><h3><span lang="en">metadata.json</span> を作る</h3><p class="speakable">HTMLのタイトル、分類、タグ、要約、公開URL、情報源などを機械が読める形で記録します。これは「本の背表紙＋図書カード」のような役割です。</p>
+            <div class="term"><b>やさしい意味</b><span>このHTMLが何なのかを説明する名札</span><b>正式名称</b><span lang="en">metadata</span><b>正確には</b><span>検索・台帳更新・再利用に使う構造化データ</span></div>
+          </div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">07</div>
+          <div><h3><span lang="en">registry.json</span> に登録する</h3><p class="speakable">各Knowledgeのmetadataから、中央台帳であるregistryへ1件追加します。My HubやSecond Brain Bridgeは、この台帳を読むことでKnowledgeを見つけられます。</p>
+            <div class="architecture"><span>metadata.json</span><i>→</i><span>registry.json</span><i>→</i><span>My Hub</span></div>
+          </div>
+        </article>
+        <article class="step-card">
+          <div class="step-no">08</div>
+          <div><h3><span lang="en">GitHub Pages</span> で公開する</h3><p class="speakable">mainブランチの更新がGitHub Pagesへ反映され、ブラウザで読めるURLになります。KnowledgeのURLは原則、knowledge-htmlの下にslugが続く形です。</p><div class="url-sample"><span lang="en">https://branzfamily01.github.io/knowledge-html/&lt;slug&gt;/</span></div></div>
+        </article>
+        <article class="step-card featured">
+          <div class="step-no">09</div>
+          <div><h3>最後に <span lang="en">My Hub</span> へ入る</h3><p class="speakable">My HubはGitHub上の実体を移動させる場所ではありません。KnowledgeのregistryとWeb Appsの台帳を読み、「人間が見て探すための玄関」にします。新しいKnowledgeがregistryへ入れば、My HubのKnowledge一覧にも現れます。</p>
+            <div class="architecture final"><span>GitHub<br><small>保存・正本</small></span><i>→</i><span>registry<br><small>台帳</small></span><i>→</i><span>My Hub<br><small>入口</small></span></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="level" id="decision" data-section-title="迷った時の分岐">
+      <div class="section-head">
+        <div><span class="level-chip">迷ったらここ</span><h2>保存先を決める3つの分岐</h2></div>
+        <button class="listen" type="button" data-speak-section>この章を聞く</button>
+      </div>
+
+      <div class="decision-grid">
+        <article class="decision-card"><span class="importance basic">分岐1</span><h3>読む？ 使う？</h3><p class="speakable"><strong>読む・理解する</strong>ならKnowledge。<strong>操作して何かを実行する</strong>ならWeb Appです。</p></article>
+        <article class="decision-card"><span class="importance caution">分岐2</span><h3>Publicで大丈夫？</h3><p class="speakable">一般知識はPublic。個人・家族・学校などの情報が入るならPrivateや匿名化を検討します。URLを知っているだけで守られる、という考え方はしません。</p></article>
+        <article class="decision-card"><span class="importance advanced">分岐3</span><h3>昔のChatGPT作品？</h3><p class="speakable">GitHub導入前のアプリはMy HubのRescue台帳へ入れ、原本発見、重複確認、Privacy確認、GitHub救出の順で処理します。</p></article>
+      </div>
+
+      <div class="branch-map speakable">
+        <div class="branch-root">作ったもの</div>
+        <div class="branch-line"></div>
+        <div class="branch-cols">
+          <div><b>読むもの</b><span>Knowledge HTML</span><small>knowledge-html</small></div>
+          <div><b>使うもの</b><span>Web App</span><small>1 app = 1 repo</small></div>
+          <div><b>昔のもの</b><span>Rescue</span><small>発掘 → 監査 → 救出</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="level" id="commands" data-section-title="便利な頼み方">
+      <div class="section-head">
+        <div><span class="level-chip">実践</span><h2>ChatGPTへの頼み方</h2></div>
+        <button class="listen" type="button" data-speak-section>この章を聞く</button>
+      </div>
+      <div class="prompt-grid">
+        <article><h3>基本</h3><div class="prompt-box tall"><code>この話を初心者向けHTMLにして保存して</code><button class="copy" type="button" data-copy="この話を初心者向けHTMLにして保存して">コピー</button></div></article>
+        <article><h3>資料から</h3><div class="prompt-box tall"><code>このPDFを初心者向けHTMLにして保存して。難しい内容は削らず図解して</code><button class="copy" type="button" data-copy="このPDFを初心者向けHTMLにして保存して。難しい内容は削らず図解して">コピー</button></div></article>
+        <article><h3>Webアプリ</h3><div class="prompt-box tall"><code>これは読む資料ではなくWebアプリとしてGitHubに保存し、My Hubから開けるようにして</code><button class="copy" type="button" data-copy="これは読む資料ではなくWebアプリとしてGitHubに保存し、My Hubから開けるようにして">コピー</button></div></article>
+        <article><h3>昔の作品</h3><div class="prompt-box tall"><code>GitHub導入前にChatGPTで作ったこのアプリをRescue対象として確認し、重複と個人情報を監査して救出して</code><button class="copy" type="button" data-copy="GitHub導入前にChatGPTで作ったこのアプリをRescue対象として確認し、重複と個人情報を監査して救出して">コピー</button></div></article>
+      </div>
+    </section>
+
+    <section class="level" id="level3" data-section-title="仕組みをしっかり理解">
+      <div class="section-head">
+        <div><span class="level-chip">LEVEL 3｜しっかり理解</span><h2>裏側では何が起きている？</h2></div>
+        <button class="listen" type="button" data-speak-section>この章を聞く</button>
+      </div>
+
+      <div class="roles">
+        <article><h3><span lang="en">GitHub</span></h3><p class="speakable">ファイルの正本、変更履歴、公開元。倉庫兼タイムマシンです。</p></article>
+        <article><h3><span lang="en">registry.json</span></h3><p class="speakable">Knowledgeの中央台帳。何がどこにあるかを機械が読めます。</p></article>
+        <article><h3><span lang="en">GitHub Pages</span></h3><p class="speakable">GitHubにある静的HTMLを、ブラウザで開けるWebページとして配信します。</p></article>
+        <article><h3><span lang="en">My Hub</span></h3><p class="speakable">KnowledgeとWeb Appsを、人間がカード・検索・カテゴリで探す入口です。</p></article>
+        <article><h3><span lang="en">Second Brain Bridge</span></h3><p class="speakable">registryを読み取り専用カタログとして検索する層です。Knowledge本体を通常データへ混ぜません。</p></article>
+        <article><h3><span lang="en">ChatGPT</span></h3><p class="speakable">素材理解、再設計、保存、台帳更新、発掘、検索を会話でつなぐオーケストレーターです。</p></article>
+      </div>
+
+      <details open><summary>metadata.json の項目</summary><div class="details-body"><pre><code>{
+  "title": "ページ名",
+  "slug": "english-slug",
+  "type": "knowledge-html",
+  "category": "分類",
+  "tags": ["タグ1", "タグ2"],
+  "summary": "短い要約",
+  "level": "入門",
+  "createdAt": "YYYY-MM-DD",
+  "updatedAt": "YYYY-MM-DD",
+  "githubRepo": "knowledge-html",
+  "githubPath": "english-slug/",
+  "publicUrl": "https://.../english-slug/",
+  "sourceType": "chatgpt-conversation",
+  "sourceSummary": "何をもとに作ったか"
+}</code></pre></div></details>
+
+      <details><summary>なぜHTMLは「結論 → 全体像 → 詳細」なの？</summary><div class="details-body speakable"><p>初心者は、細部から読むと「今どこを説明しているのか」を見失いやすいからです。まず結論で目的地を示し、全体像で地図を見せ、その後に詳細へ降ります。難しい情報を削るのではなく、認知負荷を下げるために順番を変えます。</p></div></details>
+
+      <details><summary>情報を削らず、視界だけ軽くする方法</summary><div class="details-body speakable"><p>必須情報は常時表示し、補足・発展・長いコードはdetailsなどで折りたたみます。「情報は全部残すが、視界には必要なものだけ出す」が基本です。</p></div></details>
+
+      <details><summary>My Hubに直接ファイルを置かないのはなぜ？</summary><div class="details-body speakable"><p>My Hubは入口だからです。Knowledgeやアプリ本体をMy Hubへコピーすると、同じものが複数箇所に存在し、どれが正本か分からなくなります。正本はGitHubの各保存先に置き、My Hubは台帳を読んでリンクするだけにします。</p></div></details>
+    </section>
+
+    <section class="level" id="mistakes" data-section-title="よくある間違い">
+      <div class="section-head"><div><span class="level-chip">注意</span><h2>よくある間違い</h2></div><button class="listen" type="button" data-speak-section>この章を聞く</button></div>
+      <div class="warning-list">
+        <article><b>× 入力文をそのまま長いHTMLにする</b><span class="speakable">→ 構造化・図解・階層化してからHTMLにする。</span></article>
+        <article><b>× 難しい部分を削って「簡単」にする</b><span class="speakable">→ 難しい部分ほど分解して残す。</span></article>
+        <article><b>× アプリも全部knowledge-htmlへ入れる</b><span class="speakable">→ 本格Webアプリは独立リポジトリ。</span></article>
+        <article><b>× URLが推測できるから登録する</b><span class="speakable">→ 実際の公開URLを確認してから台帳へ登録する。</span></article>
+        <article><b>× 個人情報入りHTMLをPublicへ置く</b><span class="speakable">→ Private・匿名化・Accessなどを検討する。</span></article>
+        <article><b>× My Hubを正本にする</b><span class="speakable">→ My Hubは入口。正本はGitHub側。</span></article>
+      </div>
+    </section>
+
+    <section class="level" id="checklist" data-section-title="完成チェック">
+      <div class="section-head"><div><span class="level-chip">完了条件</span><h2>「終わった」と言える状態</h2></div><button class="listen" type="button" data-speak-section>この章を聞く</button></div>
+      <div class="checklist speakable">
+        <label><input type="checkbox"> 30秒で全体像が分かる</label>
+        <label><input type="checkbox"> 結論が冒頭にある</label>
+        <label><input type="checkbox"> 難しい情報を削っていない</label>
+        <label><input type="checkbox"> 図・表・カードへ適切に変換した</label>
+        <label><input type="checkbox"> PC / iPhone / iPadで読める</label>
+        <label><input type="checkbox"> 読み上げと速度変更が動く</label>
+        <label><input type="checkbox"> metadata.jsonがある</label>
+        <label><input type="checkbox"> registry.jsonへ登録された</label>
+        <label><input type="checkbox"> GitHub Pages URLが開く</label>
+        <label><input type="checkbox"> My Hubから見つけられる</label>
+      </div>
+    </section>
+
+    <section class="level quiz" id="quiz" data-section-title="理解チェック">
+      <div class="section-head"><div><span class="level-chip">理解チェック</span><h2>5問だけ確認</h2></div></div>
+      <div class="quiz-list">
+        <details><summary>Q1. 一番簡単な依頼文は？</summary><p>「この話を初心者向けHTMLにして保存して」です。</p></details>
+        <details><summary>Q2. KnowledgeとWeb Appの一番大きな違いは？</summary><p>主目的です。読む・理解するものがKnowledge、操作して作業を実行するものがWeb Appです。</p></details>
+        <details><summary>Q3. registry.json は何のため？</summary><p>Knowledgeの中央台帳です。My Hubや検索側が、タイトル・要約・URLなどを見つけるために使います。</p></details>
+        <details><summary>Q4. My Hubは保存場所？</summary><p>いいえ。My Hubは入口です。正本はGitHubの各リポジトリに置きます。</p></details>
+        <details><summary>Q5. GitHub導入前の昔のアプリは？</summary><p>Rescue対象として発掘し、原本・後継重複・個人情報を確認してからGitHubへ救出します。</p></details>
+      </div>
+    </section>
+
+    <section class="finish">
+      <span class="importance important">つまり</span>
+      <h2>素材を渡す → 一言で頼む → My Hubまで任せる。</h2>
+      <p class="speakable">このプロジェクトの目的は、HTMLを作ること自体ではありません。理解した内容を、消えず、探せて、また読める知識資産にすることです。</p>
+      <div class="prompt-box finish-prompt"><code>この話を初心者向けHTMLにして保存して</code><button class="copy" type="button" data-copy="この話を初心者向けHTMLにして保存して">コピー</button></div>
+      <a class="hub-link" href="https://branzfamily01.github.io/my-hub/" target="_blank" rel="noopener noreferrer"><span lang="en">My Hub</span> を開く ↗</a>
+    </section>
+  </main>
+
+  <footer><div class="shell"><strong>初心者向けHTML化・保存</strong><span>Knowledge → GitHub → Registry → My Hub</span><a href="#top">先頭へ ↑</a></div></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./script.js" defer></script>
+</body>
+</html>
