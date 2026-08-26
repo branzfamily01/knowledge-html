@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 
 const OWNER = 'branzfamily01';
 const API = 'https://api.github.com';
+const HUB_MANIFEST = 'my-hub.json';
 const token = process.env.GITHUB_TOKEN || '';
 
 const headers = {
@@ -62,6 +63,17 @@ async function loadJson(path, fallback) {
   catch { return fallback; }
 }
 
+function parseManifest(text, repoName) {
+  if (!text) return {};
+  try {
+    const data = JSON.parse(text);
+    return data && typeof data === 'object' && !Array.isArray(data) ? data : {};
+  } catch (error) {
+    console.warn(`${HUB_MANIFEST} parse failed: ${repoName}: ${error.message}`);
+    return {};
+  }
+}
+
 const knowledge = await loadJson('registry.json', { items: [] });
 const overridesDoc = await loadJson('apps-overrides.json', { items: {} });
 const overrides = overridesDoc.items || {};
@@ -84,28 +96,35 @@ for (const repo of repos) {
   catch (e) { console.warn(`index read failed: ${repo.name}: ${e.message}`); }
   if (!html) continue;
 
+  let manifestText = null;
+  try { manifestText = await getTextIfExists(repo.name, HUB_MANIFEST); }
+  catch (e) { console.warn(`${HUB_MANIFEST} read failed: ${repo.name}: ${e.message}`); }
+
+  const manifest = parseManifest(manifestText, repo.name);
   const override = overrides[repo.name] || {};
-  if (override.hidden === true) continue;
+  // Central overrides are reserved for exceptions and always win over the app-owned manifest.
+  const meta = { ...manifest, ...override };
+  if (meta.hidden === true) continue;
 
   const detectedTitle = extractTitle(html, repo.name);
-  const category = override.category || inferCategory(repo.name, detectedTitle);
-  const summary = override.summary || repo.description || 'GitHub Pagesで公開しているWebアプリ。';
+  const category = meta.category || inferCategory(repo.name, detectedTitle);
+  const summary = meta.summary || repo.description || 'GitHub Pagesで公開しているWebアプリ。';
 
   items.push({
-    title: override.title || detectedTitle,
+    title: meta.title || detectedTitle,
     slug: repo.name,
     type: 'web-app',
     category,
-    tags: override.tags || [],
+    tags: Array.isArray(meta.tags) ? meta.tags : [],
     summary,
-    visibility: 'public',
-    status: override.status || 'active',
-    color: override.color || colorKey(category),
+    visibility: meta.visibility || 'public',
+    status: meta.status || 'active',
+    color: meta.color || colorKey(category),
     githubRepo: repo.name,
     repoUrl: repo.html_url,
-    publicUrl: override.publicUrl || `https://${OWNER}.github.io/${repo.name}/`,
+    publicUrl: meta.publicUrl || `https://${OWNER}.github.io/${repo.name}/`,
     updatedAt: (repo.pushed_at || repo.updated_at || '').slice(0, 10),
-    sourceType: 'github-pages-auto-index'
+    sourceType: manifestText ? 'github-pages-manifest' : 'github-pages-auto-index'
   });
 }
 
