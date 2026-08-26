@@ -23,6 +23,33 @@
     localStorage.setItem(STORAGE_KEY, rate.toFixed(1));
   });
 
+  function addCurrentClarifications() {
+    const grid = document.querySelector('.concept-grid');
+    if (grid && !grid.querySelector('[data-term="zero-trust"]')) {
+      grid.insertAdjacentHTML('beforeend', `
+        <article class="card term" data-term="zero-trust">
+          <span class="label advanced">発展</span>
+          <div class="easy">🔐 場所ではなく、毎回「誰か・条件は何か」で信用を決める</div>
+          <div class="formal"><span lang="en">Zero Trust</span></div>
+          <div class="exact"><span lang="en">Zero Trust security model</span>。社内ネットワークにいるだけでは自動的に信頼せず、ユーザー・端末・アプリ・ポリシーなどの条件でアクセスを継続的に評価する考え方。<span lang="en">Cloudflare Access</span> は、この考え方をWebアプリへの入口で実装する製品の一つです。</div>
+        </article>`);
+    }
+
+    const pagesSummary = [...document.querySelectorAll('.qa-grid summary')]
+      .find(el => el.textContent.includes('*.pages.dev'));
+    const pagesAnswer = pagesSummary?.parentElement?.querySelector('p');
+    if (pagesAnswer) {
+      pagesAnswer.innerHTML = 'はい。<span lang="en">Pages</span>でも<span lang="en">Cloudflare Access</span>で <code>*.pages.dev</code> を保護できます。Preview deploymentのAccess設定と本番 <code>*.pages.dev</code> の保護は別ポリシーになる場合があり、公式のKnown issuesに手順があります。<span class="label caution">要確認</span> 新規のPrivate Knowledgeでは、現在は <span lang="en">Workers Static Assets + Access</span> を優先します。';
+    }
+
+    const sources = document.querySelector('.source-list');
+    if (sources && !sources.querySelector('[data-source="pages-access"]')) {
+      sources.insertAdjacentHTML('beforeend', '<a data-source="pages-access" href="https://developers.cloudflare.com/pages/platform/known-issues/" target="_blank" rel="noopener">Pages known issues — Access on *.pages.dev</a>');
+    }
+  }
+
+  addCurrentClarifications();
+
   function providerKey(name = '') {
     const n = name.toLowerCase();
     if (n.includes('microsoft')) return 'microsoft';
@@ -95,6 +122,27 @@
     return 'ja-JP';
   }
 
+  function splitByLanguage(text, defaultLang) {
+    if (defaultLang.toLowerCase().startsWith('en')) return [{ text, lang: 'en-US' }];
+    const out = [];
+    const latin = /[A-Za-z][A-Za-z0-9._+*/:-]*(?:\s+[A-Za-z0-9._+*/:-]+)*/g;
+    let last = 0;
+    for (const match of text.matchAll(latin)) {
+      if (match.index > last) {
+        const ja = text.slice(last, match.index).trim();
+        if (ja) out.push({ text: ja, lang: 'ja-JP' });
+      }
+      const en = match[0].trim();
+      if (en) out.push({ text: en, lang: 'en-US' });
+      last = match.index + match[0].length;
+    }
+    if (last < text.length) {
+      const ja = text.slice(last).trim();
+      if (ja) out.push({ text: ja, lang: 'ja-JP' });
+    }
+    return out.length ? out : [{ text, lang: 'ja-JP' }];
+  }
+
   function collectSegments(root) {
     const segments = [];
     const skipTags = new Set(['SCRIPT','STYLE','BUTTON','INPUT','OUTPUT','NAV','FOOTER']);
@@ -112,7 +160,9 @@
       const node = walker.currentNode;
       const text = cleanText(node.nodeValue || '');
       const lang = nearestLang(node.parentElement);
-      for (const piece of splitLongText(text)) segments.push({ text: piece, lang });
+      for (const part of splitByLanguage(text, lang)) {
+        for (const piece of splitLongText(part.text)) segments.push({ text: piece, lang: part.lang });
+      }
     }
     return segments;
   }
