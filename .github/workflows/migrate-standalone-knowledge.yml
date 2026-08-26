@@ -1,0 +1,162 @@
+name: Migrate standalone knowledge HTML
+
+on:
+  push:
+    paths:
+      - '.github/workflows/migrate-standalone-knowledge.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Copy confirmed knowledge pages from source repositories
+        shell: bash
+        run: |
+          set -euo pipefail
+          TMP="$(mktemp -d)"
+          trap 'rm -rf "$TMP"' EXIT
+
+          clone_repo() {
+            local repo="$1"
+            git clone --depth 1 --quiet "https://github.com/branzfamily01/${repo}.git" "$TMP/$repo"
+          }
+
+          clone_repo obsidian-start-guide
+          mkdir -p obsidian-start-guide
+          cp "$TMP/obsidian-start-guide/index.html" obsidian-start-guide/
+          cp "$TMP/obsidian-start-guide/script.js" obsidian-start-guide/
+          cp "$TMP/obsidian-start-guide/styles.css" obsidian-start-guide/
+
+          clone_repo gemini-notebook-reference
+          mkdir -p gemini-notebook-reference
+          cp "$TMP/gemini-notebook-reference/index.html" gemini-notebook-reference/
+          cp "$TMP/gemini-notebook-reference/app.js" gemini-notebook-reference/
+          cp "$TMP/gemini-notebook-reference/content.json" gemini-notebook-reference/
+          cp "$TMP/gemini-notebook-reference/styles.css" gemini-notebook-reference/
+
+          clone_repo onhenka-dojo-yukito-guide
+          mkdir -p onhenka-dojo-yukito-guide
+          cp "$TMP/onhenka-dojo-yukito-guide/index.html" onhenka-dojo-yukito-guide/
+
+          clone_repo gemini-notebook-minimal-prompt
+          mkdir -p gemini-notebook-minimal-prompt
+          cp "$TMP/gemini-notebook-minimal-prompt/index.html" gemini-notebook-minimal-prompt/
+
+          clone_repo claude-bunshin-guide
+          mkdir -p claude-bunshin-guide
+          cp "$TMP/claude-bunshin-guide/index.html" claude-bunshin-guide/
+
+          clone_repo gemini-notebook-ai-tutor-guide
+          mkdir -p gemini-notebook-ai-tutor-guide
+          cp "$TMP/gemini-notebook-ai-tutor-guide/index.html" gemini-notebook-ai-tutor-guide/
+
+          clone_repo second-brain-bridge-manual
+          mkdir -p second-brain-bridge-manual
+          cp "$TMP/second-brain-bridge-manual/index.html" second-brain-bridge-manual/
+          cp "$TMP/second-brain-bridge-manual/app.js" second-brain-bridge-manual/
+          cp "$TMP/second-brain-bridge-manual/manifest.json" second-brain-bridge-manual/
+          cp "$TMP/second-brain-bridge-manual/styles.css" second-brain-bridge-manual/
+          cp "$TMP/second-brain-bridge-manual/sw.js" second-brain-bridge-manual/
+
+      - name: Create metadata and update registry
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          today = '2026-08-26'
+          base = 'https://branzfamily01.github.io/knowledge-html/'
+          items = [
+            {
+              'title':'Obsidian はじめの一歩｜図解ガイド','slug':'obsidian-start-guide','type':'knowledge-html','category':'Second Brain',
+              'tags':['Obsidian','Second Brain','メモ','知識管理','初心者'],
+              'summary':'Obsidianの基本、リンク、Vault、テンプレート、7日間入門を図解で学ぶガイド。','level':'入門','sourceRepo':'obsidian-start-guide'
+            },
+            {
+              'title':'Gemini Notebook 実践リファレンス','slug':'gemini-notebook-reference','type':'knowledge-html','category':'AI・仕事術',
+              'tags':['Gemini Notebook','NotebookLM','プロンプト','GEM','AI','仕事術'],
+              'summary':'Gemini Notebookの理解・構築・活用を11モジュール、プロンプト、GEM、関連記事、用語集で横断できる実践リファレンス。','level':'実践','sourceRepo':'gemini-notebook-reference'
+            },
+            {
+              'title':'音変化道場｜Yukito Quest 遊び方','slug':'onhenka-dojo-yukito-guide','type':'knowledge-html','category':'英語学習',
+              'tags':['英語','リスニング','音変化','Yukito Quest','学習ガイド'],
+              'summary':'Yukito Questの始め方、練習モード、ゲームルール、学習ルーティンをまとめた遊び方ガイド。','level':'入門','sourceRepo':'onhenka-dojo-yukito-guide'
+            },
+            {
+              'title':'Gemini Notebook｜スライドは「盛る」より「削る」','slug':'gemini-notebook-minimal-prompt','type':'knowledge-html','category':'AI・資料作成',
+              'tags':['Gemini Notebook','スライド','プロンプト','資料作成','AI'],
+              'summary':'Gemini Notebookでスライドを作る際、過剰指定を減らし最小プロンプトと構成設計を使う実践原則をまとめた資料。','level':'実践','sourceRepo':'gemini-notebook-minimal-prompt'
+            },
+            {
+              'title':'Claudeで「自分の分身」を作る方法｜図解ガイド','slug':'claude-bunshin-guide','type':'knowledge-html','category':'IT・AI',
+              'tags':['Claude','AI','プロジェクト','パーソナライズ','プロンプト'],
+              'summary':'Claudeに自分の考え方や前提を持たせ、分身のように使うための構成と手順を図解したガイド。','level':'実践','sourceRepo':'claude-bunshin-guide'
+            },
+            {
+              'title':'Gemini Notebookでつくる「専属家庭教師」｜資格勉強の仕組み化ガイド','slug':'gemini-notebook-ai-tutor-guide','type':'knowledge-html','category':'AI・学習',
+              'tags':['Gemini Notebook','AI家庭教師','資格勉強','学習法','AI'],
+              'summary':'Gemini Notebookを専属家庭教師のように使い、資格学習を仕組み化する方法をまとめたガイド。','level':'実践','sourceRepo':'gemini-notebook-ai-tutor-guide'
+            },
+            {
+              'title':'Second Brain Bridge｜図解マニュアル','slug':'second-brain-bridge-manual','type':'knowledge-html','category':'Second Brain',
+              'tags':['Second Brain Bridge','Second Brain','Obsidian','ChatGPT','Codex','GitHub'],
+              'summary':'Second Brain Bridge、ChatGPT、Codex、Obsidian、GitHubの役割分担と実践フローを図解したマニュアル。','level':'入門','sourceRepo':'second-brain-bridge-manual'
+            },
+          ]
+
+          for x in items:
+            slug=x['slug']
+            x.update({
+              'createdAt':today,'updatedAt':today,'githubRepo':'knowledge-html','githubPath':f'{slug}/',
+              'publicUrl':base+slug+'/', 'sourceType':'github-existing-html',
+              'sourceSummary':f"Standalone GitHub knowledge page migrated from branzfamily01/{x['sourceRepo']} without substantive content changes."
+            })
+            Path(slug,'metadata.json').write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          registry_path=Path('registry.json')
+          registry=json.loads(registry_path.read_text(encoding='utf-8'))
+          by_slug={x.get('slug'):x for x in registry.get('items',[]) if x.get('slug')}
+          for x in items:
+            by_slug[x['slug']]=x
+          registry['schemaVersion']=1
+          registry['updatedAt']=today
+          registry['items']=list(by_slug.values())
+          registry_path.write_text(json.dumps(registry,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+
+      - name: Verify migrated files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f obsidian-start-guide/index.html
+          test -f gemini-notebook-reference/content.json
+          test -f onhenka-dojo-yukito-guide/index.html
+          test -f gemini-notebook-minimal-prompt/index.html
+          test -f claude-bunshin-guide/index.html
+          test -f gemini-notebook-ai-tutor-guide/index.html
+          test -f second-brain-bridge-manual/index.html
+          python -m json.tool registry.json >/dev/null
+          for f in */metadata.json; do python -m json.tool "$f" >/dev/null; done
+
+      - name: Commit migration
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add obsidian-start-guide gemini-notebook-reference onhenka-dojo-yukito-guide gemini-notebook-minimal-prompt claude-bunshin-guide gemini-notebook-ai-tutor-guide second-brain-bridge-manual registry.json
+          if git diff --cached --quiet; then
+            echo 'No migration changes to commit.'
+          else
+            git commit -m 'Migrate standalone knowledge pages into knowledge-html'
+            git push origin HEAD:main
+          fi
