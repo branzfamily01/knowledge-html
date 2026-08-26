@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Supabaseの役割を初心者向けに、GitHub Pagesとの違い・データ保存・Auth・RLSまで図解で理解するページ。">
+  <title>Supabaseって何？｜初心者向け図解</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header class="hero" id="top">
+    <div class="wrap">
+      <p class="eyebrow">LEVEL 1｜30秒で理解</p>
+      <h1>Supabaseって何？</h1>
+      <p class="lead"><strong>一言でいうと、Webアプリの「裏側」をまとめて担当してくれるサービス。</strong><br>画面を作るだけでは足りない「データ保存・ログイン・ファイル保存」などを受け持ちます。</p>
+      <div class="hero-actions">
+        <button class="btn primary" data-speak-target="#level1">🔊 要点を聞く</button>
+        <button class="btn" id="stopSpeech">■ 読み上げ停止</button>
+        <a class="btn" href="#level2">3〜5分で理解 ↓</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="level1">
+      <span class="level one">LEVEL 1｜30秒</span>
+      <h2>まず、これだけ分かればOK</h2>
+
+      <div class="big-answer">
+        <article class="card answer-box">
+          <span class="label required">必須</span>
+          <h3>Supabase ＝ アプリのバックヤード</h3>
+          <p>お店でたとえると、Webページは「お客さんが見る売り場」。Supabaseは、その裏にある<strong>倉庫・顧客台帳・金庫・スタッフ用の作業場所</strong>に近い存在です。</p>
+          <p><strong>ただし本当の正体は、PostgreSQLというデータベースを中心に、Auth・Storage・Realtime・Edge Functionsなどをまとめて提供するバックエンド基盤です。</strong></p>
+        </article>
+
+        <article class="card">
+          <span class="label important">重要</span>
+          <h3>GitHub Pagesとの違い</h3>
+          <div class="grid-2">
+            <div class="compare-card">
+              <div class="icon">🖥️</div>
+              <strong>GitHub Pages</strong>
+              <p>画面を置いて公開する</p>
+            </div>
+            <div class="compare-card">
+              <div class="icon">🗃️</div>
+              <strong>Supabase</strong>
+              <p>アプリが使うデータを保存・管理する</p>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <div class="card" style="margin-top:14px">
+        <h3>全体像</h3>
+        <div class="flow" aria-label="WebアプリからSupabaseへデータを保存する流れ">
+          <div class="flow-box">📱 iPhone / PC</div>
+          <div class="arrow">→</div>
+          <div class="flow-box">🌐 Webアプリ<br><small>HTML / JavaScript</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-box">🟩 Supabase<br><small>データ・ログインなど</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="level2">
+      <span class="level two">LEVEL 2｜3〜5分</span>
+      <h2>なぜアプリにSupabaseを入れたの？</h2>
+      <button class="btn" data-speak-target="#level2">🔊 この章を聞く</button>
+
+      <div class="card" style="margin-top:12px">
+        <span class="label important">重要</span>
+        <h3>「画面を作る」だけでは、アプリは育たないから</h3>
+        <div class="flow">
+          <div class="flow-box">問題に答える</div>
+          <div class="arrow">→</div>
+          <div class="flow-box">正解・不正解を記録</div>
+          <div class="arrow">→</div>
+          <div class="flow-box">次の日も続きを使う</div>
+        </div>
+        <p>こうした「前回の状態を覚えておく」仕組みには、データを保存する場所が必要です。Supabaseはその保存先になれます。</p>
+      </div>
+
+      <div class="grid-5" style="margin-top:14px">
+        <article class="card feature">
+          <span class="label required">必須</span>
+          <h3>Database</h3>
+          <p>文字・数字・学習履歴・設定などを保存。</p>
+          <p class="mini">中心はPostgreSQL。</p>
+        </article>
+        <article class="card feature">
+          <span class="label important">重要</span>
+          <h3>Auth</h3>
+          <p>「誰が使っているか」を確認するログイン機能。</p>
+          <p class="mini">ユーザー認証。</p>
+        </article>
+        <article class="card feature">
+          <span class="label important">重要</span>
+          <h3>Storage</h3>
+          <p>画像・PDFなどのファイルを保存。</p>
+          <p class="mini">データベースとは別のファイル保管。</p>
+        </article>
+        <article class="card feature">
+          <span class="label advanced">発展</span>
+          <h3>Realtime</h3>
+          <p>データの変化をほぼリアルタイムで反映。</p>
+          <p class="mini">複数端末の同期など。</p>
+        </article>
+        <article class="card feature">
+          <span class="label advanced">発展</span>
+          <h3>Edge Functions</h3>
+          <p>ブラウザに置きたくない処理をサーバー側で実行。</p>
+          <p class="mini">秘密情報を扱う処理など。</p>
+        </article>
+      </div>
+
+      <section>
+        <h2>端末だけに保存する場合との違い</h2>
+        <div class="grid-2">
+          <article class="card">
+            <h3>端末内だけに保存</h3>
+            <div class="flow">
+              <div class="flow-box">📱 iPhone</div>
+              <div class="arrow">→</div>
+              <div class="flow-box">端末内の保存領域</div>
+            </div>
+            <p>その端末では便利。でも別のPCやiPadから同じ状態を使いたいときに困ります。</p>
+          </article>
+          <article class="card">
+            <h3>Supabaseに保存</h3>
+            <div class="flow">
+              <div class="flow-box">📱 iPhone</div>
+              <div class="arrow">→</div>
+              <div class="flow-box">🟩 Supabase</div>
+              <div class="arrow">←</div>
+              <div class="flow-box">💻 PC</div>
+            </div>
+            <p>同じユーザーとして接続すれば、複数端末から同じデータを扱う設計ができます。</p>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>よく出てくる言葉を、やさしい順に</h2>
+        <div class="grid-2">
+          <article class="card term">
+            <span class="label important">重要</span>
+            <div class="easy">🗄️ 表形式で情報を整理する大きなデータ置き場</div>
+            <div class="formal">PostgreSQL（ポストグレスキューエル）</div>
+            <div class="exact">Supabaseの中心にあるオープンソースのリレーショナルデータベース。Supabaseでは各プロジェクトにPostgresデータベースが用意されます。</div>
+          </article>
+          <article class="card term">
+            <span class="label important">重要</span>
+            <div class="easy">🚪 アプリとSupabaseが話すための窓口</div>
+            <div class="formal">API（Application Programming Interface）</div>
+            <div class="exact">プログラム同士が決められた方法でデータや機能をやり取りするための接点です。</div>
+          </article>
+          <article class="card term">
+            <span class="label important">重要</span>
+            <div class="easy">🪪 「あなたは誰？」を確認する受付</div>
+            <div class="formal">Auth / Authentication（認証）</div>
+            <div class="exact">ユーザーのログイン状態や本人確認を扱う仕組みです。</div>
+          </article>
+          <article class="card term">
+            <span class="label required">必須</span>
+            <div class="easy">🛡️ 「この人には、このデータだけ」を決める門番</div>
+            <div class="formal">RLS / Row Level Security</div>
+            <div class="exact">PostgreSQLの行単位アクセス制御。SupabaseのData APIで公開されるテーブルを守る重要な仕組みです。</div>
+          </article>
+        </div>
+      </section>
+
+      <section>
+        <h2>安全性で最低限覚える3つ</h2>
+        <div class="grid-3">
+          <article class="card">
+            <span class="label required">必須</span>
+            <h3>Publishable key</h3>
+            <p><code>sb_publishable_...</code></p>
+            <p>ブラウザやモバイルアプリなど、公開されるクライアントで使うことを想定した低権限キーです。</p>
+          </article>
+          <article class="card danger-card">
+            <span class="label danger">危険・NG</span>
+            <h3>Secret key</h3>
+            <p><code>sb_secret_...</code></p>
+            <p><strong>HTMLや公開JavaScriptに入れない。</strong> バックエンド専用です。旧 <code>service_role</code> も同じ考え方です。</p>
+          </article>
+          <article class="card warning">
+            <span class="label caution">注意</span>
+            <h3>RLSを設定する</h3>
+            <p>「キーが公開されているから危険」ではなく、公開クライアントからのアクセスをRLSと権限設定で制御するのが重要です。</p>
+          </article>
+        </div>
+      </section>
+    </section>
+
+    <section id="level3">
+      <span class="level three">LEVEL 3｜しっかり理解</span>
+      <h2>コードで見ると何をしている？</h2>
+      <button class="btn" data-speak-target="#level3">🔊 この章を聞く</button>
+
+      <article class="card" style="margin-top:12px">
+        <span class="label advanced">発展</span>
+        <h3>まず意味：Supabaseの「住所」と「公開用の接続キー」を渡して、接続役を作る</h3>
+        <div class="flow">
+          <div class="flow-box">Supabase URL<br><small>プロジェクトの住所</small></div>
+          <div class="arrow">＋</div>
+          <div class="flow-box">Publishable key<br><small>公開クライアント用キー</small></div>
+          <div class="arrow">→</div>
+          <div class="flow-box">Supabase Client</div>
+        </div>
+
+        <details>
+          <summary>コードを見る</summary>
+          <div>
+<pre><code>import { createClient } from '@supabase/supabase-js'
+
+const supabase = createClient(
+  SUPABASE_URL,          // SupabaseプロジェクトのURL
+  SUPABASE_PUBLISHABLE_KEY // 公開クライアント用キー
+)</code></pre>
+            <p><strong>重要：</strong>このコードに <code>sb_secret_...</code> や旧 <code>service_role</code> を入れてはいけません。</p>
+          </div>
+        </details>
+      </article>
+
+      <article class="card" style="margin-top:14px">
+        <span class="label advanced">発展</span>
+        <h3>RLSは「データを取るたびに働くルール」</h3>
+        <p>たとえば、ユーザーIDが一致する行だけ読めるようにすれば、同じテーブルの中に複数ユーザーのデータがあっても、自分の行だけを取得する設計にできます。</p>
+<pre><code>create policy "Users can read their own rows"
+on learning_history
+for select
+to authenticated
+using ((select auth.uid()) = user_id);</code></pre>
+        <p>これはイメージとして、すべての検索に「<code>自分の user_id の行だけ</code>」という条件が自動で付くようなものです。</p>
+      </article>
+
+      <article class="card warning" style="margin-top:14px">
+        <span class="label caution">注意</span>
+        <h3>「Supabaseを入れた＝自動的に安全」ではない</h3>
+        <p>Supabaseは安全に作るための仕組みを提供しますが、RLS・権限・キーの使い分けを間違えると危険です。公開されるテーブルでは、RLSと必要最小限の権限設定を確認します。</p>
+      </article>
+
+      <details class="card" style="margin-top:14px">
+        <summary>補足：昔の anon / service_role という名前は？</summary>
+        <div>
+          <p>Supabaseでは現在、クライアント側は <strong>Publishable key</strong>、バックエンド側は <strong>Secret key</strong> が新しい方式です。</p>
+          <p>旧 <code>anon</code> はPublishable keyに近い低権限側、旧 <code>service_role</code> はSecret keyに近い強い権限側です。新規設計では新しいキー方式を優先します。</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="quiz">
+      <h2>10秒理解チェック</h2>
+      <p>全部覚える必要はありません。「説明できそうか」だけ確認します。</p>
+
+      <div class="quiz-item card">
+        <h3>Q1. GitHub PagesとSupabaseの一番大きな役割の違いは？</h3>
+        <button class="btn" data-quiz="#a1">答えを見る</button>
+        <div class="quiz-answer" id="a1">GitHub Pagesは主にWebページ・画面を公開する場所。Supabaseはデータベースやログインなど、アプリの裏側を担当します。</div>
+      </div>
+
+      <div class="quiz-item card">
+        <h3>Q2. Supabaseの中心にあるデータベースは？</h3>
+        <button class="btn" data-quiz="#a2">答えを見る</button>
+        <div class="quiz-answer" id="a2">PostgreSQL（Postgres）です。</div>
+      </div>
+
+      <div class="quiz-item card">
+        <h3>Q3. <code>sb_secret_...</code> をHTMLに書いてよい？</h3>
+        <button class="btn" data-quiz="#a3">答えを見る</button>
+        <div class="quiz-answer" id="a3">NGです。Secret keyや旧service_roleはブラウザへ公開せず、信頼できるバックエンドでだけ使います。</div>
+      </div>
+
+      <div class="quiz-item card">
+        <h3>Q4. RLSを一言でいうと？</h3>
+        <button class="btn" data-quiz="#a4">答えを見る</button>
+        <div class="quiz-answer" id="a4">「誰が、どの行のデータを読んだり変更したりできるか」をデータベース側で決める門番です。</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>最後に、もう一度だけ</h2>
+      <article class="card answer-box">
+        <p><strong>Supabase ＝ Webアプリの「裏側」を作りやすくするサービス。</strong></p>
+        <p>まずは「GitHub Pagesは画面を公開、Supabaseはデータやログインを担当」と覚えれば十分です。必要になったらPostgres・Auth・RLSへ一段ずつ降りて理解すればOKです。</p>
+      </article>
+    </section>
+
+    <section class="card">
+      <h2>確認に使った公式資料</h2>
+      <ul>
+        <li><a href="https://supabase.com/docs/guides/database/overview" target="_blank" rel="noopener">Supabase Docs: Database</a></li>
+        <li><a href="https://supabase.com/docs/guides/getting-started/api-keys" target="_blank" rel="noopener">Supabase Docs: Understanding API keys</a></li>
+        <li><a href="https://supabase.com/docs/guides/database/postgres/row-level-security" target="_blank" rel="noopener">Supabase Docs: Row Level Security</a></li>
+      </ul>
+      <p class="meta">情報確認日：2026-08-26</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <strong>Knowledge HTML</strong><br>
+      ChatGPTとの「Supabaseって何？」という問答を、初心者が短時間で理解できる順番に再構成したページです。
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>
