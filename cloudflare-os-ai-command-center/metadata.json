@@ -1,0 +1,25 @@
+{
+  "title": "Cloudflare OSとは？｜会社専用AI司令塔を図解",
+  "slug": "cloudflare-os-ai-command-center",
+  "type": "knowledge-html",
+  "category": "IT・AI",
+  "tags": [
+    "Cloudflare",
+    "AI",
+    "GPT",
+    "Claude",
+    "Google Drive",
+    "社内AI",
+    "図解"
+  ],
+  "summary": "GPT・Claude・Google Driveなどをつなぐ会社専用AI司令塔としてのCloudflare OSを初心者向けに図解した資料。",
+  "level": "入門",
+  "sourceRepo": "cloudflare-os-ai-command-center",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "cloudflare-os-ai-command-center/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/cloudflare-os-ai-command-center/",
+  "sourceType": "github-existing-html",
+  "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/cloudflare-os-ai-command-center without substantive content changes."
+}

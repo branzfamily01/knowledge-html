@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cloudflare OSとは？｜会社専用AI司令塔を図解</title>
+<meta name="description" content="GPT・Claude・Google Driveなどをつなぐ『会社専用AI司令塔』Cloudflare OSを、初心者向けに図解したA4縦印刷対応HTML資料。" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;600;700&family=Klee+One:wght@400;600&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#fffdf8;
+  --ink:#2f2c2a;
+  --muted:#6f6963;
+  --orange:#ff8a2a;
+  --orange-soft:#fff0e0;
+  --navy:#26364f;
+  --sky:#eaf5ff;
+  --green:#2f8f69;
+  --green-soft:#eaf7f0;
+  --yellow:#fff6c8;
+  --red:#cf5d5d;
+  --red-soft:#fff0ef;
+  --line:#ded8d0;
+  --shadow:0 8px 22px rgba(43,39,34,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:#efece6;
+  color:var(--ink);
+  font-family:'Klee One',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.78;
+}
+.wrap{max-width:960px;margin:0 auto;padding:24px 14px 64px}
+.page{
+  width:min(100%, 794px);
+  min-height:1123px;
+  margin:0 auto 22px;
+  padding:46px 50px 52px;
+  background:var(--paper);
+  border:1px solid #e8e1d8;
+  border-radius:22px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+.page::before{
+  content:'';position:absolute;inset:0 0 auto 0;height:10px;
+  background:linear-gradient(90deg,var(--orange),#ffb24f 36%,#ffd27d 64%,var(--navy));
+}
+.eyebrow{font-family:'Caveat',cursive;font-size:28px;color:var(--orange);font-weight:700;letter-spacing:.04em}
+h1,h2,h3{font-family:'Yusei Magic','Klee One',sans-serif;line-height:1.35;margin:0}
+h1{font-size:42px;letter-spacing:.02em;margin-top:4px}
+h2{font-size:29px;margin-bottom:18px;color:var(--navy)}
+h3{font-size:21px;color:var(--navy)}
+p{margin:.55em 0}
+.lead{font-size:18px;margin-top:18px;color:#423d39}
+.badge{display:inline-flex;align-items:center;gap:8px;border:2px solid var(--orange);background:#fff8ef;border-radius:999px;padding:7px 14px;font-size:14px;font-weight:600;margin-top:20px}
+.hero-diagram{margin:34px 0 12px;display:grid;grid-template-columns:1fr 72px 1fr;gap:14px;align-items:center}
+.hero-box{background:white;border:2px solid var(--line);border-radius:18px;padding:18px 16px;text-align:center;min-height:132px;display:flex;flex-direction:column;justify-content:center}
+.hero-box strong{font-family:'Yusei Magic';font-size:20px;color:var(--navy)}
+.hero-box small{color:var(--muted);display:block;margin-top:6px}
+.hero-arrow{font-family:'Caveat';font-size:45px;text-align:center;color:var(--orange)}
+.hero-core{grid-column:1/-1;background:linear-gradient(135deg,#2f3a4f,#1f2838);color:white;border-radius:20px;padding:24px;text-align:center;margin-top:6px;box-shadow:0 10px 26px rgba(38,54,79,.18)}
+.hero-core strong{font-family:'Yusei Magic';font-size:27px;display:block}.hero-core span{font-size:15px;opacity:.93}
+.callout{border:2px dashed var(--orange);background:var(--orange-soft);border-radius:18px;padding:18px 20px;margin:22px 0;position:relative}
+.callout::before{content:'ここがポイント';position:absolute;top:-15px;left:18px;background:var(--orange);color:white;border-radius:999px;padding:3px 12px;font-family:'Yusei Magic';font-size:14px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.card{background:white;border:1.8px solid var(--line);border-radius:18px;padding:17px 18px;break-inside:avoid;box-shadow:0 3px 10px rgba(43,39,34,.035)}
+.card.soft-orange{background:#fffaf3;border-color:#f2c99f}.card.soft-blue{background:#f6fbff;border-color:#bcd8ea}.card.soft-green{background:#f4fbf7;border-color:#b9dfcc}.card.soft-red{background:#fff7f6;border-color:#e5bbb8}
+.icon{font-size:28px;line-height:1;margin-bottom:8px}.label{font-family:'Caveat';font-size:22px;font-weight:700;color:var(--orange)}
+ul{padding-left:1.3em;margin:.5em 0}.tight li{margin:.28em 0}
+.section{margin-top:34px}.section:first-child{margin-top:0}
+.stack{display:flex;flex-direction:column;gap:10px}
+.flow-step{display:grid;grid-template-columns:42px 1fr;gap:13px;align-items:start;background:white;border:1.5px solid var(--line);border-radius:15px;padding:13px 15px;break-inside:avoid}
+.num{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--navy);color:white;font-family:'Caveat';font-size:22px;font-weight:700}
+.flow-step b{font-family:'Yusei Magic';color:var(--navy)}
+.tiny-arrow{text-align:center;color:var(--orange);font-size:22px;line-height:1}
+.architecture{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.arch-head{grid-column:1/-1;background:var(--navy);color:white;border-radius:15px;padding:15px 18px;text-align:center;font-family:'Yusei Magic';font-size:23px}
+.arch-block{background:white;border:1.7px solid var(--line);border-radius:16px;padding:14px 15px}.arch-block h3{font-size:18px;margin-bottom:7px}.arch-block ul{font-size:14px}
+.note{font-size:13px;color:var(--muted);border-left:4px solid var(--line);padding-left:12px;margin-top:12px}
+.compare{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1.5px solid var(--line);border-radius:16px;background:white;font-size:14px}
+.compare th,.compare td{padding:12px 12px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);vertical-align:top}.compare th:last-child,.compare td:last-child{border-right:0}.compare tr:last-child td{border-bottom:0}.compare th{background:#f7f3ed;font-family:'Yusei Magic';color:var(--navy);text-align:left}
+.pill{display:inline-block;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:600;background:var(--sky);color:var(--navy);margin:2px 2px 2px 0}
+.versus{display:grid;grid-template-columns:1fr 52px 1fr;gap:12px;align-items:stretch}.vs{display:flex;align-items:center;justify-content:center;font-family:'Caveat';font-size:30px;color:var(--orange)}
+.big-quote{font-family:'Yusei Magic';font-size:26px;line-height:1.55;color:var(--navy);text-align:center;padding:24px 18px;background:var(--yellow);border-radius:18px;margin:20px 0}
+.safety{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.safety .card{border-color:#b9dfcc}.safety h3{font-size:18px}
+.goodbad{display:grid;grid-template-columns:1fr 1fr;gap:16px}.goodbad h3{margin-bottom:8px}.good{border-color:#b9dfcc;background:var(--green-soft)}.bad{border-color:#e8bdbd;background:var(--red-soft)}
+.timeline{border-left:4px solid var(--orange);padding-left:18px;margin-left:8px}.timeline .item{position:relative;margin:0 0 17px}.timeline .item::before{content:'';position:absolute;left:-27px;top:8px;width:14px;height:14px;border-radius:50%;background:var(--orange);border:3px solid var(--paper)}
+.cost{display:grid;grid-template-columns:1fr 1fr;gap:14px}.cost .card strong{font-family:'Caveat';font-size:29px;color:var(--orange)}
+.summary{background:linear-gradient(135deg,#fff4e6,#fffaf2);border:2px solid #f0c28f;border-radius:22px;padding:24px}.summary h2{margin-bottom:12px}.summary .final{font-family:'Yusei Magic';font-size:25px;color:var(--navy);text-align:center;margin-top:16px}
+.source{font-size:12px;color:var(--muted);margin-top:28px;padding-top:16px;border-top:1px solid var(--line)}
+.footer{position:absolute;bottom:18px;right:28px;font-family:'Caveat';font-size:18px;color:#aaa39c}
+.print-hint{position:sticky;top:10px;z-index:20;margin:0 auto 18px;max-width:794px;background:#262f3d;color:white;border-radius:14px;padding:10px 16px;text-align:center;font-size:13px;box-shadow:var(--shadow)}
+@media (max-width:760px){
+  .wrap{padding:0 0 30px}.page{border-radius:0;border-left:0;border-right:0;padding:38px 22px 48px;min-height:auto;margin-bottom:12px}.print-hint{position:static;border-radius:0;margin:0}.grid2,.grid3,.goodbad,.cost,.safety,.architecture{grid-template-columns:1fr}.arch-head{grid-column:auto}.hero-diagram{grid-template-columns:1fr}.hero-arrow{transform:rotate(90deg)}.versus{grid-template-columns:1fr}.vs{transform:rotate(90deg)}h1{font-size:34px}h2{font-size:26px}.lead{font-size:16px}.compare{font-size:12px}.compare th,.compare td{padding:9px 7px}
+}
+@page{size:A4 portrait;margin:12mm}
+@media print{
+  html,body{background:white!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .wrap{max-width:none;padding:0}.print-hint{display:none}.page{width:auto;min-height:0;margin:0;border:0;border-radius:0;box-shadow:none;padding:10mm 9mm 12mm;break-after:page;page-break-after:always;overflow:visible}.page:last-child{break-after:auto;page-break-after:auto}.page::before{height:4mm}.card,.callout,.flow-step,.big-quote,.summary,.compare,.goodbad,.cost,.safety,.architecture{break-inside:avoid;page-break-inside:avoid}h2,h3{break-after:avoid;page-break-after:avoid}.footer{bottom:4mm;right:8mm}
+}
+</style>
+</head>
+<body>
+<div class="print-hint">A4縦印刷対応｜ブラウザの「印刷」→「PDFに保存」でそのまま使えます</div>
+<div class="wrap">
+
+<section class="page">
+  <div class="eyebrow">Cloudflare OS, in one picture</div>
+  <h1>GPT・Claude・Google Driveをつなぐ<br>「会社専用AI司令塔」って何？</h1>
+  <p class="lead">Cloudflare OSは、WindowsやmacOSのようなPC用OSではありません。元記事では、<b>複数のAI・社内データ・業務アプリ・権限管理をまとめる“上位の仕事場”</b>として説明されています。</p>
+  <div class="badge">☁️ Cloudflare OS＝AIで仕事を動かす「司令塔」</div>
+
+  <div class="hero-diagram">
+    <div class="hero-box"><strong>AI</strong><small>GPT / Claude / Gemini / Workers AI</small></div>
+    <div class="hero-arrow">→</div>
+    <div class="hero-box"><strong>社内データ</strong><small>Google Drive / Sheets / Shopify / GA4 など</small></div>
+    <div class="hero-core"><strong>Cloudflare OS</strong><span>「誰に頼む？」「何を見せる？」「どこまで実行する？」をまとめて管理</span></div>
+  </div>
+
+  <div class="callout">
+    <p><b>Google WorkspaceにAIを足す</b>のではなく、<b>Cloudflare OSという上位レイヤーから、AI・Google Workspace・社内システムをまたいで動かす</b>イメージです。</p>
+  </div>
+
+  <div class="section grid2">
+    <div class="card soft-blue">
+      <div class="icon">🛡️</div><h3>Cloudflareとは</h3>
+      <p>もともとはWebサイトやアプリを<b>速く・安全に動かす</b>基盤として知られる会社。Workersを使うと、そのネットワーク上でプログラムやAI処理を動かせます。</p>
+    </div>
+    <div class="card soft-orange">
+      <div class="icon">🧠</div><h3>Cloudflare OSとは</h3>
+      <p>その土台の上で、<b>AIに仕事を進めさせるための環境</b>。元記事では、Cloudflare社内で使われてきた仕組みをオープンソース化したものと説明されています。</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Cloudflare OSの3つの役割</h2>
+    <div class="grid3">
+      <div class="card"><div class="icon">📚</div><h3>知識を読ませる</h3><p>会社のルール・マニュアル・過去資料を、許可範囲でAIに参照させる。</p></div>
+      <div class="card"><div class="icon">🧩</div><h3>小さな業務アプリを作る</h3><p>AIが仕事に合わせた小さな専用アプリを作る。元記事では「Gadget」と呼ばれます。</p></div>
+      <div class="card"><div class="icon">🔐</div><h3>権限を管理する</h3><p>見てよい情報・実行してよい操作・人間の承認ポイントを決める。</p></div>
+    </div>
+  </div>
+  <div class="footer">01</div>
+</section>
+
+<section class="page">
+  <div class="section">
+    <h2>全体像：5つの層をひとつにつなぐ</h2>
+    <div class="architecture">
+      <div class="arch-head">Cloudflare OS</div>
+      <div class="arch-block"><h3>① AI・判断</h3><ul class="tight"><li>GPT</li><li>Claude</li><li>Gemini</li><li>Workers AI</li></ul></div>
+      <div class="arch-block"><h3>② 知識・ルール</h3><ul class="tight"><li>社内マニュアル</li><li>過去の判断</li><li>Skill</li><li>業務手順</li></ul></div>
+      <div class="arch-block"><h3>③ 外部データ</h3><ul class="tight"><li>Google Drive / Sheets</li><li>Shopify</li><li>GA4・広告</li><li>社内システム</li></ul></div>
+      <div class="arch-block"><h3>④ 実行</h3><ul class="tight"><li>調査</li><li>資料作成</li><li>データ分析</li><li>専用アプリ作成</li><li>定期ワークフロー</li></ul></div>
+      <div class="arch-block"><h3>⑤ 管理</h3><ul class="tight"><li>閲覧・操作権限</li><li>人間による承認</li><li>操作ログ</li><li>AI利用料金</li></ul></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>つなぐと仕事はどう変わる？</h2>
+    <p>従来は「チャットに資料を貼る → 回答をコピー → 別ソフトへ移す」が中心。Cloudflare OSが目指すのは、その<b>分断を減らし、一連の仕事として流す</b>ことです。</p>
+    <div class="stack">
+      <div class="flow-step"><div class="num">1</div><div><b>データを読む</b><br><span>Google Drive / Sheetsから、許可された情報だけ取得</span></div></div>
+      <div class="tiny-arrow">↓</div>
+      <div class="flow-step"><div class="num">2</div><div><b>AIが分析する</b><br><span>売上や広告の変化を見て、問題の候補を整理</span></div></div>
+      <div class="tiny-arrow">↓</div>
+      <div class="flow-step"><div class="num">3</div><div><b>改善案を出す</b><br><span>原因候補と翌週の改善案をまとめる</span></div></div>
+      <div class="tiny-arrow">↓</div>
+      <div class="flow-step"><div class="num">4</div><div><b>レポート / 画面を作る</b><br><span>見る人に合わせたレポートや確認用Gadgetを作成</span></div></div>
+      <div class="tiny-arrow">↓</div>
+      <div class="flow-step"><div class="num">5</div><div><b>人間が承認して共有</b><br><span>影響のある操作は、人間が確認した後に実行</span></div></div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <p><b>つまり、AIそのものが新しくなるというより、AI・データ・業務の流れを“接続して管理する仕組み”が主役。</b></p>
+  </div>
+  <div class="footer">02</div>
+</section>
+
+<section class="page">
+  <div class="section">
+    <h2>「人間の司令塔」を仕組みに置き換える</h2>
+    <p>元記事の筆者は、すでに複数ツールを使い分けています。ただし現状は、ツール同士をつなぐ判断を本人が担っている、と説明します。</p>
+    <div class="versus">
+      <div class="card soft-orange">
+        <div class="label">Before</div><h3>人間が毎回判断</h3>
+        <ul class="tight"><li>どのAIに頼む？</li><li>どのデータを読ませる？</li><li>どこまで自動実行？</li><li>何を人間が確認？</li></ul>
+      </div>
+      <div class="vs">→</div>
+      <div class="card soft-green">
+        <div class="label">With OS</div><h3>振り分けを仕組み化</h3>
+        <ul class="tight"><li>分析AIを呼ぶ</li><li>制作AIへ渡す</li><li>必要資料だけ読ませる</li><li>外部送信は人間承認</li></ul>
+      </div>
+    </div>
+    <div class="big-quote">既存ツールが「手足と記憶」なら、<br>Cloudflare OSは仕事の流れを整理する「神経系」</div>
+    <p class="note">※この比喩と構成は元記事筆者の説明。筆者自身も「現時点では自分の環境へ当てはめた構想で、すべてを動かした実績ではない」と明記しています。</p>
+  </div>
+
+  <div class="section">
+    <h2>他のサービスと、何が違う？</h2>
+    <table class="compare">
+      <thead><tr><th>サービス</th><th>主な位置づけ</th><th>Cloudflare OSとの違い</th></tr></thead>
+      <tbody>
+        <tr><td><b>ChatGPT / Claude</b></td><td>AIと会話するサービス</td><td>OSは複数AI・データ・業務アプリ・権限をまたいで仕事を流す</td></tr>
+        <tr><td><b>Google Workspace</b></td><td>文書・表計算などの仕事道具</td><td>OSはWorkspace自体を含む複数ツールを外側からつなぐ</td></tr>
+        <tr><td><b>Cursor / VS Code</b></td><td>主に開発者向け作業場</td><td>OSは営業資料・社内文書・分析・定期業務まで含む「会社全体の仕事場」を目指す</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section card soft-blue">
+    <h3>ここは勘違いしやすい</h3>
+    <p><span class="pill">GPT / Claudeモデルを呼べる</span> と <span class="pill">Codex / Claude Code製品がそのまま入る</span> は別です。</p>
+    <p>元記事では、CodexやClaude Codeの役割を、Cloudflare OS上のエージェントやアプリとして<b>組み直す必要がある</b>と説明しています。またGoogle Driveも、認証とアクセス範囲の設定なしに勝手に読めるわけではありません。</p>
+  </div>
+  <div class="footer">03</div>
+</section>
+
+<section class="page">
+  <div class="section">
+    <h2>本当の価値は「AIを安全に働かせる境界線」</h2>
+    <p>元記事が特に重視しているのが、<b>AIに何を見せ、どこまで実行させるか</b>を管理する設計です。外部サービスへの接続を管理する仕組みは「Gatekeeper」と呼ばれます。</p>
+    <div class="safety">
+      <div class="card"><div class="icon">🎯</div><h3>必要最小限のアクセス</h3><p>必要な資料や機能だけを許可する。</p></div>
+      <div class="card"><div class="icon">🧾</div><h3>操作ログ</h3><p>AIやGadgetが行った操作を記録する。</p></div>
+      <div class="card"><div class="icon">✋</div><h3>人間の承認</h3><p>データ更新・送信など影響のある操作を、人間確認後に実行する。</p></div>
+      <div class="card"><div class="icon">🔑</div><h3>認証情報を直接渡さない</h3><p>外部サービスの認証情報をAIに直渡しせず接続する。</p></div>
+    </div>
+    <div class="callout"><p>例：<b>広告データを読む → 改善案を出す</b>までは自動。でも、<b>予算変更や広告停止</b>は人間が確認してから。</p></div>
+  </div>
+
+  <div class="section">
+    <h2>誰に向いている？</h2>
+    <div class="goodbad">
+      <div class="card good"><h3>◎ 向いている</h3><ul class="tight"><li>GPT・Claude・Geminiを業務ごとに使い分けている</li><li>Google Driveや社内システムをAIへ安全につなぎたい</li><li>毎週の集計・レポート・資料作成がある</li><li>自動化と人間承認の境界を決めたい</li><li>自社専用の小さな業務アプリを作りたい</li></ul></div>
+      <div class="card bad"><h3>△ まだ早い</h3><ul class="tight"><li>AIに質問するだけで十分</li><li>自動化したい定型業務がまだ見えていない</li><li>連携設定や業務設計をする余裕がない</li></ul><p><b>→ ChatGPTやClaude単体の方が簡単</b>、というのが元記事の整理です。</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>最初に試すなら「読むだけの定型業務」</h2>
+    <div class="timeline">
+      <div class="item"><h3>Step 1｜対象を1つに絞る</h3><p>例：ECの週次改善レポート</p></div>
+      <div class="item"><h3>Step 2｜まずは読むだけ</h3><p>売上・広告データを読み、変化の大きい数字を見つける。</p></div>
+      <div class="item"><h3>Step 3｜提案まで</h3><p>原因候補と翌週の改善案をレポート化。</p></div>
+      <div class="item"><h3>Step 4｜書き換えはしない</h3><p>最初は外部サービスを更新せず、結果を出すところまで。</p></div>
+      <div class="item"><h3>Step 5｜うまくいったら拡張</h3><p>記事制作・広告分析などへ広げる。</p></div>
+    </div>
+  </div>
+  <div class="footer">04</div>
+</section>
+
+<section class="page">
+  <div class="section">
+    <h2>導入判断：全面移行ではなく「小さく検証」</h2>
+    <p>元記事の結論は明確です。<b>今すぐ全部をCloudflare OSへ移すのではなく、1つの定型業務で試す価値がある</b>、という立場です。</p>
+    <div class="grid2">
+      <div class="card soft-orange"><h3>維持するもの</h3><p>今使っているGPT・Claude・Google Workspace・社内システムなど。</p></div>
+      <div class="card soft-green"><h3>追加するもの</h3><p>それらをつなぎ、権限と仕事の流れを管理する上位レイヤー。</p></div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>費用面（元記事記載時点）</h2>
+    <div class="cost">
+      <div class="card"><div class="label">Workers plan</div><strong>$5 / month</strong><p>Dynamic Workersには有料Workersプランが必要、と元記事に記載。</p></div>
+      <div class="card"><div class="label">Unified Billing</div><strong>+5%</strong><p>OpenAI / Anthropic / Googleの利用料をCloudflareへまとめる場合、購入クレジットに5%手数料、と元記事に記載。</p></div>
+    </div>
+    <p class="note">料金や条件は変わる可能性があるため、元記事自身も導入時の公式確認を推奨しています。</p>
+  </div>
+
+  <div class="section summary">
+    <h2>結局、Cloudflare OSとは？</h2>
+    <ul class="tight">
+      <li><b>PC用OSではない</b></li>
+      <li>AI・社内データ・業務アプリ・自動処理・権限管理をまとめる「会社専用AI司令塔」</li>
+      <li>Google WorkspaceやCursorの代替ではなく、<b>今ある道具の上に載る</b>イメージ</li>
+      <li>AIに任せる範囲と、人間が止める範囲を設計できることが重要</li>
+      <li>現時点では、完成品を丸ごと使うより<b>自社向けに組み替える前提</b></li>
+    </ul>
+    <div class="final">全面移行はまだ早い。<br>でも「1つの定型業務」で試すには面白い。</div>
+  </div>
+
+  <div class="section card soft-blue">
+    <h3>元記事で挙げられている公式確認先</h3>
+    <p>Cloudflare OS公式GitHub / Cloudflare OS Starter公式GitHub / Cloudflareとは何か / Cloudflare Workersの料金 / AI GatewayのUnified Billing</p>
+  </div>
+
+  <div class="source">
+    <b>出典：</b> 今野健介｜Claude×EC専門家「Cloudflare OSとは？GPT・Claude・Google Driveをつなぐ『会社専用AI司令塔』を初心者向けに解説」（2026-08-14）。<br>
+    本資料は、元記事の内容・主張・具体例を整理し、初心者向けに図解再構成したものです。元記事筆者の構想・意見は、事実として断定せず区別して記載しています。
+  </div>
+  <div class="footer">05</div>
+</section>
+
+</div>
+</body>
+</html>
