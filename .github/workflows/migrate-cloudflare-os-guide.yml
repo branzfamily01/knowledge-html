@@ -1,0 +1,58 @@
+name: Migrate Cloudflare OS explainer
+
+on:
+  push:
+    paths:
+      - '.github/workflows/migrate-cloudflare-os-guide.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Copy original HTML and register metadata
+        run: |
+          set -euo pipefail
+          TMP="$(mktemp -d)"
+          git clone --depth 1 --quiet https://github.com/branzfamily01/cloudflare-os-ai-command-center.git "$TMP/source"
+          mkdir -p cloudflare-os-ai-command-center
+          cp "$TMP/source/index.html" cloudflare-os-ai-command-center/index.html
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          slug='cloudflare-os-ai-command-center'
+          item={
+            'title':'Cloudflare OSとは？｜会社専用AI司令塔を図解',
+            'slug':slug,'type':'knowledge-html','category':'IT・AI',
+            'tags':['Cloudflare','AI','GPT','Claude','Google Drive','社内AI','図解'],
+            'summary':'GPT・Claude・Google Driveなどをつなぐ会社専用AI司令塔としてのCloudflare OSを初心者向けに図解した資料。',
+            'level':'入門','sourceRepo':'cloudflare-os-ai-command-center',
+            'createdAt':'2026-08-26','updatedAt':'2026-08-26','githubRepo':'knowledge-html','githubPath':slug+'/',
+            'publicUrl':'https://branzfamily01.github.io/knowledge-html/'+slug+'/',
+            'sourceType':'github-existing-html',
+            'sourceSummary':'Standalone GitHub knowledge page migrated from branzfamily01/cloudflare-os-ai-command-center without substantive content changes.'
+          }
+          Path(slug,'metadata.json').write_text(json.dumps(item,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          p=Path('registry.json'); reg=json.loads(p.read_text(encoding='utf-8'))
+          by={x.get('slug'):x for x in reg.get('items',[]) if x.get('slug')}; by[slug]=item
+          reg['updatedAt']='2026-08-26'; reg['items']=list(by.values())
+          p.write_text(json.dumps(reg,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          test -f cloudflare-os-ai-command-center/index.html
+          python -m json.tool cloudflare-os-ai-command-center/metadata.json >/dev/null
+          python -m json.tool registry.json >/dev/null
+      - name: Commit migration
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add cloudflare-os-ai-command-center registry.json
+          if ! git diff --cached --quiet; then
+            git commit -m 'Migrate Cloudflare OS explainer into knowledge-html'
+            git push origin HEAD:main
+          fi
