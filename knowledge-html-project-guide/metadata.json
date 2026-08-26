@@ -1,0 +1,16 @@
+{
+  "title": "初心者向けHTML化・保存｜完全ガイド — 会話からMy Hubまで",
+  "slug": "knowledge-html-project-guide",
+  "type": "knowledge-html",
+  "category": "Second Brain",
+  "tags": ["Knowledge HTML","My Hub","GitHub","GitHub Pages","registry.json","metadata.json","Webアプリ","初心者向けHTML","Second Brain","Rescue"],
+  "summary": "このプロジェクトの使い方を、素材の渡し方から初心者向け再設計、Knowledge/Web App判定、GitHub保存、metadata・registry登録、GitHub Pages公開、My Hub掲載、Rescueまで一本道で説明する完全ガイド。",
+  "level": "入門〜実務基礎",
+  "createdAt": "2026-08-26",
+  "updatedAt": "2026-08-26",
+  "githubRepo": "knowledge-html",
+  "githubPath": "knowledge-html-project-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/knowledge-html-project-guide/",
+  "sourceType": "chatgpt-project-conversation",
+  "sourceSummary": "初心者向けHTML化・保存プロジェクトの運用ルール、GitHub保存標準、My Hub、Public/Private、Legacy Rescueの会話と確定運用を、初心者が最短で使える順に再構成。"
+}
