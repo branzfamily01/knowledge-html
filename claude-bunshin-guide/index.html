@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Claudeで「自分の分身」を作る方法｜図解ガイド</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Klee+One:wght@400;600&family=Yusei+Magic&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#30302e;--muted:#6e6a63;--paper:#fffdf8;--cream:#fff4df;--orange:#ef8a4c;--orange2:#f9c79d;--blue:#dff1f4;--green:#e4f0dc;--line:#ded7cc;--shadow:0 10px 30px rgba(70,55,35,.08)}
+*{box-sizing:border-box} body{margin:0;background:#f3efe8;color:var(--ink);font-family:"Klee One",sans-serif;line-height:1.8}
+.page{width:min(100%,210mm);min-height:297mm;margin:18px auto;background:var(--paper);padding:15mm 16mm;box-shadow:var(--shadow);position:relative;overflow:hidden}
+h1,h2,h3{font-family:"Yusei Magic",sans-serif;font-weight:400;line-height:1.35;margin:0}
+h1{font-size:31px} h2{font-size:23px;margin-bottom:14px} h3{font-size:18px}
+.eyebrow,.num,.en{font-family:"Caveat",cursive} .eyebrow{font-size:21px;color:#b55c2d}
+.hero{background:linear-gradient(135deg,#fff1df,#fffaf0 58%,#e7f3ef);border:2px solid #f1c9a6;border-radius:28px;padding:25px;position:relative}
+.hero:after{content:"✦";position:absolute;right:22px;top:14px;font-size:36px;color:#ed9b63}
+.lead{font-size:16px;margin:15px 0 0} .marker{background:linear-gradient(transparent 58%,#ffd7a7 58%);font-weight:600}
+.summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}
+.card{border:1.5px solid var(--line);border-radius:18px;padding:15px;background:white;break-inside:avoid}
+.card .num{font-size:28px;color:var(--orange);font-weight:700} .card p{margin:7px 0 0;font-size:13.5px}
+.compare{display:grid;grid-template-columns:1fr 44px 1fr;align-items:stretch;gap:8px;margin:20px 0}
+.compare .side{padding:16px;border-radius:18px;border:1.5px solid var(--line)} .plain{background:#f4f2ef} .project{background:#fff0df}
+.arrow{display:grid;place-items:center;font-size:26px;color:var(--orange)}
+.flow{display:grid;grid-template-columns:1fr 30px 1fr 30px 1fr;align-items:center;margin:18px 0}
+.step{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:14px;text-align:center;min-height:128px}
+.step b{display:block;font-family:"Yusei Magic";font-size:17px;margin:3px 0} .step small{color:var(--muted)}
+.note{border-left:6px solid var(--orange);background:var(--cream);padding:13px 16px;border-radius:0 14px 14px 0;margin:16px 0}
+.ingredients{display:grid;grid-template-columns:repeat(3,1fr);gap:10px} .ingredients .card:nth-child(1){background:#fff5e8} .ingredients .card:nth-child(2){background:var(--blue)} .ingredients .card:nth-child(3){background:var(--green)}
+.prompt{background:#272724;color:#f8f3e8;border-radius:18px;padding:16px;margin:13px 0;position:relative;break-inside:avoid}
+.prompt pre{white-space:pre-wrap;word-break:break-word;font-family:"Klee One",sans-serif;font-size:11.2px;line-height:1.65;margin:0;padding-top:32px}
+.copy{position:absolute;right:12px;top:10px;border:0;border-radius:999px;padding:7px 12px;background:#fff3dd;color:#5c4633;font-family:"Klee One";cursor:pointer}
+.usecase{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0} .pill{background:#fff;border:1px solid #e3cdb8;border-radius:999px;padding:5px 11px;font-size:12px}
+.safety{display:grid;grid-template-columns:1fr 1fr;gap:12px} .safety .card:first-child{background:#fff3e7} .safety .card:last-child{background:#edf5ea}
+.footer{position:absolute;bottom:8mm;left:16mm;right:16mm;display:flex;justify-content:space-between;color:#91897d;font-size:10px;border-top:1px dashed #d8d0c5;padding-top:4px}
+.source{font-size:11px;color:var(--muted)} code{font-family:ui-monospace,monospace}
+@media(max-width:720px){.page{margin:0;width:100%;min-height:auto;padding:24px 18px;box-shadow:none}.summary,.ingredients,.safety{grid-template-columns:1fr}.compare{grid-template-columns:1fr}.arrow{transform:rotate(90deg)}.flow{grid-template-columns:1fr}.flow>.arrow{height:30px}.footer{position:static;margin-top:25px}}
+@page{size:A4 portrait;margin:0} @media print{body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}.page{margin:0;box-shadow:none;width:210mm;height:297mm;page-break-after:always}.page:last-child{page-break-after:auto}.copy{display:none}h2,h3{break-after:avoid}.card,.prompt,.note{break-inside:avoid}}
+</style>
+</head>
+<body>
+<section class="page">
+<div class="hero"><div class="eyebrow">Your AI Doppelgänger</div><h1>Claudeで「自分の分身」を作る方法</h1><p class="lead">ポイントは、口調を似せることではなく、<span class="marker">「自分がどう考え、どう選ぶか」まで渡すこと。</span><br>毎回の前置きを減らし、自分の判断軸に沿って相談できる専用プロジェクトを作る。</p></div>
+<div class="summary"><div class="card"><div class="num">01</div><h3>自分を知る材料</h3><p>価値観・判断基準・過去の文章などを「コンテキスト」に置く。</p></div><div class="card"><div class="num">02</div><h3>答え方のルール</h3><p>「手順」に、意見の返し方・禁止事項・安全装置を書く。</p></div><div class="card"><div class="num">03</div><h3>短く相談</h3><p>完成後は「この企画どう思う？」のような短い相談でも文脈が通る。</p></div></div>
+<h2>普通のチャットと何が違う？</h2><div class="compare"><div class="side plain"><h3>普通のチャット</h3><p>自分を知らない状態から開始。背景説明が毎回必要になりやすく、一般論に寄りやすい。</p></div><div class="arrow">→</div><div class="side project"><h3>分身プロジェクト</h3><p>自分の資料とルールを置いておける「用途専用の部屋」。価値観や過去の判断を前提に相談できる。</p></div></div>
+<h2>完成までの3ステップ</h2><div class="flow"><div class="step"><span class="num">STEP 1</span><b>プロジェクト作成</b><small>置き場所を用意<br>使うのは「コンテキスト」と「手順」</small></div><div class="arrow">→</div><div class="step"><span class="num">STEP 2</span><b>自分を言語化</b><small>価値観・文章・深掘り質問で<br>「考え方」を材料化</small></div><div class="arrow">→</div><div class="step"><span class="num">STEP 3</span><b>答え方を設定</b><small>褒め／改善／賛成／反対など<br>毎回指定できる設計に</small></div></div>
+<div class="note"><b>ここがポイント：</b>「僕っぽく話して」だけでは、口調が似ただけの相手になりがち。分身の核は、実績や肩書きよりも先に<span class="marker">判断の基準</span>を入れること。</div><div class="footer"><span>Claude「自分の分身」図解ガイド</span><span>1 / 3</span></div></section>
+<section class="page"><div class="eyebrow">STEP 2 — Build the Context</div><h2>分身の解像度を上げる「3つの材料」</h2><div class="ingredients"><div class="card"><div class="num">1</div><h3>自分で書き出す</h3><p>大事な価値観、仕事で守ること、届けたい相手、失敗時の反省など。きれいな文章でなく、箇条書きでOK。</p></div><div class="card"><div class="num">2</div><h3>過去の文章を入れる</h3><p>記事・note・長文投稿には「実際にどう書き、どう判断してきたか」が残る。自覚していない癖も材料になる。</p></div><div class="card"><div class="num">3</div><h3>AIに深掘りしてもらう</h3><p>「なぜ？」を1問ずつ聞いてもらい、自分では当たり前すぎて言語化していなかった判断軸を掘り出す。</p></div></div><div class="note"><b>「つもり」と「実際」の両方を入れる。</b><br>自己申告の価値観だけでなく、過去の文章に残る行動・表現のパターンも合わせると、分身の解像度が上がる。</div><h3>用途：自分の考え方を深掘りして、コンテキスト用文章を作るプロンプト</h3><div class="prompt"><button class="copy" onclick="copyPrompt(this)">コピー</button><pre>【役割】あなたは、僕の考え方を言葉にするために質問を重ねるインタビュアーです。
+【前提】僕は＜自分の仕事や活動＞をしています。この聞き取りの結果は、Claudeのプロジェクトに入れて「自分の分身」として相談に乗ってもらうために使います。
+【目的】僕が普段は言葉にしていない考え方や判断の基準を、文章として引き出すこと。
+【進め方】質問は1問ずつ投げること。僕が答えたら、その答えの中で説明が足りていない部分をさらに1つ掘り下げてから、次の質問に移る。
+【設計方針】質問は、大事にしている価値観、仕事で守っていること、届けたい相手とその理由、失敗から学んだこと、人と意見が割れたときにどちらを選んできたか、の5つの観点から作る。
+【作成物】聞き取りが終わったら、僕の答えを「僕の考え方」としてまとめ、プロジェクトのコンテキストにそのまま貼れる形で出す。
+【完了条件】まとめた文章を読んだ人が、僕がどんな場面で何を選ぶかを予想できる状態になっていること。
+【禁止事項】質問をまとめて出さない。僕が言っていないことを、僕の考えとして書き足さない。</pre></div><p class="source">書き換えるのは <b>＜自分の仕事や活動＞</b> の1か所。特に「質問は1問ずつ」「答えを1つ掘り下げてから次へ」が重要とされています。</p><h2 style="margin-top:18px">なぜ「1問ずつ」なのか</h2><div class="safety"><div class="card"><h3>まとめて質問すると…</h3><p>質問が大量に届き、回答負荷が上がって途中で止まりやすい。</p></div><div class="card"><h3>1問ずつ掘ると…</h3><p>「その場合も同じ？」という再質問から例外や条件が見つかり、自分固有の考え方が言葉になる。</p></div></div><div class="footer"><span>コンテキスト＝「自分がどう考えるか」を置く場所</span><span>2 / 3</span></div></section>
+<section class="page"><div class="eyebrow">STEP 3 — Set the Rules</div><h2>「どう答えてほしいか」を手順欄に置く</h2><p>回答形式を固定しすぎず、その日の目的に応じて指定できるようにするのがポイント。元資料では、次のような指定語が例示されています。</p><div class="usecase"><span class="pill">褒め</span><span class="pill">改善点</span><span class="pill">賛成</span><span class="pill">反対</span><span class="pill">別提案</span><span class="pill">シビアに</span><span class="pill">改善点を5つ</span></div><h3>用途：Claudeプロジェクトの「手順」欄にそのまま貼るプロンプト</h3><div class="prompt"><button class="copy" onclick="copyPrompt(this)">コピー</button><pre>【役割】あなたは、僕の分身です。コンテキストにある「僕の考え方」と僕が書いた文章を前提に、僕の立場から意見を返してください。
+【前提】僕は相談や提案を投げるときに、返してほしい形を指定します。指定は「褒め」「改善点」「賛成」「反対」「別提案」「シビアに」などの言葉で伝えます。数の指定（改善点を5つ、など）がある場合はその数に従ってください。
+【目的】僕が1人で考えていたときには出てこなかった材料を渡して、判断を前に進めること。
+【進め方】まず、指定された形で答える。指定がない場合は、賛成の理由と引っかかる点を両方出す。次に、その意見がコンテキストのどの考え方に基づくのかを示す。
+【設計方針】一般論で答えず、必ずコンテキストにある僕の考え方に沿って答える。褒めるときも「いいと思います」で終わらせず、僕の考え方のどこと一致しているかを書く。
+【作成物】指定された形の意見と、最後に「僕の考え方から離れた指摘」を1つ。この1つは、僕の考え方の外側から見たときに気になる点にする。
+【完了条件】僕がその場で次の行動を決められる具体さになっていること。
+【禁止事項】決定を代わりにしない。励ましだけで終わらせない。コンテキストにない僕の経験を作らない。</pre></div><h2>安全装置は「自分の外側から1つ」</h2><div class="safety"><div class="card"><h3>分身の強み</h3><p>自分の価値観を踏まえて意見するため、一般論ではなく「自分ならどう判断するか」に近づける。</p></div><div class="card"><h3>分身の弱点</h3><p>自分と同じ盲点まで再現しうる。そこで毎回「僕の考え方から離れた指摘」を1つ加え、視野が閉じるのを防ぐ。</p></div></div><div class="note"><b>最終決定はAIに渡さない。</b><br>分身は「判断材料を増やし、迷って止まる時間を減らす相談相手」。決めるのは自分、という位置づけが元資料の結論です。</div><h2>完成後の使い方</h2><div class="card" style="background:#fff6e8"><h3>短く投げてOK</h3><p>例：「『自分の分身プロジェクト』をX記事に書こうかと思いついたんだけど、どう思う？ メリットとデメリットを3つずつ出してみて。」</p></div><p class="source" style="margin-top:14px">出典：あさひ｜教頭先生のAI活用術「Claudeで『自分の分身』を作る方法―誰よりも自分を知っている相談相手が手に入る」（2026年8月時点）。本資料は元記事の内容を整理・図解したものです。</p><div class="footer"><span>相談する → 材料が増える → 最後は自分で決める</span><span>3 / 3</span></div></section>
+<script>async function copyPrompt(btn){const text=btn.parentElement.querySelector('pre').innerText;try{await navigator.clipboard.writeText(text);btn.textContent='コピー済み ✓';setTimeout(()=>btn.textContent='コピー',1600)}catch(e){const r=document.createRange();r.selectNode(btn.parentElement.querySelector('pre'));window.getSelection().removeAllRanges();window.getSelection().addRange(r);document.execCommand('copy');window.getSelection().removeAllRanges();}}</script>
+</body></html>
