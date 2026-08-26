@@ -1,0 +1,39 @@
+name: Build apps registry
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 18 * * *'
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/build-apps-registry.mjs'
+      - 'apps-overrides.json'
+      - 'registry.json'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build apps-registry.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node scripts/build-apps-registry.mjs
+
+      - name: Commit registry if changed
+        run: |
+          if git diff --quiet -- apps-registry.json; then
+            echo "No registry changes"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apps-registry.json
+          git commit -m "Update web app registry"
+          git push
