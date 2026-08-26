@@ -75,7 +75,7 @@ const repos = await getJson(`${API}/users/${OWNER}/repos?per_page=100&type=owner
 const items = [];
 
 for (const repo of repos) {
-  if (repo.private || repo.archived || repo.disabled || repo.size === 0) continue;
+  if (repo.private || repo.archived || repo.disabled) continue;
   if (!repo.has_pages) continue;
   if (excluded.has(repo.name)) continue;
 
