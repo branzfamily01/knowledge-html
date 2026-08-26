@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "items": {
+    "second-brain-bridge": {
+      "title": "Second Brain Bridge",
+      "category": "Productivity",
+      "summary": "Knowledgeや記録を横断して探すためのSecond Brain入口。",
+      "tags": ["Second Brain", "検索", "Obsidian", "GitHub"],
+      "color": "purple"
+    },
+    "pdf-workshop": {
+      "title": "PDF Workshop",
+      "category": "Tools",
+      "summary": "PDFの結合・分割・回転などを扱う作業ツール。",
+      "tags": ["PDF", "仕事", "ツール"],
+      "color": "blue"
+    },
+    "html-slide-studio": {
+      "title": "HTML Slide Studio 2.0",
+      "category": "Tools",
+      "summary": "HTMLベースのスライド制作・編集を行うツール。",
+      "tags": ["HTML", "Slides", "PPTX", "授業"],
+      "color": "blue"
+    },
+    "juken-ai-coach": {
+      "title": "受験AIコーチ",
+      "category": "Learning",
+      "summary": "中学受験の誤答分析と弱点攻略を支援する学習ツール。",
+      "tags": ["中学受験", "AI", "弱点分析"],
+      "color": "green"
+    },
+    "juken-quest-os": {
+      "title": "受験クエストOS",
+      "category": "Learning",
+      "summary": "受験学習をクエスト形式で進める学習システム。",
+      "tags": ["中学受験", "学習", "クエスト"],
+      "color": "green"
+    },
+    "onhenka-dojo": {
+      "title": "音変化道場",
+      "category": "Learning",
+      "summary": "英語リスニングの音変化を練習する学習アプリ。",
+      "tags": ["英語", "リスニング", "音変化"],
+      "color": "green"
+    },
+    "onhenka-dojo-yukito-quest": {
+      "title": "音変化道場｜Yukito Quest",
+      "category": "Learning",
+      "summary": "音変化トレーニングをクエスト形式で進める学習アプリ。",
+      "tags": ["英語", "リスニング", "ゲーム"],
+      "color": "green"
+    },
+    "onhenka-dojo-yukito-gacha-public": {
+      "title": "Yukito Gacha",
+      "category": "Learning",
+      "summary": "学習進行とガチャ要素を組み合わせた公開版アプリ。",
+      "tags": ["英語", "学習", "ガチャ"],
+      "color": "green"
+    },
+    "blend-english-reader": {
+      "title": "Blend English",
+      "category": "Learning",
+      "summary": "英文を読みやすい形に加工して学習する英語リーダー。",
+      "tags": ["英語", "Reading", "教材"],
+      "color": "green"
+    },
+    "collocation-sprint": {
+      "title": "Collocation Sprint",
+      "category": "Learning",
+      "summary": "英語コロケーションを反復練習する学習アプリ。",
+      "tags": ["英語", "語彙", "コロケーション"],
+      "color": "green"
+    },
+    "recall-sprint": {
+      "title": "Recall Sprint",
+      "category": "Learning",
+      "summary": "短時間で想起練習を繰り返す学習アプリ。",
+      "tags": ["学習", "想起", "暗記"],
+      "color": "green"
+    },
+    "lumi-vocab-adventure": {
+      "title": "Lumi Vocab Adventure",
+      "category": "Learning",
+      "summary": "語彙学習を冒険形式で進める学習アプリ。",
+      "tags": ["英語", "語彙", "ゲーム"],
+      "color": "green"
+    },
+    "kokugo-dojo": {
+      "title": "国語道場",
+      "category": "Learning",
+      "summary": "国語学習用のトレーニングアプリ。",
+      "tags": ["国語", "学習"],
+      "color": "green"
+    },
+    "kabewari-sansu": {
+      "title": "壁割り算数",
+      "category": "Learning",
+      "summary": "算数問題をゲーム感覚で進める学習アプリ。",
+      "tags": ["算数", "学習", "ゲーム"],
+      "color": "green"
+    },
+    "ocean-study-quest": {
+      "title": "Ocean Study Quest",
+      "category": "Learning",
+      "summary": "海をテーマに学習を進めるクエスト型アプリ。",
+      "tags": ["学習", "海", "クエスト"],
+      "color": "green"
+    },
+    "umi-no-chizu-puzzle": {
+      "title": "海の地図パズル",
+      "category": "Learning",
+      "summary": "地図・海に関する内容をパズル形式で学ぶアプリ。",
+      "tags": ["地理", "海", "パズル"],
+      "color": "green"
+    },
+    "id-photo-maker": {
+      "title": "ID Photo Maker",
+      "category": "Tools",
+      "summary": "証明写真の作成を支援するWebツール。",
+      "tags": ["写真", "画像", "ツール"],
+      "color": "blue"
+    },
+    "image-prompt-lab": {
+      "title": "Image Prompt Lab",
+      "category": "AI",
+      "summary": "画像生成向けプロンプトを組み立てるためのツール。",
+      "tags": ["AI", "画像生成", "Prompt"],
+      "color": "violet"
+    },
+    "library-reference-navigator": {
+      "title": "蔵書レファレンスナビ",
+      "category": "Tools",
+      "summary": "蔵書を検索し、必要な資料へたどり着くためのナビゲーションツール。",
+      "tags": ["蔵書", "検索", "レファレンス"],
+      "color": "blue"
+    },
+    "action-inbox": {
+      "title": "Action Inbox",
+      "category": "Productivity",
+      "summary": "やるべきことを整理して処理するためのInbox型ツール。",
+      "tags": ["タスク", "Inbox", "仕事"],
+      "color": "purple"
+    }
+  }
+}
