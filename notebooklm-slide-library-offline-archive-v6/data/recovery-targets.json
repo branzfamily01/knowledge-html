@@ -1,0 +1,32 @@
+[
+  {
+    "id": "009",
+    "expectedName": "SaaS dashboard",
+    "capturedHeaderId": "154",
+    "capturedHeaderName": "Modern UI"
+  },
+  {
+    "id": "019",
+    "expectedName": "Red Square",
+    "capturedHeaderId": "020",
+    "capturedHeaderName": "Blue & Red Square"
+  },
+  {
+    "id": "058",
+    "expectedName": "Retro UI",
+    "capturedHeaderId": "130",
+    "capturedHeaderName": "Cat Surreal"
+  },
+  {
+    "id": "142",
+    "expectedName": "Modern Fashion",
+    "capturedHeaderId": "144",
+    "capturedHeaderName": "Color Block"
+  },
+  {
+    "id": "151",
+    "expectedName": "Minimal Character",
+    "capturedHeaderId": "157",
+    "capturedHeaderName": "Character Poster"
+  }
+]

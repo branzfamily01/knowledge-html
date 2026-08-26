@@ -1,0 +1,49 @@
+{
+  "auditVersion": "6.0",
+  "sourcePackage": "NotebookLM-Slide-Archive-Complete.zip",
+  "totalStyles": 160,
+  "localImagesValid": 160,
+  "localImagesUnique": 160,
+  "verifiedOriginalYaml": 155,
+  "mismatchedOriginalCaptures": 5,
+  "missingOriginalYaml": 5,
+  "reconstructedYamlAvailable": 160,
+  "offlineUsable": true,
+  "externalRuntimeDependency": false,
+  "closureReadyForImages": true,
+  "closureReadyForAllOriginalYaml": false,
+  "closureReady": false,
+  "validationMethod": "Each captured modal header (DESIGN STYLE · NNN + style name) was matched against the assigned record. Image PNG signatures, dimensions, SHA-256 uniqueness and presence were checked.",
+  "knownMismatches": [
+    {
+      "id": "009",
+      "expectedName": "SaaS dashboard",
+      "capturedHeaderId": "154",
+      "capturedHeaderName": "Modern UI"
+    },
+    {
+      "id": "019",
+      "expectedName": "Red Square",
+      "capturedHeaderId": "020",
+      "capturedHeaderName": "Blue & Red Square"
+    },
+    {
+      "id": "058",
+      "expectedName": "Retro UI",
+      "capturedHeaderId": "130",
+      "capturedHeaderName": "Cat Surreal"
+    },
+    {
+      "id": "142",
+      "expectedName": "Modern Fashion",
+      "capturedHeaderId": "144",
+      "capturedHeaderName": "Color Block"
+    },
+    {
+      "id": "151",
+      "expectedName": "Minimal Character",
+      "capturedHeaderId": "157",
+      "capturedHeaderName": "Character Poster"
+    }
+  ]
+}

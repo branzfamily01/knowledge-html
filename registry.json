@@ -188,6 +188,30 @@
       "publicUrl": "https://branzfamily01.github.io/knowledge-html/second-brain-bridge-manual/",
       "sourceType": "github-existing-html",
       "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/second-brain-bridge-manual without substantive content changes."
+    },
+    {
+      "title": "Slide Style Library — Offline Archive v6",
+      "slug": "notebooklm-slide-library-offline-archive-v6",
+      "type": "knowledge-html",
+      "category": "AI・資料作成",
+      "tags": [
+        "NotebookLM",
+        "スライド",
+        "デザイン",
+        "スタイル",
+        "YAML",
+        "アーカイブ"
+      ],
+      "summary": "160種類のスライドデザイン画像とYAMLを検索・閲覧・コピーできるオフライン保存版リファレンス。",
+      "level": "実践",
+      "sourceRepo": "notebooklm-slide-library-offline-archive-v6",
+      "createdAt": "2026-08-26",
+      "updatedAt": "2026-08-26",
+      "githubRepo": "knowledge-html",
+      "githubPath": "notebooklm-slide-library-offline-archive-v6/",
+      "publicUrl": "https://branzfamily01.github.io/knowledge-html/notebooklm-slide-library-offline-archive-v6/",
+      "sourceType": "github-existing-html",
+      "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/notebooklm-slide-library-offline-archive-v6 without substantive content changes."
     }
   ]
 }

@@ -1,0 +1,56 @@
+# Reconstructed design specification — 128 Object Editorial
+# Status: public metadata/image based reconstruction; not verified as the creator's original YAML.
+global_settings:
+  output_language: "Japanese (日本語)"
+  instruction: "すべてのテキストは日本語で出力（数値・固有名詞は除く）"
+  font_family_jp: "Noto Sans JP / Hiragino Sans"
+  font_family_en: "Inter / Helvetica Neue"
+
+style_meta:
+  id: "128"
+  name: "Object Editorial"
+  category: "エディトリアル"
+
+design_tone:
+  theme: "Editorial & Story-Led"
+  keywords: ["Editorial", "Rhythm", "Typography", "Photography", "Object Editorial"]
+
+color_palette:
+  background: "#F6F2EA"
+  accent: "#8A6A4A"
+  text_primary: "#1E1E1E"
+  text_secondary: "#77716B"
+  surface: "#FFFFFF"
+
+typography:
+  title:
+    weight: "Bold"
+    scale: "Large"
+    line_height: 1.15
+  heading:
+    weight: "SemiBold"
+    scale: "Medium"
+  body:
+    weight: "Regular"
+    scale: "Readable"
+    line_height: 1.6
+
+layout_system:
+  aspect_ratio: "16:9"
+  grid: "12-column flexible grid"
+  margins: "generous"
+  hierarchy: "one clear key message per slide"
+  density: "low-to-medium"
+
+image_direction:
+  style_reference: "Object Editorial"
+  category_reference: "エディトリアル"
+  instruction: "添付の生成イメージの色、余白、写真・図版の扱い、文字組み、構図を優先して一貫させる"
+
+visual_rules:
+  - "1スライド1メッセージを基本とする"
+  - "見出しと本文のコントラストを明確にする"
+  - "要素を詰め込みすぎず、余白をデザイン要素として扱う"
+  - "アクセントカラーは重要情報に限定して使用する"
+  - "全スライドで同一のグリッドとタイポグラフィ規則を維持する"
+  - "Object Editorial の生成イメージを最優先の視覚参照とする"
