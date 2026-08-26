@@ -1,0 +1,106 @@
+name: Audit root HTML repositories
+
+on:
+  push:
+    paths:
+      - '.github/workflows/audit-root-html.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Scan every public repository with a root index.html
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          python - <<'PY'
+          import base64, json, os, re, urllib.request
+          from pathlib import Path
+
+          owner='branzfamily01'
+          token=os.environ.get('GH_TOKEN','')
+          headers={'Accept':'application/vnd.github+json','User-Agent':'knowledge-html-audit'}
+          if token: headers['Authorization']='Bearer '+token
+
+          def get(url):
+              req=urllib.request.Request(url,headers=headers)
+              with urllib.request.urlopen(req) as r:
+                  return json.load(r)
+
+          repos=[]
+          page=1
+          while True:
+              batch=get(f'https://api.github.com/users/{owner}/repos?per_page=100&page={page}&type=owner&sort=full_name')
+              if not batch: break
+              repos.extend(batch); page+=1
+
+          registry=json.loads(Path('registry.json').read_text(encoding='utf-8'))
+          migrated={x.get('sourceRepo') for x in registry.get('items',[]) if x.get('sourceRepo')}
+          migrated.add('knowledge-html')
+          rows=[]
+
+          for repo in repos:
+              name=repo['name']
+              if name=='knowledge-html': continue
+              try: root=get(f'https://api.github.com/repos/{owner}/{name}/contents')
+              except Exception: continue
+              if not isinstance(root,list): continue
+              names=[x.get('name','') for x in root]
+              idx=next((x for x in root if x.get('name')=='index.html' and x.get('type')=='file'),None)
+              if not idx: continue
+              text=''
+              try:
+                  obj=get(f'https://api.github.com/repos/{owner}/{name}/contents/index.html')
+                  if obj.get('encoding')=='base64' and obj.get('content'):
+                      text=base64.b64decode(obj['content']).decode('utf-8','replace')
+              except Exception: pass
+              title=''
+              m=re.search(r'<title[^>]*>(.*?)</title>',text,re.I|re.S)
+              if m: title=re.sub(r'\s+',' ',m.group(1)).strip()
+              low=text.lower()
+              reading_words=['guide','ガイド','manual','マニュアル','reference','リファレンス','library','archive','図解','まとめ','使い方','遊び方']
+              action_words=['localstorage','indexeddb','firebase','supabase','serviceworker','showdirectorypicker','getusermedia','canvas.getcontext','crypto.randomuuid']
+              score=sum(2 for w in reading_words if w.lower() in (title+' '+name).lower())-sum(1 for w in action_words if w in low)
+              rows.append({
+                  'repo':name,'title':title,'indexSize':idx.get('size',0),'rootFiles':names,
+                  'migratedToKnowledge':name in migrated,'candidateScore':score,
+                  'markers':{
+                      'hasSeparateJs':any(n.endswith('.js') for n in names),
+                      'hasManifest':any('manifest' in n.lower() for n in names),
+                      'hasServiceWorker':'sw.js' in names,
+                      'hasInput':('<input' in low or '<textarea' in low),
+                      'hasLocalStorage':'localstorage' in low,
+                      'hasFirebase':'firebase' in low,
+                      'hasSupabase':'supabase' in low,
+                      'hasGameTerms':bool(re.search(r'game|ゲーム|xp|boss|ボス|ガチャ',low)),
+                      'hasQuizTerms':bool(re.search(r'quiz|クイズ|問題|正解|採点',low)),
+                      'hasSearchTerms':bool(re.search(r'検索|search',low)),
+                  }
+              })
+
+          rows.sort(key=lambda x:(not x['migratedToKnowledge'],-x['candidateScore'],x['repo'].lower()))
+          out={'generatedAt':'2026-08-26','scope':'all public branzfamily01 repositories with root index.html','count':len(rows),'rows':rows}
+          Path('docs').mkdir(exist_ok=True)
+          Path('docs/html-repository-audit.json').write_text(json.dumps(out,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+
+          md=['# HTML repository audit','','全公開リポジトリのうち、ルートに `index.html` があるものを機械監査した一覧。','人間による最終分類の補助資料であり、candidateScoreだけで自動移行しない。','',f'検出: **{len(rows)} repos**','','| migrated | score | repo | title |','|---|---:|---|---|']
+          for r in rows:
+              md.append(f"| {'✅' if r['migratedToKnowledge'] else ''} | {r['candidateScore']} | `{r['repo']}` | {r['title'].replace('|','/')} |")
+          Path('docs/html-repository-audit.md').write_text('\n'.join(md)+'\n',encoding='utf-8')
+          PY
+      - name: Commit audit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add docs/html-repository-audit.json docs/html-repository-audit.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Audit public repositories with root HTML pages'
+            git push origin HEAD:main
+          fi
