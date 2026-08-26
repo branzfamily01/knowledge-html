@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-26T07:57:43.326Z",
+  "generatedAt": "2026-08-26T07:59:05.750Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
-  "count": 36,
+  "count": 37,
   "items": [
     {
       "title": "My Hub — Knowledge, Apps & Tools",
@@ -39,6 +39,28 @@
       "githubRepo": "second-brain-bridge",
       "repoUrl": "https://github.com/branzfamily01/second-brain-bridge",
       "publicUrl": "https://branzfamily01.github.io/second-brain-bridge/",
+      "updatedAt": "2026-08-26",
+      "sourceType": "github-pages-auto-index"
+    },
+    {
+      "title": "ビートポン工房",
+      "slug": "kodomo-henshin-koubou",
+      "type": "web-app",
+      "category": "Learning",
+      "tags": [
+        "音楽",
+        "創作",
+        "子ども",
+        "リズム",
+        "ビートメイク"
+      ],
+      "summary": "子どもが自分の手でリズムを組み立てる、時間管理付き4×16ステップのビートメイク工房。",
+      "visibility": "public",
+      "status": "active",
+      "color": "green",
+      "githubRepo": "kodomo-henshin-koubou",
+      "repoUrl": "https://github.com/branzfamily01/kodomo-henshin-koubou",
+      "publicUrl": "https://branzfamily01.github.io/kodomo-henshin-koubou/",
       "updatedAt": "2026-08-26",
       "sourceType": "github-pages-auto-index"
     },
