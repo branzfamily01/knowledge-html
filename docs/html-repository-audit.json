@@ -1,0 +1,1324 @@
+{
+  "generatedAt": "2026-08-26",
+  "scope": "all public branzfamily01 repositories with root index.html",
+  "count": 45,
+  "rows": [
+    {
+      "repo": "claude-bunshin-guide",
+      "title": "Claudeで「自分の分身」を作る方法｜図解ガイド",
+      "indexSize": 14815,
+      "rootFiles": [
+        "index.html"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 6,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "obsidian-start-guide",
+      "title": "Obsidian はじめの一歩｜図解ガイド",
+      "indexSize": 19647,
+      "rootFiles": [
+        "README.md",
+        "index.html",
+        "script.js",
+        "styles.css"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 6,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "second-brain-bridge-manual",
+      "title": "Second Brain Bridge｜図解マニュアル",
+      "indexSize": 13184,
+      "rootFiles": [
+        ".github",
+        "README.md",
+        "app.js",
+        "index.html",
+        "manifest.json",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 6,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "gemini-notebook-ai-tutor-guide",
+      "title": "Gemini Notebookでつくる「専属家庭教師」｜資格勉強の仕組み化ガイド",
+      "indexSize": 21391,
+      "rootFiles": [
+        "README.md",
+        "index.html"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 4,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "gemini-notebook-reference",
+      "title": "Gemini Notebook 実践リファレンス",
+      "indexSize": 7692,
+      "rootFiles": [
+        "README.md",
+        "app.js",
+        "content.json",
+        "index.html",
+        "styles.css"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 4,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "notebooklm-slide-library-offline-archive-v6",
+      "title": "Slide Style Library — Offline Archive v6",
+      "indexSize": 7631,
+      "rootFiles": [
+        "AUDIT.json",
+        "README.md",
+        "data",
+        "icon.svg",
+        "images",
+        "index.html",
+        "manifest.webmanifest",
+        "original",
+        "quarantine",
+        "reconstructed",
+        "sw.js",
+        "verified"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 3,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "onhenka-dojo-yukito-guide",
+      "title": "音変化道場｜Yukito Quest 遊び方",
+      "indexSize": 21207,
+      "rootFiles": [
+        "README.md",
+        "README.txt",
+        "index.html"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 3,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "gemini-notebook-minimal-prompt",
+      "title": "Gemini Notebook｜スライドは「盛る」より「削る」",
+      "indexSize": 11922,
+      "rootFiles": [
+        "index.html"
+      ],
+      "migratedToKnowledge": true,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "library-reference-navigator",
+      "title": "蔵書レファレンスナビ",
+      "indexSize": 9716,
+      "rootFiles": [
+        ".nojekyll",
+        "README.md",
+        "css",
+        "icons",
+        "index.html",
+        "js",
+        "manifest.json",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 4,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "cloudflare-os-ai-command-center",
+      "title": "Cloudflare OSとは？｜会社専用AI司令塔を図解",
+      "indexSize": 23280,
+      "rootFiles": [
+        "README.md",
+        "index.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 2,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "jikai-yonka-matome",
+      "title": "字界 — 忘却の遺跡 — 四科のまとめ編",
+      "indexSize": 13801,
+      "rootFiles": [
+        "404.html",
+        "LICENSES.md",
+        "README.md",
+        "app.js",
+        "assets",
+        "coverage-audit.json",
+        "data.js",
+        "icons",
+        "index.html",
+        "manifest.webmanifest",
+        "official-data.js",
+        "stroke-data.js",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 2,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "action-inbox",
+      "title": "Action Inbox",
+      "indexSize": 2493,
+      "rootFiles": [
+        "README.md",
+        "app.js",
+        "index.html",
+        "k4_2025#4_shakai.json",
+        "styles.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "blend-english-reader",
+      "title": "Blend English",
+      "indexSize": 8181,
+      "rootFiles": [
+        ".nojekyll",
+        "README.md",
+        "app.js",
+        "icons",
+        "index.html",
+        "manifest.webmanifest",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "block-frontier",
+      "title": "BLOCK FRONTIER",
+      "indexSize": 4213,
+      "rootFiles": [
+        "README.md",
+        "assets-loader.js",
+        "icons",
+        "index.html",
+        "manifest.webmanifest",
+        "src",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "blockcraft-mini",
+      "title": "BlockCraft Mini",
+      "indexSize": 3393,
+      "rootFiles": [
+        ".nojekyll",
+        "app.js",
+        "icons",
+        "index.html",
+        "manifest.webmanifest",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "cleanup-grand-prix",
+      "title": "おかたづけグランプリ",
+      "indexSize": 7274,
+      "rootFiles": [
+        "app.js",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "collocation-sprint",
+      "title": "Collocation Sprint",
+      "indexSize": 8137,
+      "rootFiles": [
+        "COLLOCATIONS.md",
+        "README.md",
+        "app.js",
+        "collocations.json",
+        "index.html",
+        "styles.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "html-slide-studio",
+      "title": "HTML Slide Studio 2.0",
+      "indexSize": 24061,
+      "rootFiles": [
+        "DOM-TO-PPTX-LICENSE.txt",
+        "FFLATE-LICENSE.txt",
+        "OSS-RESEARCH.md",
+        "PPTXGENJS-LICENSE.txt",
+        "README.md",
+        "STYLE-PACK-SCHEMA.md",
+        "app.js",
+        "dom-to-pptx.bundle.js",
+        "fflate.js",
+        "icon-192.png",
+        "icon-512.png",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "pptxgen.bundle.js",
+        "prototypes",
+        "styles.css",
+        "sw.js",
+        "vendor"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "id-photo-maker",
+      "title": "スマホ証明写真メーカー",
+      "indexSize": 5258,
+      "rootFiles": [
+        "README.md",
+        "app.js",
+        "index.html",
+        "style.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "image-prompt-lab",
+      "title": "Image Prompt Lab",
+      "indexSize": 1230,
+      "rootFiles": [
+        "README.md",
+        "app-shell.html",
+        "app.js",
+        "icons",
+        "index.html",
+        "manifest.json",
+        "styles.css",
+        "sw.js",
+        "workflow-audit.js",
+        "workflow-core.js",
+        "workflow-data.js",
+        "workflow-edit.js",
+        "workflow.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "kabewari-sansu",
+      "title": "カベわり算数！",
+      "indexSize": 7495,
+      "rootFiles": [
+        "README.txt",
+        "app.js",
+        "apple-touch-icon.png",
+        "icon-192.png",
+        "icon-512.png",
+        "icon-maskable-512.png",
+        "index.html",
+        "manifest.webmanifest",
+        "service-worker.js",
+        "styles.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "kabewari-sansu-connect",
+      "title": "カベわり算数 Connect",
+      "indexSize": 8518,
+      "rootFiles": [
+        "README.txt",
+        "VERSION.txt",
+        "_headers",
+        "app.js",
+        "apple-touch-icon.png",
+        "control.json",
+        "icon-192.png",
+        "icon-512.png",
+        "icon-maskable-512.png",
+        "index.html",
+        "manifest.webmanifest",
+        "service-worker.js",
+        "styles.css",
+        "管理方法.txt"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "kabewari-sansu-managed",
+      "title": "カベわり算数！",
+      "indexSize": 8472,
+      "rootFiles": [
+        "README.txt",
+        "VERSION.txt",
+        "_headers",
+        "app.js",
+        "apple-touch-icon.png",
+        "control.json",
+        "icon-192.png",
+        "icon-512.png",
+        "icon-maskable-512.png",
+        "index.html",
+        "manifest.webmanifest",
+        "service-worker.js",
+        "styles.css",
+        "管理方法.txt"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "kokugo-dojo",
+      "title": "文豪こくご道場 — 読む・聴く・心情を学ぶ",
+      "indexSize": 2892,
+      "rootFiles": [
+        "README.md",
+        "index.html",
+        "jiten.html",
+        "packs",
+        "reader.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "lumi-vocab-adventure",
+      "title": "LumiVocab Adventure｜英検級別",
+      "indexSize": 11396,
+      "rootFiles": [
+        "DATA-SOURCES.md",
+        "README.md",
+        "app.js",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "mascot-map.svg",
+        "mascot.svg",
+        "rival-blue.svg",
+        "rival-pink.svg",
+        "styles.css",
+        "sw.js",
+        "word-packs.js",
+        "words-all.json",
+        "words-grade1.json",
+        "words-grade2.json",
+        "words-grade3.json",
+        "words-pre1.json",
+        "words-pre2.json",
+        "words.js",
+        "words.json"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "ocean-study-quest",
+      "title": "Ocean Study Quest",
+      "indexSize": 1710,
+      "rootFiles": [
+        ".nojekyll",
+        "README.md",
+        "TEST_REPORT.md",
+        "assets",
+        "css",
+        "index.html",
+        "js",
+        "manifest.webmanifest",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "race-to-life",
+      "title": "Race to Life",
+      "indexSize": 1551,
+      "rootFiles": [
+        ".nojekyll",
+        "README.md",
+        "app-audio.js",
+        "app-clean-music.js",
+        "app-core.js",
+        "app-race.js",
+        "app-runtime.js",
+        "app-views.js",
+        "app.js",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "race-to-study",
+      "title": "Race to Study",
+      "indexSize": 932,
+      "rootFiles": [
+        "README.md",
+        "app-core.js",
+        "app-patch.js",
+        "app-runtime.js",
+        "app-views.js",
+        "assets",
+        "cars-v7.js",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "race-assets-v7.js",
+        "race-v6.js",
+        "race-v7.js",
+        "styles.css",
+        "sw.js",
+        "timer-v6.js",
+        "timer-v7.js",
+        "v6-init.js",
+        "v6.css",
+        "v7.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "recall-sprint",
+      "title": "Recall Sprint",
+      "indexSize": 1622,
+      "rootFiles": [
+        "README.md",
+        "app.js",
+        "index.html",
+        "manifest.webmanifest",
+        "service-worker.js",
+        "styles.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "task-switch-kids",
+      "title": "TASK SWITCH | GARAGE QUEST",
+      "indexSize": 7311,
+      "rootFiles": [
+        "APP_SPEC.md",
+        "README.md",
+        "app-actions.js",
+        "app-core.js",
+        "app-ui.js",
+        "app.css",
+        "icons",
+        "index.html",
+        "manifest.webmanifest",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "umi-no-chizu-puzzle",
+      "title": "海のちずパズル",
+      "indexSize": 8909,
+      "rootFiles": [
+        ".github",
+        ".nojekyll",
+        "DEPLOY_VERSION",
+        "LICENSES.md",
+        "README.md",
+        "app.js",
+        "assets",
+        "data",
+        "explanation-voice.js",
+        "index.html",
+        "manifest.json",
+        "styles.css",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "yui-summer-adventure-journal",
+      "title": "結衣の夏休み大冒険ジャーナル",
+      "indexSize": 528,
+      "rootFiles": [
+        "README.md",
+        "index.html",
+        "script.js",
+        "style.css",
+        "themes.json"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": 0,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "adventure-wallet",
+      "title": "Adventure Wallet",
+      "indexSize": 19038,
+      "rootFiles": [
+        "adventure_wallet.html",
+        "index.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "juken-ai-coach",
+      "title": "中学受験AIコーチ",
+      "indexSize": 30035,
+      "rootFiles": [
+        "README.md",
+        "app.js",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "service-worker.js",
+        "styles.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "juken-quest-os",
+      "title": "受験クエストOS v2(自動版・GitHub連携あり)",
+      "indexSize": 103618,
+      "rootFiles": [
+        "AI_HANDOFF.md",
+        "PROMPTS_FOR_NEXT_AI.md",
+        "README.md",
+        "ROADMAP.md",
+        "SPEC.md",
+        "docs",
+        "index-manual-only.html",
+        "index.html",
+        "packs"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "kaji-redesign",
+      "title": "家事リデザイン v2.1",
+      "indexSize": 700,
+      "rootFiles": [
+        ".firebaserc.example",
+        "FIREBASE_SETUP.md",
+        "README.md",
+        "ROADMAP.md",
+        "app.js",
+        "cloud-bridge.js",
+        "cloud-ui-fix.js",
+        "firebase-config.js",
+        "firebase.json",
+        "firestore.indexes.json",
+        "firestore.rules",
+        "functions",
+        "icon.svg",
+        "index.html",
+        "manifest.webmanifest",
+        "style.css",
+        "sw.js",
+        "v11.css",
+        "v21.css"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": true,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "kotoba-tankyu-lab",
+      "title": "ことば探究ラボ",
+      "indexSize": 44138,
+      "rootFiles": [
+        "README.txt",
+        "index.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "LE1_application",
+      "title": "受験クエストOS English Classroom",
+      "indexSize": 291353,
+      "rootFiles": [
+        "index.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "LE3_application",
+      "title": "受験クエストOS English Classroom",
+      "indexSize": 291353,
+      "rootFiles": [
+        "index.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "LESSON-10-Interactive-Prototype",
+      "title": "LESSON 10 Interactive Prototype",
+      "indexSize": 18772,
+      "rootFiles": [
+        "icon-192.png",
+        "icon-512.png",
+        "index.html",
+        "manifest.webmanifest",
+        "sw.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": false,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": false,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "platina-output",
+      "title": "プラチナアウトプット",
+      "indexSize": 41324,
+      "rootFiles": [
+        "README chiri dojo.md",
+        "README_chiri_dojo.md",
+        "chiri_pack_v1.json",
+        "index.html"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "second-brain-bridge",
+      "title": "Second Brain Bridge",
+      "indexSize": 8906,
+      "rootFiles": [
+        ".github",
+        ".gitignore",
+        "README.md",
+        "app.js",
+        "codex-guide.js",
+        "compact-raw.js",
+        "detail-toolbar.js",
+        "docs",
+        "full-copy.js",
+        "history-assets.js",
+        "history-import-core.js",
+        "history-import.js",
+        "index.html",
+        "ingest.js",
+        "item-actions.js",
+        "knowledge-grow.js",
+        "manifest.json",
+        "obsidian-export.js",
+        "pc-agent",
+        "settings-button.js",
+        "storage-v2.js",
+        "styles.css",
+        "supabase",
+        "sw.js",
+        "sync.js",
+        "tests",
+        "ui-storage-safety.js",
+        "x-bookmark-import.js",
+        "x-browser-import.js",
+        "x-fetch-v2.js",
+        "x-post.js"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -1,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": false,
+        "hasFirebase": false,
+        "hasSupabase": true,
+        "hasGameTerms": true,
+        "hasQuizTerms": false,
+        "hasSearchTerms": true
+      }
+    },
+    {
+      "repo": "onhenka-dojo-yukito-gacha-public",
+      "title": "音変化道場 — Specialized for Yukito",
+      "indexSize": 65099,
+      "rootFiles": [
+        "README.txt",
+        "_headers",
+        "index.html",
+        "robots.txt"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -2,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "onhenka-dojo-yukito-quest",
+      "title": "音変化道場 — Specialized for Yukito",
+      "indexSize": 69601,
+      "rootFiles": [
+        "README.txt",
+        "_headers",
+        "index.html",
+        "robots.txt"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -2,
+      "markers": {
+        "hasSeparateJs": false,
+        "hasManifest": false,
+        "hasServiceWorker": false,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    },
+    {
+      "repo": "onhenka-dojo",
+      "title": "音変化道場 — 英語リスニング基礎トレーニング",
+      "indexSize": 57214,
+      "rootFiles": [
+        "icon-180.png",
+        "icon-512.png",
+        "index.html",
+        "manifest.json",
+        "onhenka-manual-student.pdf",
+        "packs.json",
+        "sw.js",
+        "はじめに.txt"
+      ],
+      "migratedToKnowledge": false,
+      "candidateScore": -3,
+      "markers": {
+        "hasSeparateJs": true,
+        "hasManifest": true,
+        "hasServiceWorker": true,
+        "hasInput": true,
+        "hasLocalStorage": true,
+        "hasFirebase": false,
+        "hasSupabase": false,
+        "hasGameTerms": true,
+        "hasQuizTerms": true,
+        "hasSearchTerms": false
+      }
+    }
+  ]
+}
