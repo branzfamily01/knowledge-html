@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Grok Botを『24時間働くAI社員』として理解する初心者向け図解ガイド。通常の会話AIとの違い、Bot・Skills・Routines・承認・共有クラウドPC・セキュリティ、導入手順を2026年8月28日時点の公式情報で整理。">
+  <meta name="theme-color" content="#ffffff">
+  <title>Grok Bot入門｜「24時間働くAI社員」を正しく設計する</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">LEVEL 1｜30秒で全体像</p>
+      <h1><span lang="en">Grok Bot</span>入門</h1>
+      <p class="subtitle">「24時間働くAI社員」を、<strong>何ができるか</strong>より先に<strong>どう設計すべきか</strong>から理解する。</p>
+      <p class="lead"><strong>一言でいうと、Grok Botは「答えるAI」より「仕事を持って、クラウド上で複数ツールを使いながら成果物まで進める持続的なAI担当者」に近い。</strong></p>
+      <div class="hero-actions">
+        <button class="btn primary" data-speak-target="#level1">🔊 要点を聞く</button>
+        <button class="btn" id="stopSpeech">■ 停止</button>
+        <a class="btn" href="#level2">3〜5分で理解 ↓</a>
+      </div>
+    </div>
+    <aside class="update-card">
+      <span class="label important">重要更新</span>
+      <strong>公式情報確認：2026-08-28</strong>
+      <p>8/23時点の記事から状況が変化。8/26の公式発表で、<span lang="en">Cursor Pro</span>・<span lang="en">SuperGrok</span>を含む対象プランへアクセスが拡大。</p>
+      <p class="small">Early Beta中のため、利用条件・UI・上限は今後も変わる可能性があります。</p>
+    </aside>
+  </div>
+</header>
+
+<nav class="toc" aria-label="ページ内目次">
+  <div class="wrap toc-scroll">
+    <a href="#level1">30秒</a>
+    <a href="#level2">全体像</a>
+    <a href="#architecture">仕組み</a>
+    <a href="#workdesign">仕事設計</a>
+    <a href="#security">安全性</a>
+    <a href="#adoption">導入7日</a>
+    <a href="#plan">利用条件</a>
+    <a href="#check">理解チェック</a>
+    <a href="#sources">公式情報</a>
+  </div>
+</nav>
+
+<div class="audio-bar" aria-label="読み上げ設定">
+  <div class="wrap audio-inner">
+    <button class="btn small-btn" id="speakAll">🔊 全文</button>
+    <button class="btn small-btn" id="speakJa">日本語だけ</button>
+    <button class="btn small-btn" id="speakEn">English only</button>
+    <label>速度 <input id="rateRange" type="range" min="0.7" max="3.0" step="0.1" value="1.0"><output id="rateValue">1.0×</output></label>
+  </div>
+</div>
+
+<main class="wrap">
+<section id="level1" class="section-block">
+  <span class="level one">LEVEL 1｜30秒</span>
+  <h2>最初に、6つだけ覚える</h2>
+  <div class="grid-3 quick-grid">
+    <article class="card"><span class="label required">必須</span><h3>Bot</h3><p>名前・担当・会話・役割文脈を持つ<strong>継続担当者</strong>。万能役ではなく、1つの仕事を持たせると安定しやすい。</p></article>
+    <article class="card"><span class="label basic">基本</span><h3>Cloud Computer</h3><p>Botが使うクラウド上のコンピュータ。ブラウザ・ファイル・ターミナルなどで実際の作業を進める。</p></article>
+    <article class="card"><span class="label important">重要</span><h3>Skill</h3><p>「この仕事はこう進める」という<strong>再利用可能な手順・判断基準・検証・安全境界</strong>。</p></article>
+    <article class="card"><span class="label important">重要</span><h3>Routine</h3><p>安定した仕事を、時刻やイベントに応じて繰り返し実行する仕組み。PCを閉じてもクラウドで動く。</p></article>
+    <article class="card"><span class="label caution">注意</span><h3>Approval</h3><p>送信・公開・購入・削除など、影響が大きい操作の前に人間へ確認を戻す<strong>停止線</strong>。</p></article>
+    <article class="card"><span class="label danger">安全</span><h3>Shared Computer</h3><p><strong>同じユーザーのBotは1台のクラウドPCを共有</strong>。ファイル・ブラウザセッション・CLI認証情報はBot間で共有される。</p></article>
+  </div>
+
+  <article class="card anchor-card">
+    <span class="label important">結論</span>
+    <h3>Grok Botの本質は「回答」ではなく「仕事を進めること」</h3>
+    <div class="compare-flow">
+      <div class="flow-side">
+        <h4>通常の会話型AI</h4>
+        <div class="stack-flow"><span>人間が質問</span><b>↓</b><span>AIが回答</span><b>↓</b><span>人間が次の作業</span></div>
+      </div>
+      <div class="versus">VS</div>
+      <div class="flow-side featured">
+        <h4><span lang="en">Grok Bot</span></h4>
+        <div class="stack-flow"><span>目的を渡す</span><b>↓</b><span>調査・判断</span><b>↓</b><span>ツールで実行</span><b>↓</b><span>検証・成果物</span><b>↓</b><span>必要な所で承認</span></div>
+      </div>
+    </div>
+    <p class="callout-line"><strong>重要：</strong>「全部自動化」が目標ではない。<strong>人間が判断すべき地点まで、正確に仕事を進めてもらう</strong>のが最も実務的。</p>
+  </article>
+
+  <article class="card three-layer">
+    <h3>覚える一本線</h3>
+    <div class="flow horizontal-scroll" aria-label="Grok Botの基本ワークフロー">
+      <div class="flow-box">目的</div><div class="arrow">→</div>
+      <div class="flow-box">調査</div><div class="arrow">→</div>
+      <div class="flow-box">推論</div><div class="arrow">→</div>
+      <div class="flow-box">実行</div><div class="arrow">→</div>
+      <div class="flow-box">検証</div><div class="arrow">→</div>
+      <div class="flow-box approval">承認</div><div class="arrow">→</div>
+      <div class="flow-box result">成果物</div><div class="arrow">→</div>
+      <div class="flow-box skill">Skill化</div><div class="arrow">→</div>
+      <div class="flow-box routine">Routine化</div>
+    </div>
+  </article>
+</section>
+
+<section id="level2" class="section-block">
+  <span class="level two">LEVEL 2｜3〜5分</span>
+  <div class="section-head"><div><h2>Grok Botの全体像</h2><p>「モデル」ではなく、業務実行レイヤーとして見る。</p></div><button class="btn" data-speak-target="#level2">🔊 この章を聞く</button></div>
+
+  <article class="card">
+    <h3>「Grokモデルが常時動く箱」ではない</h3>
+    <p><span lang="en">Grok Bot</span>は、AIモデルだけではなく、クラウドコンピュータ・ブラウザ・ファイル・プラグイン/MCP・記憶・Bot間連携・承認・Skill・Routineを組み合わせて仕事を完了させる仕組みとして理解すると混乱しません。</p>
+    <div class="system-map">
+      <div class="system-core"><strong>Grok Bot</strong><small>持続的なAI担当者</small></div>
+      <div class="system-ring"><span>AI reasoning</span><span>Cloud computer</span><span>Browser</span><span>Files</span><span>Terminal</span><span>Plugins / MCP</span><span>Memory</span><span>Approval</span><span>Skills</span><span>Routines</span></div>
+    </div>
+  </article>
+
+  <div class="grid-2">
+    <article class="card">
+      <span class="label basic">比喩</span>
+      <h3>普通のチャットAI = 優秀な相談相手</h3>
+      <p>聞けば、調査・文章・分析・コードなどを返してくれる。ただし、仕事の各工程で人間が次の指示を出すことが多い。</p>
+    </article>
+    <article class="card">
+      <span class="label important">実際</span>
+      <h3>Grok Bot = クラウドPCを持つ担当者</h3>
+      <p>必要なツールへ入り、ファイルを扱い、複数工程を進め、バックグラウンドで継続し、最終成果物と検証材料を返す。</p>
+    </article>
+  </div>
+
+  <article class="card compare-major">
+    <h3><span lang="en">Grok Bot</span> と <span lang="en">Zapier / Make / n8n</span> は競合ではない</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>観点</th><th>従来型自動化</th><th>Grok Bot</th><th>人間</th></tr></thead>
+      <tbody>
+        <tr><td>得意</td><td>条件と処理が固定されたフロー</td><td>途中に曖昧な判断・調査・例外がある仕事</td><td>責任・価値判断・高リスク操作</td></tr>
+        <tr><td>例</td><td>フォーム→表追加→通知</td><td>問い合わせを読み、過去履歴を調べ、返信案を作る</td><td>クレーム返信、契約、支払いを決定</td></tr>
+        <tr><td>失敗しやすい点</td><td>分岐外の例外に弱い</td><td>誤判断・外部入力・権限の持たせすぎ</td><td>時間と作業量が増える</td></tr>
+        <tr><td>理想分担</td><td>決まった処理</td><td>調査・判断・下準備</td><td>承認と最終責任</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="card usecases">
+    <h3>実務で強い10領域</h3>
+    <div class="grid-5 compact-cards">
+      <div class="mini-card">情報収集・X運用</div><div class="mini-card">note / 動画台本展開</div><div class="mini-card">講座資料の差分更新</div><div class="mini-card">朝の秘書レポート</div><div class="mini-card">営業先リサーチ</div><div class="mini-card">経費・領収書照合</div><div class="mini-card">問い合わせ分類</div><div class="mini-card">採用面接準備</div><div class="mini-card">競合監視</div><div class="mini-card">不具合再現</div>
+    </div>
+    <p class="note"><span class="label caution">注意</span> 高リスク領域では「自動で決定・送信」ではなく、<strong>人間が確認する直前まで</strong>を任せる設計が基本です。</p>
+  </article>
+</section>
+
+<section id="architecture" class="section-block">
+  <span class="level three">LEVEL 3｜しっかり理解</span>
+  <div class="section-head"><div><h2>仕組み：Bot・Skill・Routine・Approval</h2><p>仕事を「担当者・手順・実行条件・停止線」に分解する。</p></div><button class="btn" data-speak-target="#architecture">🔊 この章を聞く</button></div>
+
+  <div class="grid-2">
+    <article class="card term-card"><span class="label basic">基本</span><h3>Bot</h3><p class="easy">やさしい意味：<strong>役割を持つ担当者</strong></p><p>正式には、名前・主な仕事・説明を持つ持続的なAI teammate。会話や役割文脈を持ち続けます。</p><p class="example"><strong>良い例：</strong>「週次AI情報編集長」「Web公開担当」「不具合再現担当」</p></article>
+    <article class="card term-card"><span class="label important">重要</span><h3>Skill</h3><p class="easy">やさしい意味：<strong>仕事の標準手順書</strong></p><p>ステップ、判断規則、入力、検証方法、出力、承認境界を再利用可能にしたもの。</p><p class="example"><strong>原則：</strong>一度成功させてからSkill化する。</p></article>
+    <article class="card term-card"><span class="label important">重要</span><h3>Routine</h3><p class="easy">やさしい意味：<strong>いつ自動で仕事を始めるか</strong></p><p>スケジュール、または対応するイベントを起点に、1体のBotがワークフローを実行します。</p><p class="example"><strong>例：</strong>毎週月曜7:00に前週のAI更新を調査。</p></article>
+    <article class="card term-card"><span class="label caution">注意</span><h3>Approval</h3><p class="easy">やさしい意味：<strong>人間へ戻す停止線</strong></p><p>送信・公開・購入・削除・本番変更などの前で人間の確認を求める。</p><p class="example"><strong>重要：</strong>承認は「これからする操作」を止めるもの。すでに行った操作を巻き戻す機能ではありません。</p></article>
+  </div>
+
+  <article class="card">
+    <h3>Botは増やすほど良い、ではない</h3>
+    <div class="before-after">
+      <div class="bad-panel"><strong>❌ 初日から6体</strong><p>SNS、経理、営業、調査、校閲、秘書…</p><ul><li>責任者が不明</li><li>同じ調査を重複</li><li>出力形式が分散</li><li>使用量と通知が増える</li></ul></div>
+      <div class="good-panel"><strong>✅ 最初は1体</strong><p>「毎週発生し、成果物が明確な仕事」を1つ持たせる。</p><ul><li>失敗箇所を追える</li><li>判断基準を修正しやすい</li><li>Skill化しやすい</li><li>安定後に専門分業</li></ul></div>
+    </div>
+  </article>
+
+  <article class="card">
+    <h3>複数Botをチーム化するときの正しい分け方</h3>
+    <div class="team-flow horizontal-scroll">
+      <div class="agent-card"><b>情報収集</b><small>一次情報・証拠</small></div><span>→</span>
+      <div class="agent-card"><b>分析</b><small>意味・反証・論点</small></div><span>→</span>
+      <div class="agent-card"><b>執筆</b><small>確認済み情報のみ</small></div><span>→</span>
+      <div class="agent-card"><b>校閲</b><small>主張と証拠の照合</small></div><span>→</span>
+      <div class="agent-card"><b>配信準備</b><small>公開はしない</small></div>
+    </div>
+    <p><strong>1工程＝1責任者</strong>にし、引き継ぎフォーマットを固定するのがポイントです。</p>
+  </article>
+
+  <details class="accordion">
+    <summary>引き継ぎフォーマットを見る</summary>
+    <div class="accordion-body"><pre><code>送信元：
+送信先：
+目的：
+完了した作業：
+確認できた事実：
+使用した情報源：
+作成したファイル：
+推論・仮定：
+未確認事項：
+次に必要な作業：
+禁止事項：
+承認状況：
+完了条件：</code></pre></div>
+  </details>
+</section>
+
+<section id="workdesign" class="section-block">
+  <span class="level three">LEVEL 3｜仕事設計</span>
+  <div class="section-head"><div><h2>「質問力」より「仕事の設計力」</h2><p>目的・証拠・判断基準・停止地点を決める。</p></div><button class="btn" data-speak-target="#workdesign">🔊 この章を聞く</button></div>
+
+  <article class="card">
+    <h3>本気のリサーチは「検索してまとめて」では浅い</h3>
+    <div class="loop" role="img" aria-label="仮説から検証までの推論ループ">
+      <span>目的</span><b>→</b><span>論点分解</span><b>→</b><span>仮説</span><b>→</b><span>検索</span><b>→</b><span>反証</span><b>→</b><span>修正</span><b>→</b><span>再検索</span><b>→</b><span>最終検証</span>
+    </div>
+    <p>文章を先に作るのではなく、<strong>主張台帳</strong>を先に作ると、根拠のない断定を減らせます。</p>
+  </article>
+
+  <article class="card">
+    <h3>主張台帳の例</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>主張</th><th>根拠</th><th>反対情報</th><th>日付</th><th>信頼度</th><th>未確認</th></tr></thead>
+      <tbody>
+        <tr><td>PCを閉じてもRoutineは動く</td><td>公式FAQ / Skills & Routines</td><td>なし</td><td>2026-08</td><td>高</td><td>個別タスク上限</td></tr>
+        <tr><td>Botごとに完全隔離されたPCを持つ</td><td>—</td><td>公式が明確に否定</td><td>2026-08</td><td>誤り</td><td>—</td></tr>
+        <tr><td>すべてのWebサイトを自動操作できる</td><td>—</td><td>CAPTCHA・自動化拒否・人間確認あり</td><td>2026-08</td><td>低</td><td>サイト別</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="card steps-card">
+    <h3>仕事を任せる9ステップ</h3>
+    <ol class="steps">
+      <li><b>目的</b><span>最終的に何を判断・完成したいか</span></li>
+      <li><b>対象</b><span>期間・地域・顧客・製品・データ範囲</span></li>
+      <li><b>情報源</b><span>公式→一次資料→報道→コミュニティの優先順位</span></li>
+      <li><b>判断基準</b><span>何を重要・異常・対象外とみなすか</span></li>
+      <li><b>反証</b><span>最初の結論を否定する証拠も探す</span></li>
+      <li><b>検証</b><span>日付、数字、出典、現在形の妥当性を再確認</span></li>
+      <li><b>成果物</b><span>人間がそのまま確認・利用できる形式</span></li>
+      <li><b>承認地点</b><span>送信・公開・購入などの前で停止</span></li>
+      <li><b>失敗時</b><span>推測で埋めず、部分完了・未確認として返す</span></li>
+    </ol>
+  </article>
+
+  <details class="accordion">
+    <summary>実務用「深いリサーチ指示」の設計要素</summary>
+    <div class="accordion-body">
+      <p>テーマだけでなく、次をセットで渡すと安定します。</p>
+      <ul>
+        <li>この調査で最終的に何を決めるのか</li>
+        <li>対象者・地域・期間・製品</li>
+        <li>情報源の優先順位</li>
+        <li>発表日と提供開始日を分けること</li>
+        <li>反対証拠を探すこと</li>
+        <li>確認済み事実 / 推論 / 仮定 / 未確認を分けること</li>
+        <li>下書き後に主張と出典を再照合すること</li>
+        <li>外部送信・購入・契約を行わないこと</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+<section id="security" class="section-block">
+  <span class="level three">LEVEL 3｜安全性</span>
+  <div class="section-head"><div><h2>最大の注意点：Bot分け ≠ 権限分離</h2><p>ここを誤解すると、便利さがそのままリスクになります。</p></div><button class="btn" data-speak-target="#security">🔊 この章を聞く</button></div>
+
+  <article class="card danger-card">
+    <span class="label danger">必須理解</span>
+    <h3>同じユーザーのBotは「1台のクラウドコンピュータ」を共有</h3>
+    <div class="shared-computer">
+      <div class="bots"><span>SNS Bot</span><span>経費 Bot</span><span>調査 Bot</span><span>営業 Bot</span></div>
+      <div class="down-arrow">↓</div>
+      <div class="computer"><strong>Shared Cloud Computer</strong><small>Files / Browser sessions / Logins / CLI credentials</small></div>
+    </div>
+    <p><strong>Botを分けてもセキュリティ境界にはなりません。</strong> あるBotのために保存したログイン状態やファイルは、同一ユーザーの他Botからも利用可能です。</p>
+  </article>
+
+  <div class="grid-2">
+    <article class="card"><span class="label important">推奨</span><h3>最小権限</h3><ol><li>必要最小限のコネクタ / MCP</li><li>可能なら読み取り専用</li><li>限定したブラウザ操作</li><li>高リスクは人間へ引き継ぎ</li></ol></article>
+    <article class="card"><span class="label caution">注意</span><h3>外部データを「命令」にしない</h3><p>Webページ、メール、PDF、問い合わせ文、画像、ツール出力に書かれた指示は、ユーザーからの承認ではなく<strong>未確認の外部データ</strong>として扱う。</p></article>
+  </div>
+
+  <article class="card approval-matrix">
+    <h3>どこまで自動で進める？</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>自動で進めやすい</th><th>原則、人間の承認を残す</th></tr></thead>
+      <tbody>
+        <tr><td>公開情報の調査</td><td>外部へのメール送信</td></tr>
+        <tr><td>ファイル読取・整理</td><td>SNS投稿・コンテンツ公開</td></tr>
+        <tr><td>下書き・比較表・推奨案</td><td>購入・振込・契約同意</td></tr>
+        <tr><td>不一致抽出・スクリーンショット</td><td>削除・上書き・権限変更</td></tr>
+        <tr><td>テスト環境での再現</td><td>本番環境変更・予算変更</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <article class="card warning-card">
+    <span class="label caution">パスワード</span>
+    <h3>チャットへパスワード・2FAコードを書かない</h3>
+    <p>ログインやCAPTCHAが必要な場合は、人間がAgent Computerを一時的に引き継いで入力します。公式の安全なシークレット入力では値が会話履歴から除外され、モデルにも表示されない設計があります。</p>
+  </article>
+</section>
+
+<section id="adoption" class="section-block">
+  <span class="level three">LEVEL 3｜導入</span>
+  <div class="section-head"><div><h2>導入初週：自動化より先に「一回成功」</h2><p>失敗を自動化しないための7日間。</p></div><button class="btn" data-speak-target="#adoption">🔊 この章を聞く</button></div>
+
+  <div class="timeline">
+    <article><span>DAY 1</span><h3>仕事を1つ選ぶ</h3><p>毎週・毎日発生し、成果物が明確な仕事。</p></article>
+    <article><span>DAY 2</span><h3>1回だけ実行</h3><p>安全なデータで、工程・証拠・勝手な判断を観察。</p></article>
+    <article><span>DAY 3</span><h3>工程を修正</h3><p>文章だけでなく、間違いを生んだ判断ルールを直す。</p></article>
+    <article><span>DAY 4</span><h3>Skill化</h3><p>安定した手順・検証・承認境界を保存。</p></article>
+    <article><span>DAY 5</span><h3>例外テスト</h3><p>情報なし、矛盾、ログイン切れ、二重処理などを試す。</p></article>
+    <article><span>DAY 6</span><h3>Routine化</h3><p>まず低頻度から。Test runも実作業なので安全な入力で。</p></article>
+    <article><span>DAY 7</span><h3>数字で評価</h3><p>作業時間、修正回数、見落とし、通知量、使用量対価値。</p></article>
+  </div>
+
+  <article class="card">
+    <h3>最初のBot候補：Web Publishing Manager</h3>
+    <p>Knowledge HTMLやWebアプリを継続運用するなら、最初の1体として扱いやすい例です。</p>
+    <div class="flow vertical-mobile">
+      <div class="flow-box">成果物を受け取る</div><div class="arrow">→</div>
+      <div class="flow-box">構成チェック</div><div class="arrow">→</div>
+      <div class="flow-box">GitHub反映</div><div class="arrow">→</div>
+      <div class="flow-box">Pages確認</div><div class="arrow">→</div>
+      <div class="flow-box">registry確認</div><div class="arrow">→</div>
+      <div class="flow-box approval">問題時に停止・報告</div>
+    </div>
+    <p class="note">これはあくまで<strong>導入例</strong>。既存の運用を全部置き換える必要はありません。既存の設計・実装・保存基盤を維持し、その上に「継続実務層」を追加する考え方が安全です。</p>
+  </article>
+</section>
+
+<section id="plan" class="section-block">
+  <span class="level three">LEVEL 3｜利用条件</span>
+  <div class="section-head"><div><h2>2026年8月28日時点の利用条件</h2><p>Early Betaのため、ここは特に日付付きで見る。</p></div><button class="btn" data-speak-target="#plan">🔊 この章を聞く</button></div>
+
+  <article class="card update-major">
+    <span class="label important">8/26更新</span>
+    <h3>8/23の記事から変わった点</h3>
+    <p>8月11日の初期提供では対象が限定されていましたが、8月26日の公式発表で対象が拡大しました。</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>現在含まれると公式発表されたプラン</th><th>補足</th></tr></thead>
+      <tbody>
+        <tr><td><span lang="en">SuperGrok</span></td><td>8/26拡大</td></tr>
+        <tr><td><span lang="en">SuperGrok Plus</span></td><td>対象</td></tr>
+        <tr><td><span lang="en">SuperGrok Heavy</span></td><td>対象</td></tr>
+        <tr><td><span lang="en">Cursor Pro</span></td><td>8/26拡大</td></tr>
+        <tr><td><span lang="en">Cursor Pro+</span></td><td>対象</td></tr>
+        <tr><td><span lang="en">Cursor Ultra</span></td><td>対象</td></tr>
+        <tr><td><span lang="en">Cursor Teams</span></td><td>Standard / Premiumを含むTeamsプラン</td></tr>
+      </tbody>
+    </table></div>
+  </article>
+
+  <div class="grid-2">
+    <article class="card"><h3>対応環境</h3><ul><li><span lang="en">macOS</span></li><li><span lang="en">Windows</span></li><li><span lang="en">iOS</span>（公式FAQではiOS companion app）</li></ul><p class="note">初期提供時点でLinuxデスクトップ、Android、iPadは未対応と公式FAQに記載。</p></article>
+    <article class="card"><h3>使用量</h3><p>Cursor公式では、Grok Botの有料アクセスに<strong>週次でリセットされる利用枠</strong>があり、プランで量が異なります。Early Beta中は料金・上限表示を実際のアカウント画面で再確認してください。</p></article>
+  </div>
+
+  <article class="card">
+    <h3>利用前チェック</h3>
+    <div class="checklist">
+      <label><input type="checkbox"> 対象プランか、現在のアカウント画面で確認</label>
+      <label><input type="checkbox"> 仕事を1つに絞った</label>
+      <label><input type="checkbox"> 読み取り専用から始められる</label>
+      <label><input type="checkbox"> 送信・公開・購入・削除の承認地点を決めた</label>
+      <label><input type="checkbox"> 共有クラウドPCに置く情報を把握した</label>
+      <label><input type="checkbox"> 一度成功させてからSkill / Routine化する</label>
+    </div>
+  </article>
+</section>
+
+<section id="check" class="section-block">
+  <span class="level two">理解チェック｜3分</span>
+  <h2>最後に5問</h2>
+  <div class="quiz-list">
+    <article class="quiz"><h3>Q1. Grok Botの本質は？</h3><button class="btn reveal">答えを見る</button><p class="answer">単なる回答生成ではなく、クラウド上のコンピュータやツールを使い、継続的に仕事を進めて成果物まで持っていくAI担当者に近いこと。</p></article>
+    <article class="quiz"><h3>Q2. SkillとRoutineの違いは？</h3><button class="btn reveal">答えを見る</button><p class="answer">Skillは「どう仕事をするか」。Routineは「いつ・何をきっかけに、そのワークフローを実行するか」。</p></article>
+    <article class="quiz"><h3>Q3. Botを分ければ権限も完全分離される？</h3><button class="btn reveal">答えを見る</button><p class="answer">されません。同じユーザーのBotは1台のクラウドPCを共有し、ファイル・ブラウザセッション・CLI認証情報も共有されます。</p></article>
+    <article class="quiz"><h3>Q4. 最初からRoutine化すべき？</h3><button class="btn reveal">答えを見る</button><p class="answer">いいえ。まず一度実際に仕事を成功させ、間違いの原因を修正し、Skill化してからRoutineにするのが公式推奨です。</p></article>
+    <article class="quiz"><h3>Q5. 「完全自動化」より重要なことは？</h3><button class="btn reveal">答えを見る</button><p class="answer">人間が責任を持って判断すべき地点まで、正確に調査・整理・実行・検証を進め、適切な場所で止まること。</p></article>
+  </div>
+</section>
+
+<section id="sources" class="section-block sources">
+  <span class="level three">公式情報</span>
+  <h2>確認に使った一次情報</h2>
+  <p>このページは、2026年8月23日時点の記事内容を素材にしつつ、2026年8月28日時点の公式情報で更新・再構成しています。</p>
+  <ul>
+    <li><a href="https://x.ai/news/introducing-grok-bot" target="_blank" rel="noopener">SpaceXAI — Introducing Grok Bot (2026-08-11)</a></li>
+    <li><a href="https://x.ai/news/grok-bot-more-plans" target="_blank" rel="noopener">SpaceXAI — Grok Bot is now included with more plans (2026-08-26)</a></li>
+    <li><a href="https://docs.x.ai/grok-bot/overview" target="_blank" rel="noopener">SpaceXAI Docs — Grok Bot overview</a></li>
+    <li><a href="https://docs.x.ai/grok-bot/bots" target="_blank" rel="noopener">SpaceXAI Docs — Create and manage Bots</a></li>
+    <li><a href="https://docs.x.ai/grok-bot/skills-routines-and-automations" target="_blank" rel="noopener">SpaceXAI Docs — Skills and routines</a></li>
+    <li><a href="https://docs.x.ai/grok-bot/approvals-security-and-privacy" target="_blank" rel="noopener">SpaceXAI Docs — Approvals, security, and privacy</a></li>
+    <li><a href="https://docs.x.ai/grok-bot/faq" target="_blank" rel="noopener">SpaceXAI Docs — FAQ</a></li>
+    <li><a href="https://cursor.com/help/grok-bot/plans" target="_blank" rel="noopener">Cursor Help — Plans and billing</a></li>
+  </ul>
+  <p class="source-note">※ Early Betaのため、特にプラン、利用上限、対応端末、UIは変更されやすい領域です。重要な意思決定前には上記公式ページを再確認してください。</p>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner"><div><strong>Grok Bot入門</strong><p>「AI社員」を魔法ではなく、担当・手順・承認・権限の設計として理解する。</p></div><a href="#top">↑ ページ上部へ</a></div>
+</footer>
+
+<script src="./script.js"></script>
+</body>
+</html>

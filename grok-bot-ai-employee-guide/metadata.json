@@ -1,0 +1,16 @@
+{
+  "title": "Grok Bot入門｜『24時間働くAI社員』を正しく設計する",
+  "slug": "grok-bot-ai-employee-guide",
+  "type": "knowledge-html",
+  "category": "IT・AI",
+  "tags": ["Grok Bot", "AIエージェント", "AI社員", "Cursor", "SuperGrok", "Skill", "Routine", "自動化", "承認", "セキュリティ", "MCP"],
+  "summary": "Grok BotをクラウドPCを持つ持続的なAI担当者として捉え、Bot・Skill・Routine・承認・共有コンピュータ・セキュリティ・導入手順を初心者向けに図解。2026年8月26日の対象プラン拡大も反映。",
+  "level": "入門〜実務基礎",
+  "createdAt": "2026-08-28",
+  "updatedAt": "2026-08-28",
+  "githubRepo": "knowledge-html",
+  "githubPath": "grok-bot-ai-employee-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/grok-bot-ai-employee-guide/",
+  "sourceType": "x-post+user-provided-article+official-web-research",
+  "sourceSummary": "X投稿とユーザー提供の2026-08-23時点解説記事を素材に、SpaceXAI / Cursor公式情報を2026-08-28時点で再確認し、初心者向けに結論→全体像→詳細の順で再構成。"
+}
