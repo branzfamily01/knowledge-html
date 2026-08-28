@@ -1,10 +1,26 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-08-27T15:25:48.471Z",
+  "generatedAt": "2026-08-28T02:12:03.807Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
-  "count": 46,
+  "count": 48,
   "items": [
+    {
+      "title": "ワンクッションPDF",
+      "slug": "one-cushion-pdf",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "one-cushion-pdf",
+      "repoUrl": "https://github.com/branzfamily01/one-cushion-pdf",
+      "publicUrl": "https://branzfamily01.github.io/one-cushion-pdf/",
+      "updatedAt": "2026-08-28",
+      "sourceType": "github-pages-auto-index"
+    },
     {
       "title": "Manga LP Studio",
       "slug": "manga-lp-studio",
@@ -130,6 +146,29 @@
       "githubRepo": "wemof-lab",
       "repoUrl": "https://github.com/branzfamily01/wemof-lab",
       "publicUrl": "https://branzfamily01.github.io/wemof-lab/",
+      "updatedAt": "2026-08-27",
+      "sourceType": "github-pages-manifest"
+    },
+    {
+      "title": "経費レシート台帳",
+      "slug": "tax-receipt-ledger",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [
+        "確定申告",
+        "レシート",
+        "経費",
+        "Excel",
+        "OCR",
+        "不動産所得"
+      ],
+      "summary": "レシート画像・経費情報・事業按分を端末内で整理し、確定申告向けのExcel台帳へ出力できるローカル優先Webアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "tax-receipt-ledger",
+      "repoUrl": "https://github.com/branzfamily01/tax-receipt-ledger",
+      "publicUrl": "https://branzfamily01.github.io/tax-receipt-ledger/",
       "updatedAt": "2026-08-27",
       "sourceType": "github-pages-manifest"
     },
