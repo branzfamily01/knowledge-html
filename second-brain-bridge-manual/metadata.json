@@ -2,6 +2,7 @@
   "title": "Second Brain Bridge｜図解マニュアル",
   "slug": "second-brain-bridge-manual",
   "type": "knowledge-html",
+  "visibility": "private",
   "category": "Second Brain",
   "tags": [
     "Second Brain Bridge",
@@ -15,10 +16,10 @@
   "level": "入門",
   "sourceRepo": "second-brain-bridge-manual",
   "createdAt": "2026-08-26",
-  "updatedAt": "2026-08-26",
+  "updatedAt": "2026-08-31",
   "githubRepo": "knowledge-html",
   "githubPath": "second-brain-bridge-manual/",
-  "publicUrl": "https://branzfamily01.github.io/knowledge-html/second-brain-bridge-manual/",
+  "publicUrl": null,
   "sourceType": "github-existing-html",
   "sourceSummary": "Standalone GitHub knowledge page migrated from branzfamily01/second-brain-bridge-manual without substantive content changes."
 }
