@@ -2,7 +2,7 @@
   "title": "Second Brain Bridgeで学ぶ｜初心者のAIアプリ開発入門",
   "slug": "second-brain-bridge-app-development-guide",
   "type": "knowledge-html",
-  "visibility": "public",
+  "visibility": "private",
   "category": "Second Brain・アプリ開発",
   "tags": [
     "Second Brain Bridge",
@@ -27,7 +27,7 @@
   "updatedAt": "2026-08-31",
   "githubRepo": "knowledge-html",
   "githubPath": "second-brain-bridge-app-development-guide/",
-  "publicUrl": "https://branzfamily01.github.io/knowledge-html/second-brain-bridge-app-development-guide/",
+  "publicUrl": null,
   "sourceType": "project-conversation+github-repository+pull-request-history",
   "sourceSummary": "Second Brain Bridge開発プロジェクトの会話で生じた初心者の疑問と、2026-08-31時点のbranzfamily01/second-brain-bridge main実装、docs/ai-collaboration.md、sync.js、PC Agent/Obsidian Agent文書、Knowledge HTML catalog実装、PR #34/#35のレビュー履歴を突き合わせ、会話順ではなく初心者が再現しやすい順に再構成。"
 }
