@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Second Brain Bridgeをゼロから再構築する初心者向け専用手順。各工程を目的・ファイル・Codex指示・完了条件・テストで説明。">
+  <title>Second Brain Bridge 再構築手順｜初心者専用</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap">
+    <p class="eyebrow">SECOND BRAIN BRIDGE / REBUILD RUNBOOK</p>
+    <h1>Second Brain Bridgeを<br>ゼロから作り直す専用手順</h1>
+    <p class="lead">「一般的なアプリ開発」ではなく、現在のSecond Brain Bridgeそのものを、同じ安全思想と役割分担で再構築するための実行手順です。</p>
+    <div class="audio-panel" aria-label="読み上げ操作">
+      <button type="button" id="speakSummary">要点を聞く</button>
+      <button type="button" id="speakAll">全文を聞く</button>
+      <button type="button" id="stopSpeech" class="secondary">停止</button>
+      <label>速度 <input id="speechRate" type="range" min="0.7" max="3" step="0.1" value="1"><strong id="rateValue">1.0×</strong></label>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="level level1" data-speech-section>
+    <div class="level-label">LEVEL 1｜30秒</div>
+    <h2>結論：この順番で作る</h2>
+    <div class="callout important"><span>必須</span><p><strong>UIから作り始めない。</strong> Second Brain Bridgeの核は「保存しても消えない」「削除が復活しない」「全リセット後に古い端末から復活しない」「Obsidian側の過去記録を壊さない」です。先に保存契約を固め、その上に入力・X同期・Obsidian・知識HTMLを載せます。</p></div>
+    <ol class="roadmap compact">
+      <li><b>土台</b><span>GitHub / GitHub Pages / 最小UI</span></li>
+      <li><b>端末保存</b><span>IndexedDB + localStorage fallback</span></li>
+      <li><b>クラウド</b><span>Supabase current state + history</span></li>
+      <li><b>削除</b><span>tombstone</span></li>
+      <li><b>全リセット</b><span>reset_epoch</span></li>
+      <li><b>Capture</b><span>入力UI + schema v1</span></li>
+      <li><b>X</b><span>投稿・Article取り込み</span></li>
+      <li><b>PC Agent</b><span>WindowsからX同期</span></li>
+      <li><b>Obsidian</b><span>一方向・追記専用archive</span></li>
+      <li><b>画像</b><span>安全なローカル保存</span></li>
+      <li><b>Knowledge HTML</b><span>registry読み取り専用</span></li>
+      <li><b>品質保証</b><span>CI → PR → Sol review → smoke</span></li>
+    </ol>
+    <div class="architecture" aria-label="Second Brain Bridge構成図">
+      <div class="node blue">iPhone / PC<br><small>入力・閲覧</small></div>
+      <div class="arrow">→</div>
+      <div class="node blue">Bridge Web<br><small>GitHub Pages</small></div>
+      <div class="arrow">↔</div>
+      <div class="node green">Supabase<br><small>現在状態・履歴</small></div>
+      <div class="arrow">→</div>
+      <div class="node purple">PC Agent<br><small>Windows</small></div>
+      <div class="arrow">→</div>
+      <div class="node purple">Obsidian<br><small>追記専用archive</small></div>
+    </div>
+  </section>
+
+  <section class="level level2" data-speech-section>
+    <div class="level-label">LEVEL 2｜3〜5分</div>
+    <h2>最初に理解する4つの「正本」ルール</h2>
+    <div class="grid four">
+      <article class="card"><span class="tag blue">基本</span><h3>現在状態</h3><p>Bridge / Supabaseが正本。今ユーザーに見せる状態です。</p></article>
+      <article class="card"><span class="tag blue">基本</span><h3>イベント履歴</h3><p>Supabaseの履歴は追記専用。現在状態とは分けます。</p></article>
+      <article class="card"><span class="tag purple">保存</span><h3>Obsidian</h3><p>人間可読の長期archive。Bridgeの削除を伝播させず、既存noteを上書きしません。</p></article>
+      <article class="card"><span class="tag yellow">注意</span><h3>AI出力</h3><p>ChatGPTやCodexの返答そのものは正本ではありません。採用した仕様だけIssue・コード・docsへ固定します。</p></article>
+    </div>
+    <div class="callout warning"><span>注意</span><p>Second Brain Bridgeでは、<strong>削除</strong>と<strong>全データリセット</strong>は別物です。通常削除はtombstone、全リセットだけ物理削除 + reset_epoch更新を使います。</p></div>
+  </section>
+
+  <section class="level level3" id="steps">
+    <div class="level-label">LEVEL 3｜実際に再構築する</div>
+    <h2>専用ビルド手順</h2>
+    <p class="section-intro">各STEPを上から順に進めます。大きな設計変更が必要になったら、その場でCodexに決めさせず、Sol Design Issueへ戻します。</p>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 0</div><h3>仕様の正本を先に作る</h3>
+      <div class="step-grid">
+        <div><h4>目的</h4><p>AIが会話ごとに設計を変えないよう、役割と変更ルールを固定する。</p></div>
+        <div><h4>作るもの</h4><p><code>AGENTS.md</code>、<code>docs/ai-collaboration.md</code>、Issueテンプレート。</p></div>
+      </div>
+      <details><summary>Codexに渡す指示</summary><pre><code>Second Brain Bridgeの開発基盤を作る。
+ChatGPT/Solは設計・仕様・原因分析・レビュー、Codexは実装・CLI・テスト・Git操作を担当する。
+重要な設計変更はIssueを正本とし、未採択の設計を勝手に実装しない。
+AGENTS.md、Sol Design Issue、Codex Task Issueのテンプレートを用意する。
+完了後、変更ファイルと確認結果を報告する。</code></pre></details>
+      <p class="done"><strong>完了条件：</strong>Issueに「採択済み仕様」「受け入れ条件」「変更してはいけない境界」が書ける。</p>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 1</div><h3>GitHub Pagesで動く最小Bridgeを作る</h3>
+      <div class="step-grid"><div><h4>目的</h4><p>公開起点とファイル構造を確定する。</p></div><div><h4>主要ファイル</h4><p><code>index.html</code> / <code>styles.css</code> / <code>app.js</code> / <code>manifest.json</code> / <code>sw.js</code></p></div></div>
+      <details><summary>Codexに渡す指示</summary><pre><code>静的HTML/CSS/JavaScriptでSecond Brain Bridgeの最小シェルを作る。
+GitHub Pagesのmain / rootで動くこと。
+最初はCapture一覧・検索・詳細の最低限だけにし、クラウド同期やX連携はまだ実装しない。
+保存層はUIコードと分離できる構造にする。</code></pre></details>
+      <p class="done"><strong>完了条件：</strong>GitHub Pagesで起動し、iPhone/PC双方で基本UIが崩れない。</p>
+    </article>
+
+    <article class="step critical" data-speech-section>
+      <div class="step-no">STEP 2</div><h3>端末保存を先に「消えない設計」にする</h3>
+      <div class="step-grid"><div><h4>目的</h4><p>通信や他UIが壊れても入力データを失わない。</p></div><div><h4>主要ファイル</h4><p><code>storage-v2.js</code> / <code>ui-storage-safety.js</code></p></div></div>
+      <div class="flow"><span>入力</span><i>→</i><span>write queue</span><i>→</i><span>IndexedDB</span><i>↘</i><span>localStorage予備</span></div>
+      <ul><li>IndexedDB初期化前のsaveを保持する。</li><li>IndexedDB失敗時はlocalStorageへfallbackする。</li><li>QuotaExceededや保存失敗を無言で成功扱いしない。</li><li>pagehide中の同期予備保存も考慮する。</li><li>復旧時は「消失」より「一時的な復活」を優先し、後のtombstoneで解決する。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>Second Brain Bridgeのローカル保存P0を実装する。
+IndexedDBを主保存、localStorageをfallback/予備保存とする。
+初期化前save、書込失敗、QuotaExceeded、restoreとの競合、pagehideをテストする。
+保存成功前に旧データを消さない。
+保存UI以外のJSが壊れても保存層がロードされるよう静的依存にする。</code></pre></details>
+      <p class="test"><strong>テスト：</strong>保存→reload、オフライン保存→reload、IndexedDB故障注入、restore/save同時実行。</p>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 3</div><h3>Supabaseに「現在状態」と「履歴」を分けて作る</h3>
+      <div class="step-grid"><div><h4>目的</h4><p>複数端末で同期しつつ、過去の変更も失わない。</p></div><div><h4>主要ファイル</h4><p><code>sync.js</code>、Supabase tables / RLS / migration。</p></div></div>
+      <table><thead><tr><th>層</th><th>役割</th><th>原則</th></tr></thead><tbody><tr><td><code>bridge_items</code></td><td>現在状態</td><td>更新可</td></tr><tr><td><code>bridge_item_history</code></td><td>変更履歴</td><td>追記専用</td></tr><tr><td><code>bridge_context</code></td><td>Context</td><td>現在状態</td></tr></tbody></table>
+      <div class="callout warning"><span>注意</span><p>RLSはユーザー本人のrowだけを読み書きできるようにする。publishable keyを使うこと自体ではなく、RLSが境界になります。</p></div>
+      <details><summary>Codexに渡す指示</summary><pre><code>Supabase同期を追加する。
+current stateとappend-only historyを分ける。
+RLSはauth.uid() = user_idを基本に設計し、他ユーザーrowへアクセスできないことを確認する。
+ローカルとクラウドの競合、同期中に発生したローカル編集を失わないテストを追加する。</code></pre></details>
+    </article>
+
+    <article class="step critical" data-speech-section>
+      <div class="step-no">STEP 4</div><h3>通常削除をtombstone化する</h3>
+      <p>端末Aで削除したものが、端末Bや古いキャッシュから再登場する問題を防ぎます。</p>
+      <div class="compare"><div><h4>やってはいけない</h4><p>単純にrowを消す → 他端末が「存在しない=新規」と判断して復活。</p></div><div><h4>採用方式</h4><p><code>deleted_at</code>を持つtombstoneを同期 → 全端末が削除済みIDを知る。</p></div></div>
+      <ul><li>tombstone rowのライブ<code>payload</code>はnull。</li><li>削除と後着編集が競合したら削除優先。</li><li>Obsidianには削除を伝播しない。</li><li>履歴の過去本文はこの操作では消さない。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>通常削除をphysical DELETEではなくtombstoneへ変更する。
+deleted_atを全端末へ同期し、削除済みIDを再upsertしない。
+tombstone payloadはnullにする。
+削除と遅れて到着した編集が競合したら削除優先。
+履歴とObsidian archiveは削除しない。
+DB migrationを先に適用してからclientを配布する手順も文書化する。</code></pre></details>
+    </article>
+
+    <article class="step critical" data-speech-section>
+      <div class="step-no">STEP 5</div><h3>全データリセットにreset_epochを入れる</h3>
+      <p>全リセット後、古い端末やPC Agentがリセット前データをクラウドへ戻す事故を防ぎます。</p>
+      <div class="flow wrapflow"><span>reset開始marker</span><i>→</i><span>cloud epoch +1</span><i>→</i><span>current rows物理削除</span><i>→</i><span>local消去</span><i>→</i><span>marker解除</span></div>
+      <ul><li><code>bridge_reset_state</code>にユーザーごとのepoch。</li><li><code>bridge_items.reset_epoch</code>を持たせる。</li><li>古いepochのwriteはDB triggerで拒否。</li><li>全リセット中断時は次回起動で再開。</li><li>初回同期端末の未同期ローカルデータはepoch差だけで自動消去しない。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>全データリセット専用RPCとreset_epochを実装する。
+通常削除のtombstoneとは分離する。
+RPCはepochを先に進め、その後current stateを本人分だけ物理削除する。
+古いepochのupsertをDBで拒否する。
+リセット途中markerを端末に残し、中断後に再開できるようにする。
+PC Agentもepoch上昇を検出したら自動停止し、明示resumeまで旧データを再投入しない。</code></pre></details>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 6</div><h3>Capture UIとCapture Payload Schema v1を作る</h3>
+      <div class="step-grid"><div><h4>目的</h4><p>手入力・Web・X・PDFなど異なる入口を、Agent側で同じ形に扱えるようにする。</p></div><div><h4>主要ファイル</h4><p><code>ingest.js</code> / <code>shared/capture-schema.mjs</code> / <code>docs/capture-schema-v1.md</code></p></div></div>
+      <div class="flow"><span>legacy/schema0</span><i>↘</i><span>normalizeCapturePayload()</span><i>→</i><span>schema1正規形</span><i>→</i><span>Agent</span><br><span>schema1</span><i>↗</i></div>
+      <ul><li>既存データを一括backfillしない。</li><li>未来schemaは勝手に旧仕様として解釈せず停止。</li><li><code>body</code>、<code>captureNote</code>、<code>clipboardOriginal</code>を混ぜない。</li><li>X取得状態4フィールドも黙って落とさない。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>Capture Payload Schema v1を定義する。
+既存未marker payloadはschema0として入口でschema1正規形へnormalizeする。
+既存データへの一括backfillは禁止。
+未来schemaはunsupportedとして安全停止。
+writerが新しいtop-level fieldを追加したのにnormalizerが落とした場合、CIで検出するdrift guardを追加する。</code></pre></details>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 7</div><h3>X投稿とX ArticleをBridgeへ取り込む</h3>
+      <div class="step-grid"><div><h4>Web側</h4><p><code>x-bookmark-import.js</code> / <code>x-browser-import.js</code> / <code>x-fetch-v2.js</code></p></div><div><h4>重要契約</h4><p>preview先行保存、失敗時も本文を壊さない、全文済みArticleは毎回再fetchしない。</p></div></div>
+      <ul><li>通常postとArticleを分ける。</li><li>日本語UIの「記事を読む」などlocale markerも考慮。</li><li>Article候補は逐次queueで処理。</li><li>取得失敗でもpreviewを保持し、後続を継続。</li><li>人間が編集したより長い/良い本文を破壊的に短文で上書きしない。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>Xブックマーク取り込みを実装する。
+通常postとX Articleを判定し、Articleはpreview保存後に全文取得を試す。
+失敗してもpreviewを残し、batch全体を止めない。
+既にxBodyStatus=ok等で全文取得済みのArticleは再import時に自動再fetchしない。
+日本語UI markerもfeed/detailで同じ判定ロジックを使う。
+回帰テストを追加する。</code></pre></details>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 8</div><h3>Windows PC AgentでX同期を1クリック化する</h3>
+      <div class="step-grid"><div><h4>入口</h4><p><code>pc-agent/X同期.cmd</code> → <code>X同期.ps1</code> → <code>x-sync/x-sync.mjs</code></p></div><div><h4>実行環境</h4><p>Node.js + Playwright + Supabase REST。</p></div></div>
+      <ul><li>500件ずつBridge rowsを全件ページング。</li><li>全文取得済みRAWはスキップ。</li><li>既存IDへ到達したら新規探索を止める。</li><li>資格情報はWindowsユーザー専用の暗号化ローカル保存。</li><li>Cookie・token・profile・debug画像はGitHubへ入れない。</li></ul>
+      <pre><code class="language-powershell">.\X同期.ps1 -CheckOnly
+.\X同期.ps1 -DryRun
+# 通常運用は X同期.cmd をダブルクリック</code></pre>
+      <details><summary>Codexに渡す指示</summary><pre><code>Windows用X同期Agentを追加する。
+X公式APIは前提にせずPlaywrightで既存ログインsessionを利用する。
+CheckOnly、DryRun、通常実行を分離する。
+認証情報とbrowser profileはgitignoreする。
+reset_epoch上昇時は自動停止する。
+同期後に件数・全文状態・重複0を再検証する。</code></pre></details>
+    </article>
+
+    <article class="step critical" data-speech-section>
+      <div class="step-no">STEP 9</div><h3>Obsidian Agentを「一方向・追記専用」で作る</h3>
+      <div class="flow wrapflow"><span>bridge_items current rows</span><i>→</i><span>intake gate</span><i>→</i><span>schema normalizer</span><i>→</i><span>append-only writer</span><i>→</i><span>00_Capture/YYYY/MM</span></div>
+      <ul><li>historyをCapture event streamとして使わない。</li><li>tombstoneは新規noteを作らない。</li><li>既存Markdownを編集・移動・削除しない。</li><li>AgentからBridgeへ処理結果を書き戻さない。</li><li>identityはaccount + reset_epoch + bridge_items.idからSHA-256。</li></ul>
+      <pre><code>identity = sha256(accountId + NUL + reset_epoch + NUL + bridge_items.id)
+capture-&lt;64hex&gt;.md</code></pre>
+      <details><summary>Codexに渡す指示</summary><pre><code>Bridge current rowsをObsidianへ一方向にarchiveするAgentを作る。
+既存noteは絶対に上書き・削除・移動しない。
+filesystem identityは authenticated account + reset_epoch + bridge_items.id のSHA-256。
+tombstoneは新規noteを作らない。
+同一identityは起動時scanとexclusive create(wx)の両方で重複防止する。
+AgentからBridgeへwritebackしない。</code></pre></details>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 10</div><h3>画像保存は後付けし、ネットワーク境界を厳しくする</h3>
+      <p>テキストarchive完成後に、<code>--with-media</code>の明示opt-inとして追加します。</p>
+      <div class="grid three"><article class="card"><span class="tag red">危険</span><h4>SSRF</h4><p>localhost/private/reserved IP、URL credentials、危険なredirectを拒否。</p></article><article class="card"><span class="tag yellow">制限</span><h4>サイズ・形式</h4><p>15秒全体deadline、1画像15MiB、最大30件、JPEG/PNG/GIF/WebP/AVIF。SVG拒否。</p></article><article class="card"><span class="tag green">保存</span><h4>Vault</h4><p><code>_Attachments/SecondBrain</code>だけ。symlink拒否、<code>wx</code>で上書き禁止。</p></article></div>
+      <details><summary>Codexに渡す指示</summary><pre><code>Obsidian Agentのmedia保存を明示opt-inで追加する。
+URLを各redirect hopで再検証し、private/reserved/localhostをfail closedで拒否する。
+DNS検証後の接続先をpinする。
+全体15秒deadline、30件、15MiB/件、許可MIMEを実装する。
+既存noteはmedia取得前にSKIPし、media失敗でも新規text noteは保存する。</code></pre></details>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 11</div><h3>Obsidian書き出しをWindowsダブルクリック化する</h3>
+      <p><code>Obsidian書き出し.cmd</code> → PowerShell launcher → Node Agentの3層にします。</p>
+      <ul><li><code>-CheckOnly</code>は資格情報・Vault書込・networkより前に実行。</li><li>Vaultは<code>.obsidian</code>がある既存フォルダだけを受理。</li><li>日本語ファイル名・Windows PowerShell 5.1・cmd code pageを実機で確認。</li><li>終了コードをcmdまで正しく返す。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>Obsidian Agent用Windows launcherを追加する。
+CheckOnly / DryRun / WithMedia / Limit / Id / Vaultを正確にCLIへ渡す。
+CheckOnlyはcredential promptより前に実行。
+Windows PowerShell 5.1とcmd経由で日本語pathが壊れない設計にする。
+PowerShellのexit codeをcmdのexit codeとして返す回帰テストを追加する。</code></pre></details>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 12</div><h3>Knowledge HTMLをBridgeへ「混ぜずに」つなぐ</h3>
+      <div class="compare"><div><h4>保存</h4><p><code>knowledge-html</code>リポジトリ。テーマ別folder + <code>metadata.json</code>。</p></div><div><h4>発見</h4><p>Bridgeが<code>registry.json</code>をread-only取得し、検索結果へ追加。</p></div></div>
+      <ul><li>通常<code>db.items</code>へ入れない。</li><li>Supabase sync / tombstone / reset / historyへ混ぜない。</li><li><code>publicUrl</code>はHTTPSだけ受理。</li><li>registry取得失敗でBridge本体を止めない。</li></ul>
+      <details><summary>Codexに渡す指示</summary><pre><code>Knowledge HTML catalogをread-only additive layerとして追加する。
+knowledge-html/main/registry.jsonを取得し、type=knowledge-htmlかつvalid HTTPS publicUrlだけを表示する。
+既存Bridge items、localStorage、IndexedDB、Supabase、tombstone、reset、history、Obsidian挙動は一切変更しない。
+registry取得失敗はcatchしてBridge本体を継続する。</code></pre></details>
+    </article>
+
+    <article class="step critical" data-speech-section>
+      <div class="step-no">STEP 13</div><h3>テスト → PR → Solレビュー → 修正 → merge</h3>
+      <p>Second Brain Bridgeでは、実装完了を「コードを書いた」ではなく「壊し方をテストし、レビューでblockerが消えた」と定義します。</p>
+      <div class="flow wrapflow"><span>Codex実装</span><i>→</i><span>targeted tests</span><i>→</i><span>P0 full tests</span><i>→</i><span>PR</span><i>→</i><span>Sol review</span><i>→</i><span>修正</span><i>→</i><span>re-review</span><i>→</i><span>merge</span></div>
+      <details open><summary>Solに渡すレビュー指示</summary><pre><code>このPRをSecond Brain Bridgeの現行方針を正本としてレビューしてください。
+仕様変更の影響は Maintain / Modify / Retire / Hold に分類してください。
+データ消失、削除復活、reset epoch、account境界、append-only、外部入力、network、既存機能回帰を重点監査してください。
+blockerは再現条件・影響・最小修正・追加すべき回帰テストまで示してください。</code></pre></details>
+      <p class="test"><strong>重要：</strong>自動テストgreenだけで完了にしない。GitHub Pages、iPhone/Safari、Windows launcher、実X sessionなど、CIで再現できない部分は公開後smokeを別gateにする。</p>
+    </article>
+
+    <article class="step" data-speech-section>
+      <div class="step-no">STEP 14</div><h3>本番smokeと運用開始</h3>
+      <div class="checklist" id="buildChecklist">
+        <label><input type="checkbox"> GitHub PagesでBridgeが開く</label>
+        <label><input type="checkbox"> 新規Capture→reload後も残る</label>
+        <label><input type="checkbox"> iPhone↔PCでSupabase同期できる</label>
+        <label><input type="checkbox"> 削除が別端末で復活しない</label>
+        <label><input type="checkbox"> reset後、古い端末writeが拒否される</label>
+        <label><input type="checkbox"> X通常postが保存できる</label>
+        <label><input type="checkbox"> X Articleが全文化される</label>
+        <label><input type="checkbox"> 全文済みArticle再importで不要fetchしない</label>
+        <label><input type="checkbox"> X同期.cmdがWindowsで完走する</label>
+        <label><input type="checkbox"> Obsidian書き出し.cmd CheckOnlyが通る</label>
+        <label><input type="checkbox"> Obsidian新規noteが一度だけ作られる</label>
+        <label><input type="checkbox"> 既存noteを再実行しても上書きしない</label>
+        <label><input type="checkbox"> Knowledge HTMLが検索でき「読む」で開く</label>
+      </div>
+    </article>
+  </section>
+
+  <section class="reference" data-speech-section>
+    <h2>主要ファイル地図</h2>
+    <table><thead><tr><th>領域</th><th>現在の主要ファイル</th><th>役割</th></tr></thead><tbody>
+      <tr><td>Web UI</td><td><code>index.html</code> / <code>app.js</code> / <code>styles.css</code></td><td>画面・基本操作</td></tr>
+      <tr><td>保存</td><td><code>storage-v2.js</code> / <code>ui-storage-safety.js</code></td><td>端末耐久保存</td></tr>
+      <tr><td>同期</td><td><code>sync.js</code></td><td>Supabase同期、tombstone、reset epoch</td></tr>
+      <tr><td>Capture</td><td><code>ingest.js</code> / <code>shared/capture-schema.mjs</code></td><td>入力とpayload契約</td></tr>
+      <tr><td>X Web</td><td><code>x-browser-import.js</code> / <code>x-fetch-v2.js</code></td><td>投稿・Article取得</td></tr>
+      <tr><td>X PC</td><td><code>pc-agent/X同期.*</code> / <code>pc-agent/x-sync/</code></td><td>Windows X同期</td></tr>
+      <tr><td>Obsidian</td><td><code>pc-agent/obsidian-agent/</code></td><td>append-only archive</td></tr>
+      <tr><td>Knowledge</td><td><code>knowledge-artifacts.js</code></td><td>registryのread-only検索</td></tr>
+      <tr><td>品質</td><td><code>tests/</code> / <code>.github/workflows/p0-node-tests.yml</code></td><td>回帰テスト・CI</td></tr>
+    </tbody></table>
+  </section>
+
+  <section class="mistakes" data-speech-section>
+    <h2>初心者がやりがちな順番ミス</h2>
+    <div class="grid two">
+      <article class="card"><span class="tag red">NG</span><h3>最初から全部自動化</h3><p>まず手動で安全に動く保存・同期を完成させる。X AgentやObsidian launcherは後。</p></article>
+      <article class="card"><span class="tag red">NG</span><h3>削除=physical DELETE</h3><p>複数端末同期では復活事故につながる。通常削除はtombstone。</p></article>
+      <article class="card"><span class="tag red">NG</span><h3>AIに仕様を毎回考え直させる</h3><p>採択済み仕様はIssue/docsを正本にし、Codexは実装に集中させる。</p></article>
+      <article class="card"><span class="tag red">NG</span><h3>Obsidianを同期先として双方向化</h3><p>現行v1ではBridge→Obsidian一方向。archiveの安全性を優先する。</p></article>
+    </div>
+  </section>
+
+  <section class="quiz" data-speech-section>
+    <h2>理解チェック</h2>
+    <div class="quiz-item"><h3>Q1. なぜUIより保存層を先に作る？</h3><button type="button" class="answer-btn">答えを見る</button><p class="answer">Bridgeの最重要価値はデータを失わないことだから。保存層をUI依存にすると、無関係なUI障害で保存まで壊れます。</p></div>
+    <div class="quiz-item"><h3>Q2. 通常削除と全リセットの違いは？</h3><button type="button" class="answer-btn">答えを見る</button><p class="answer">通常削除はtombstoneで削除済みIDを共有。全リセットはreset_epochを進めて現在状態を物理削除し、旧epochからの復活をDBで拒否します。</p></div>
+    <div class="quiz-item"><h3>Q3. Obsidian Agentが既存noteを編集しない理由は？</h3><button type="button" class="answer-btn">答えを見る</button><p class="answer">Obsidianを人間可読の長期archiveとして守るため。Bridge側の削除・変更・失敗を過去のarchiveへ破壊的に伝播させません。</p></div>
+    <div class="quiz-item"><h3>Q4. schema 0の既存itemを全部schema 1へ書き換えない理由は？</h3><button type="button" class="answer-btn">答えを見る</button><p class="answer">不要な履歴・同期競合を増やさず、過去itemを現在writer生成と偽装しないため。Agent入口で正規化します。</p></div>
+    <div class="quiz-item"><h3>Q5. CodexとSolの役割は？</h3><button type="button" class="answer-btn">答えを見る</button><p class="answer">Solは設計・仕様・原因分析・レビュー。Codexはファイル編集、CLI、テスト、Git、PRなど実行作業。重要な仕様変更は採択前に実装確定しません。</p></div>
+  </section>
+
+  <section class="source-note">
+    <h2>この手順書の位置づけ</h2>
+    <p>これは「Second Brain Bridgeの操作マニュアル」でも「一般アプリ開発入門」でもありません。2026-08-31時点のSecond Brain Bridge main実装、P0保存契約、Capture Schema v1、Windows PC Agent、Obsidian Agent、Knowledge HTML連携、AI協働ルールをもとに、<strong>同じBridgeを再構築する順序</strong>へ再編集した専用runbookです。</p>
+  </section>
+</main>
+<footer><div class="wrap"><a href="#top">ページ上部へ戻る</a><p>Second Brain Bridge Rebuild Guide</p></div></footer>
+<script src="script.js"></script>
+</body>
+</html>
