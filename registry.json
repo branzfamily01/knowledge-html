@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-08-31",
   "items": [
     {
       "title": "Supabaseって何？",
@@ -218,6 +218,22 @@
       "publicUrl": "https://branzfamily01.github.io/knowledge-html/grok-bot-ai-employee-guide/",
       "sourceType": "x-post+user-provided-article+official-web-research",
       "sourceSummary": "X投稿とユーザー提供の2026-08-23時点解説記事を素材に、SpaceXAI / Cursor公式情報を2026-08-28時点で再確認し、初心者向けに結論→全体像→詳細の順で再構成。"
+    },
+    {
+      "title": "Second Brain Bridgeで学ぶ｜初心者のAIアプリ開発入門",
+      "slug": "second-brain-bridge-app-development-guide",
+      "type": "knowledge-html",
+      "category": "Second Brain・アプリ開発",
+      "tags": ["Second Brain Bridge","Webアプリ開発","初心者","ChatGPT","Codex","GitHub","GitHub Pages","Supabase","Obsidian","PC Agent","PowerShell","Playwright","AI開発","PRレビュー","テスト"],
+      "summary": "Second Brain Bridgeの実開発を教材化し、問題定義・MVP・データ正本・ChatGPT/SolとCodexの分業・GitHub・Supabase同期・Windows PC Agent・Obsidian一方向アーカイブ・テスト・PRレビュー・公開後smokeまで、初心者が別の実用アプリへ再利用できる形で図解した開発入門。",
+      "level": "入門〜実務基礎",
+      "createdAt": "2026-08-31",
+      "updatedAt": "2026-08-31",
+      "githubRepo": "knowledge-html",
+      "githubPath": "second-brain-bridge-app-development-guide/",
+      "publicUrl": "https://branzfamily01.github.io/knowledge-html/second-brain-bridge-app-development-guide/",
+      "sourceType": "project-conversation+github-repository+pull-request-history",
+      "sourceSummary": "Second Brain Bridge開発プロジェクトの会話で生じた初心者の疑問と、2026-08-31時点のbranzfamily01/second-brain-bridge main実装、docs/ai-collaboration.md、sync.js、PC Agent/Obsidian Agent文書、Knowledge HTML catalog実装、PR #34/#35のレビュー履歴を突き合わせ、会話順ではなく初心者が再現しやすい順に再構成。"
     }
   ]
 }
