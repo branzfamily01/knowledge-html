@@ -2,6 +2,7 @@
   "title": "Second Brain Bridge 再構築手順｜初心者専用",
   "slug": "second-brain-bridge-rebuild-guide",
   "type": "knowledge-html",
+  "visibility": "public",
   "category": "Second Brain・開発手順",
   "tags": ["Second Brain Bridge","再構築","開発手順","初心者","GitHub","GitHub Pages","Supabase","IndexedDB","tombstone","reset_epoch","Capture Schema","X Article","PC Agent","Obsidian","Codex","ChatGPT","Sol","PRレビュー","テスト"],
   "summary": "現在のSecond Brain Bridgeそのものをゼロから再構築する専用runbook。GitHub Pagesの土台から、端末耐久保存、Supabase、tombstone、reset_epoch、Capture Schema、X取り込み、Windows PC Agent、Obsidian追記専用archive、画像保存、Knowledge HTML、CI・PR・Solレビュー・本番smokeまで、各工程を目的・主要ファイル・Codex指示・完了条件・テストで順番に説明する。",
