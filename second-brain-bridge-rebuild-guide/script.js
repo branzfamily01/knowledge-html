@@ -3,6 +3,7 @@
   const rateValue = document.querySelector('#rateValue');
   const RATE_KEY = 'knowledgeHtml.secondBrainBridgeRebuild.rate';
   const CHECK_KEY = 'knowledgeHtml.secondBrainBridgeRebuild.checks';
+  const synth = 'speechSynthesis' in window ? window.speechSynthesis : null;
   let active = false;
 
   function currentRate() {
@@ -11,13 +12,14 @@
   }
 
   function restoreRate() {
-    const saved = Number(localStorage.getItem(RATE_KEY));
+    let saved = NaN;
+    try { saved = Number(localStorage.getItem(RATE_KEY)); } catch {}
     if (saved >= .7 && saved <= 3 && rate) rate.value = saved.toFixed(1);
     if (rateValue) rateValue.textContent = `${currentRate().toFixed(1)}×`;
   }
 
   rate?.addEventListener('input', () => {
-    localStorage.setItem(RATE_KEY, currentRate().toFixed(1));
+    try { localStorage.setItem(RATE_KEY, currentRate().toFixed(1)); } catch {}
     if (rateValue) rateValue.textContent = `${currentRate().toFixed(1)}×`;
   });
 
@@ -39,9 +41,9 @@
     return chunks;
   }
 
-  function voiceScore(voice, lang) {
+  function voiceScore(voice) {
     const name = `${voice.name} ${voice.voiceURI}`.toLowerCase();
-    let score = voice.lang?.toLowerCase().startsWith(lang.slice(0, 2).toLowerCase()) ? 50 : 0;
+    let score = 0;
     if (/natural|neural|premium|enhanced/.test(name)) score += 30;
     if (/female|nanami|haruka|ayumi|samantha|zira|aria|jenny/.test(name)) score += 8;
     if (voice.localService) score += 2;
@@ -49,7 +51,10 @@
   }
 
   function bestVoice(lang) {
-    return speechSynthesis.getVoices().slice().sort((a, b) => voiceScore(b, lang) - voiceScore(a, lang))[0] || null;
+    if (!synth) return null;
+    const prefix = lang.slice(0, 2).toLowerCase();
+    const matching = synth.getVoices().filter(v => String(v.lang || '').toLowerCase().startsWith(prefix));
+    return matching.sort((a, b) => voiceScore(b) - voiceScore(a))[0] || null;
   }
 
   function sentenceChunks(text) {
@@ -57,16 +62,17 @@
     const out = [];
     for (const part of parts) {
       if (part.length <= 150) out.push(part);
-      else {
-        for (let i = 0; i < part.length; i += 130) out.push(part.slice(i, i + 130));
-      }
+      else for (let i = 0; i < part.length; i += 130) out.push(part.slice(i, i + 130));
     }
     return out;
   }
 
   function queueSpeech(text) {
-    if (!('speechSynthesis' in window)) return alert('このブラウザでは音声読み上げを利用できません。');
-    speechSynthesis.cancel();
+    if (!synth || !('SpeechSynthesisUtterance' in window)) {
+      alert('このブラウザでは音声読み上げを利用できません。');
+      return;
+    }
+    synth.cancel();
     active = true;
     const chunks = [];
     for (const sentence of sentenceChunks(text)) chunks.push(...splitLanguage(sentence));
@@ -74,14 +80,14 @@
     const next = () => {
       if (!active || i >= chunks.length) { active = false; return; }
       const chunk = chunks[i++];
-      const u = new SpeechSynthesisUtterance(chunk.text);
-      u.lang = chunk.lang;
-      u.rate = currentRate();
+      const utterance = new window.SpeechSynthesisUtterance(chunk.text);
+      utterance.lang = chunk.lang;
+      utterance.rate = currentRate();
       const voice = bestVoice(chunk.lang);
-      if (voice) u.voice = voice;
-      u.onend = next;
-      u.onerror = next;
-      speechSynthesis.speak(u);
+      if (voice) utterance.voice = voice;
+      utterance.onend = next;
+      utterance.onerror = next;
+      synth.speak(utterance);
     };
     next();
   }
@@ -92,7 +98,7 @@
 
   document.querySelector('#speakSummary')?.addEventListener('click', () => queueSpeech(summaryText()));
   document.querySelector('#speakAll')?.addEventListener('click', () => queueSpeech(document.querySelector('main')?.innerText || ''));
-  document.querySelector('#stopSpeech')?.addEventListener('click', () => { active = false; speechSynthesis.cancel(); });
+  document.querySelector('#stopSpeech')?.addEventListener('click', () => { active = false; synth?.cancel(); });
 
   document.querySelectorAll('.answer-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -106,14 +112,13 @@
   function restoreChecks() {
     let state = [];
     try { state = JSON.parse(localStorage.getItem(CHECK_KEY) || '[]'); } catch {}
-    checks.forEach((el, i) => el.checked = Boolean(state[i]));
+    checks.forEach((el, i) => { el.checked = Boolean(state[i]); });
   }
-  checks.forEach((el, i) => el.addEventListener('change', () => {
+  checks.forEach(el => el.addEventListener('change', () => {
     const state = checks.map(x => x.checked);
-    localStorage.setItem(CHECK_KEY, JSON.stringify(state));
+    try { localStorage.setItem(CHECK_KEY, JSON.stringify(state)); } catch {}
   }));
 
   restoreRate();
   restoreChecks();
-  speechSynthesis?.addEventListener?.('voiceschanged', () => {});
 })();
