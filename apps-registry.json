@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-01T21:06:15.808Z",
+  "generatedAt": "2026-09-02T21:07:02.684Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
-  "count": 57,
+  "count": 60,
   "items": [
     {
       "title": "Clover Lesson 8",
@@ -18,11 +18,11 @@
       "githubRepo": "clover-lesson8",
       "repoUrl": "https://github.com/branzfamily01/clover-lesson8",
       "publicUrl": "https://branzfamily01.github.io/clover-lesson8/",
-      "updatedAt": "2026-09-01",
+      "updatedAt": "2026-09-02",
       "sourceType": "github-pages-auto-index"
     },
     {
-      "title": "Clover Lesson9",
+      "title": "Clover Lesson 9",
       "slug": "clover-lesson9",
       "type": "web-app",
       "category": "Learning",
@@ -34,6 +34,60 @@
       "githubRepo": "clover-lesson9",
       "repoUrl": "https://github.com/branzfamily01/clover-lesson9",
       "publicUrl": "https://branzfamily01.github.io/clover-lesson9/",
+      "updatedAt": "2026-09-02",
+      "sourceType": "github-pages-auto-index"
+    },
+    {
+      "title": "School Event Live",
+      "slug": "school-event-live",
+      "type": "web-app",
+      "category": "Web Apps",
+      "tags": [
+        "イベント",
+        "文化祭",
+        "学校",
+        "特設サイト",
+        "ライブ更新"
+      ],
+      "summary": "文化祭・体育祭・説明会などを準備期間から当日、終了後まで育てていけるイベント特設サイト。",
+      "visibility": "public",
+      "status": "active",
+      "color": "orange",
+      "githubRepo": "school-event-live",
+      "repoUrl": "https://github.com/branzfamily01/school-event-live",
+      "publicUrl": "https://branzfamily01.github.io/school-event-live/",
+      "updatedAt": "2026-09-02",
+      "sourceType": "github-pages-manifest"
+    },
+    {
+      "title": "第79回 目高祭｜東京都立目黒高等学校",
+      "slug": "mekousai-79",
+      "type": "web-app",
+      "category": "AI",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "violet",
+      "githubRepo": "mekousai-79",
+      "repoUrl": "https://github.com/branzfamily01/mekousai-79",
+      "publicUrl": "https://branzfamily01.github.io/mekousai-79/",
+      "updatedAt": "2026-09-02",
+      "sourceType": "github-pages-auto-index"
+    },
+    {
+      "title": "倍倍FIGHT!｜パワーコード練習TAB",
+      "slug": "bai-bai-fight-power-chord-tab",
+      "type": "web-app",
+      "category": "AI",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "violet",
+      "githubRepo": "bai-bai-fight-power-chord-tab",
+      "repoUrl": "https://github.com/branzfamily01/bai-bai-fight-power-chord-tab",
+      "publicUrl": "https://branzfamily01.github.io/bai-bai-fight-power-chord-tab/",
       "updatedAt": "2026-09-01",
       "sourceType": "github-pages-auto-index"
     },
