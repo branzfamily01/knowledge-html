@@ -1,10 +1,26 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-02T21:07:02.684Z",
+  "generatedAt": "2026-09-03T21:06:11.335Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
   "count": 60,
   "items": [
+    {
+      "title": "第79回 目高祭｜東京都立目黒高等学校",
+      "slug": "mekousai-79",
+      "type": "web-app",
+      "category": "AI",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "violet",
+      "githubRepo": "mekousai-79",
+      "repoUrl": "https://github.com/branzfamily01/mekousai-79",
+      "publicUrl": "https://branzfamily01.github.io/mekousai-79/",
+      "updatedAt": "2026-09-03",
+      "sourceType": "github-pages-auto-index"
+    },
     {
       "title": "Clover Lesson 8",
       "slug": "clover-lesson8",
@@ -58,22 +74,6 @@
       "publicUrl": "https://branzfamily01.github.io/school-event-live/",
       "updatedAt": "2026-09-02",
       "sourceType": "github-pages-manifest"
-    },
-    {
-      "title": "第79回 目高祭｜東京都立目黒高等学校",
-      "slug": "mekousai-79",
-      "type": "web-app",
-      "category": "AI",
-      "tags": [],
-      "summary": "GitHub Pagesで公開しているWebアプリ。",
-      "visibility": "public",
-      "status": "active",
-      "color": "violet",
-      "githubRepo": "mekousai-79",
-      "repoUrl": "https://github.com/branzfamily01/mekousai-79",
-      "publicUrl": "https://branzfamily01.github.io/mekousai-79/",
-      "updatedAt": "2026-09-02",
-      "sourceType": "github-pages-auto-index"
     },
     {
       "title": "倍倍FIGHT!｜パワーコード練習TAB",
