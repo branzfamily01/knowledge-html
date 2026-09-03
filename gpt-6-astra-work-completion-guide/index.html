@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="GPT-6 Astraを『98%でAGI』ではなく、『答えるAIから仕事を完了するAIへの転換』として初心者向けに図解。Computer Use、長文脈、成果物作成、料金、安全性、実務設計を公式情報と先行事例から整理。">
+<meta name="theme-color" content="#ffffff">
+<title>GPT-6 Astra完全解説｜「答えるAI」から「仕事を完了するAI」へ</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">LEVEL 1｜30秒で全体像</p>
+      <h1><span lang="en">GPT-6 Astra</span> 完全解説</h1>
+      <p class="subtitle">「98％でAGI？」より重要なのは、<strong>AIへ渡す仕事の単位が「質問」から「一連の業務」へ変わった</strong>こと。</p>
+      <p class="lead"><strong>Astraの本質は、賢い回答ではなく、調査・操作・作成・検証をつないで、レビュー可能な成果物まで運ぶ力にある。</strong></p>
+      <div class="hero-actions">
+        <button class="btn primary" data-speak-target="#level1">🔊 要点を聞く</button>
+        <button class="btn" id="stopSpeech">■ 停止</button>
+        <a class="btn" href="#level2">3〜5分で理解 ↓</a>
+      </div>
+    </div>
+    <aside class="hero-card">
+      <span class="status-pill"><span class="status-dot"></span>公式確認済み</span>
+      <h3>確認日：2026年9月4日</h3>
+      <p><span lang="en">OpenAI</span>公式のモデルページ、リリースノート、開発者ガイド、事例、安全性資料と照合。</p>
+      <p class="small muted">先行企業の成果は「一般に必ず再現する性能」ではなく、条件付き事例として区別して掲載しています。</p>
+    </aside>
+  </div>
+</header>
+
+<nav class="toc" aria-label="ページ内目次"><div class="wrap toc-inner">
+<a href="#level1">30秒</a><a href="#level2">全体像</a><a href="#specs">仕様</a><a href="#work">何が変わった</a><a href="#evidence">事例</a><a href="#bench">ベンチマーク</a><a href="#safety">安全性</a><a href="#practice">実務</a><a href="#models">使い分け</a><a href="#prompt">プロンプト</a><a href="#check">理解チェック</a><a href="#sources">出典</a>
+</div></nav>
+
+<div class="audio-bar"><div class="wrap audio-inner">
+<button class="btn" id="speakAll">🔊 全文</button><button class="btn" id="speakJa">日本語だけ</button><button class="btn" id="speakEn">English only</button><button class="btn" data-stop>■ 停止</button>
+<label>速度 <input id="rateRange" type="range" min="0.7" max="3.0" step="0.1" value="1.0"> <output id="rateValue">1.0×</output></label>
+</div></div>
+
+<main class="wrap">
+<section id="level1" class="section-block">
+  <span class="level">LEVEL 1｜30秒</span>
+  <div class="section-head"><div><h2>最初に、これだけ</h2><p>Astraを「ものすごく頭のいいチャットAI」と理解すると半分しか見えない。</p></div></div>
+  <article class="card">
+    <span class="label important">結論</span>
+    <h3>AIの評価軸が「回答の賢さ」から「仕事の完了率」へ移る</h3>
+    <div class="compare">
+      <div class="compare-side"><h4>これまでの典型</h4><div class="stack"><span>人間が質問</span><span>AIが回答</span><span>人間が次の画面を開く</span><span>またAIへ依頼</span></div></div>
+      <div class="versus">→</div>
+      <div class="compare-side featured"><h4><span lang="en">Astra</span>型</h4><div class="stack"><span>目的・完成条件を渡す</span><span>調査・資料読解</span><span>ブラウザ・コード・ファイル操作</span><span>検証・修正</span><span>レビュー可能な成果物</span></div></div>
+    </div>
+  </article>
+  <div class="grid-4">
+    <article class="card"><span class="label basic">基本</span><h3>Computer Use</h3><p>画面を見て、ブラウザやソフトを操作する能力が主戦場へ。</p></article>
+    <article class="card"><span class="label important">重要</span><h3>長時間・複合仕事</h3><p>コード、Web、資料、ファイルをまたいでも目的を維持しやすくなった。</p></article>
+    <article class="card"><span class="label important">重要</span><h3>成果物まで</h3><p>「構成案」ではなく、文書・表計算・スライド・アプリなどの完成物を目指す。</p></article>
+    <article class="card"><span class="label caution">注意</span><h3>権限設計</h3><p>能力が上がるほど、公開・送信・削除・支払い前の人間承認が重要になる。</p></article>
+  </div>
+  <article class="card">
+    <h3>一本の流れで覚える</h3>
+    <div class="flow"><div class="flow-box">目的</div><div class="arrow">→</div><div class="flow-box">調査</div><div class="arrow">→</div><div class="flow-box">操作</div><div class="arrow">→</div><div class="flow-box">作成</div><div class="arrow">→</div><div class="flow-box">検証</div><div class="arrow">→</div><div class="flow-box approval">承認</div><div class="arrow">→</div><div class="flow-box result">成果物</div></div>
+  </article>
+</section>
+
+<section id="level2" class="section-block">
+  <span class="level">LEVEL 2｜3〜5分</span>
+  <div class="section-head"><div><h2>何がそんなに違うのか</h2><p>モデル単体ではなく「モデル＋ツール＋実行環境」の仕事システムとして見る。</p></div><button class="btn" data-speak-target="#level2">🔊 この章を聞く</button></div>
+  <article class="card">
+    <span class="label basic">比喩</span>
+    <h3>従来AI＝相談相手、Astra＝作業環境を持った担当者</h3>
+    <p>比喩だけで終わらせると誤解します。実際にはAstraは、OpenAIが「最難関のエンドツーエンド業務向け」と位置づけるモデルで、複雑な推論、コーディング、コンピューター操作、調査、文書作成を組み合わせる設計です。</p>
+    <p class="note"><strong>正式な理解：</strong>モデルが勝手に何でもできるわけではありません。接続されたブラウザ、検索、ファイル、コード実行、MCPなど、利用環境と与えられた権限の範囲で仕事を進めます。</p>
+  </article>
+  <div class="grid-3">
+    <article class="card"><span class="label important">変化1</span><h3>途中で止まりにくい</h3><p><span lang="en">Mid-turn steering</span>により、作業途中の追加指示や方向転換を取り込みやすい。</p></article>
+    <article class="card"><span class="label important">変化2</span><h3>待ち時間を使える</h3><p><span lang="en">Async tool calling</span>では、アプリ側のツール待ち中にも別の推論や独立作業を継続できる。</p></article>
+    <article class="card"><span class="label important">変化3</span><h3>完成条件を追える</h3><p>「調べました」で終わらず、指定された成果物と検証まで一連の仕事として扱う方向へ強化された。</p></article>
+  </div>
+</section>
+
+<section id="specs" class="section-block">
+  <span class="level">LEVEL 3｜仕様を正確に</span>
+  <div class="section-head"><div><h2>GPT-6 Astraの主要仕様</h2><p>2026年9月4日時点のOpenAI公式モデルページで確認。</p></div></div>
+  <div class="table-wrap card"><table>
+    <thead><tr><th>項目</th><th>GPT-6 Astra</th><th>どう読むか</th></tr></thead>
+    <tbody>
+      <tr><td>モデルID</td><td><code>gpt-6-astra</code></td><td>APIで指定する正式ID。</td></tr>
+      <tr><td>コンテキスト</td><td>1,050,000 tokens</td><td>非常に大量の資料を同一リクエスト内で扱える。</td></tr>
+      <tr><td>最大出力</td><td>128,000 tokens</td><td>長大なレポートやコード生成にも対応。</td></tr>
+      <tr><td>知識カットオフ</td><td>2026-04-30</td><td>それ以降の情報は検索・接続データ等で補う必要がある。</td></tr>
+      <tr><td>入力</td><td>Text / Image</td><td>画像は読める。ネイティブ音声・動画入力モデルではない。</td></tr>
+      <tr><td>出力</td><td>Text</td><td>画像生成などは別ツールを呼び出す。</td></tr>
+      <tr><td>推論強度</td><td>low / medium / high / xhigh / max</td><td>難易度とコスト・時間のバランスを調整。</td></tr>
+      <tr><td>API入力料金</td><td>$10 / 1M tokens</td><td>Solより高価。難しい仕事向け。</td></tr>
+      <tr><td>API出力料金</td><td>$50 / 1M tokens</td><td>大量出力を伴う用途ではコスト管理が必要。</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note warning"><strong>注意：</strong>105万トークン入ることと、105万トークンを毎回入れるべきことは別です。巨大入力はコスト・検索効率・重要情報の埋没を悪化させます。重要条件は別途、目的・制約・完成条件として明示する方が安全です。</p>
+</section>
+
+<section id="work" class="section-block">
+  <div class="section-head"><div><h2>4つの本質的な変化</h2><p>記事全体を、初心者が迷わない4本柱へ圧縮するとこうなる。</p></div><button class="btn" data-speak-target="#work">🔊 この章を聞く</button></div>
+  <div class="grid-2">
+    <article class="card"><span class="label basic">1</span><h3>Computer Useが補助機能から中核へ</h3><p>人間の仕事は文章だけでは終わりません。管理画面を開く、フォームを入力する、表を直す、サイトを確認する。Astraの価値は、こうしたGUI作業と推論を一体化できる点にあります。</p></article>
+    <article class="card"><span class="label important">2</span><h3>長文脈を仕事の途中で維持</h3><p>契約書、議事録、設計書、コードなど大量資料を参照しながら、途中の条件や目的を保持して作業しやすくなっています。ただし「完全記憶」ではありません。</p></article>
+    <article class="card"><span class="label important">3</span><h3>文章ではなく成果物</h3><p>「プレゼン案」から「テンプレートに沿った実ファイル」、「コード案」から「動かして確認したアプリ」へ。成果物の状態を完成条件にできます。</p></article>
+    <article class="card"><span class="label caution">4</span><h3>曖昧な指示でも万能ではない</h3><p>性能が上がるほど、目的・禁止事項・承認地点・検証方法の設計が重要です。速いAIへ雑な仕事を渡せば、雑な仕事を速く進めるだけです。</p></article>
+  </div>
+</section>
+
+<section id="evidence" class="section-block">
+  <div class="section-head"><div><h2>先行事例はどう読むべきか</h2><p>「すごい数字」と「証拠の強さ」を分ける。</p></div></div>
+  <div class="grid-2">
+    <article class="card"><span class="source-badge">OpenAI掲載・企業事例</span><div class="kpi">41文書</div><h3>Legora：財務諸表の照合</h3><p>41文書を単一のAgent runで数分で処理。意図的に仕込んだ4件の誤りを4件とも発見。特定のfinancial-statement workflowでは約40%改善。</p><p class="note warning"><strong>重要：</strong>Legoraの幅広いBARタスク全体では平均改善は約3%。「法務全般が40%改善」ではありません。</p></article>
+    <article class="card"><span class="source-badge">OpenAI掲載・企業事例</span><div class="kpi">手修正 50%減</div><h3>Playco：ゲーム試作</h3><p>UnityやGodotにつながるPlaybotで、シーン編集、プレイ、テスト、バグ発見、修正を反復。従来モデルに比べ人間の手修正が50%減少。</p><p class="note warning"><strong>重要：</strong>全試作が完全ワンショットだったわけではなく、追加修正が必要なケースもありました。</p></article>
+  </div>
+  <article class="card"><span class="label caution">証拠の読み方</span><h3>企業事例 ≠ 独立した普遍性能</h3><p>先行顧客の成功例は「こういう仕事で価値が出る可能性」を示します。一方、数百社・数か月の平均失敗率、保守コスト、再現性まで証明するものではありません。</p></article>
+</section>
+
+<section id="bench" class="section-block">
+  <div class="section-head"><div><h2>98%、99.9%、100%をどう見るか</h2><p>ベンチマークは「能力の一面」。AGI証明書ではない。</p></div></div>
+  <article class="card">
+    <div class="grid-3">
+      <div><span class="label important">高得点</span><div class="kpi">約98%</div><p>難関数学系評価の非常に高い結果。</p></div>
+      <div><span class="label important">高得点</span><div class="kpi">99.9%</div><p>特定のエージェント評価でほぼ満点級。</p></div>
+      <div><span class="label danger">高能力</span><div class="kpi">100%</div><p>ExploitBenchで100%と報告。</p></div>
+    </div>
+    <p class="note"><strong>正しい読み方：</strong>数字は実行条件、推論設定、ハーネス、複数試行、専用ツールの有無で変わります。「一つの評価が98%だから、あらゆる学問・仕事を98%理解した」とは言えません。</p>
+  </article>
+  <article class="card">
+    <h3>モデル単体より「ハーネス全体」で見る</h3>
+    <div class="flow"><div class="flow-box">Model</div><div class="arrow">＋</div><div class="flow-box">Prompt</div><div class="arrow">＋</div><div class="flow-box">Tools</div><div class="arrow">＋</div><div class="flow-box">Browser / Shell</div><div class="arrow">＋</div><div class="flow-box">Verification</div><div class="arrow">＝</div><div class="flow-box result">実務性能</div></div>
+    <p>同じAstraでも、ツールがない、権限がない、完成条件が曖昧、検証がない、という環境では能力を十分に使えません。</p>
+  </article>
+</section>
+
+<section id="safety" class="section-block">
+  <div class="section-head"><div><h2>安全性：強くなったから、境界設計がもっと重要</h2><p>OpenAIはAstraをPreparedness Framework上、初のCritical cybersecurity capability到達モデルとしています。</p></div><button class="btn" data-speak-target="#safety">🔊 この章を聞く</button></div>
+  <article class="card">
+    <span class="label danger">重要</span>
+    <h3>「最も安全」だけで終わらない</h3>
+    <p>OpenAIは悪用防止やアラインメント対策を強化しています。一方で、モデルの能力そのものが高くなり、適切なツールとアクセス権があれば未知の脆弱性発見や高度なサイバー作業が可能な水準と評価されています。</p>
+    <p class="note dangerbox"><strong>誤解しない：</strong>これは通常のChatGPT利用者が無制限に攻撃を実行できる、という意味ではありません。標準環境には制御があり、一部結果は防御研究向けの専用環境で得られています。</p>
+  </article>
+  <div class="grid-2">
+    <article class="card"><span class="label important">進めてよい</span><h3>低リスク操作</h3><p>閲覧、検索、分析、下書き、テスト、差分確認、ローカル成果物作成。</p></article>
+    <article class="card"><span class="label danger">止める</span><h3>人間承認を置く操作</h3><p>外部送信、購入・支払い、契約、公開、本番反映、削除、権限変更、取り消し困難な操作。</p></article>
+  </div>
+  <p class="note"><strong>原則：</strong>「AIへ権限を全部渡す」でも「権限を一切与えない」でもない。仕事を進める権限と、責任を確定する権限を分けます。</p>
+</section>
+
+<section id="practice" class="section-block">
+  <div class="section-head"><div><h2>どんな仕事から使うと効果が出やすいか</h2><p>Astra向きなのは「難しい一問」より「複数工程のまとまり」。</p></div></div>
+  <div class="grid-2">
+    <article class="card"><span class="label important">向く</span><h3>大量文書の横断確認</h3><p>契約書、見積書、請求書、仕様書、議事録をまたいで不一致や未確認事項を抽出し、根拠付きで人間レビューへ渡す。</p></article>
+    <article class="card"><span class="label important">向く</span><h3>複数管理画面の事務</h3><p>複数サイトから情報取得→比較→入力案→差分確認までを一工程化。ただし送信や確定前で停止。</p></article>
+    <article class="card"><span class="label important">向く</span><h3>調査→資料完成</h3><p>競合調査→料金比較→根拠URL整理→分析→スライド・表計算作成→数値確認まで。</p></article>
+    <article class="card"><span class="label important">向く</span><h3>開発→QA</h3><p>実装して終わりではなく、ブラウザで開く、スマホ幅で確認、フォーム送信、リンク切れ確認、修正まで回す。</p></article>
+  </div>
+  <article class="card"><span class="label caution">向かない使い方</span><h3>Astraでなくてもよい仕事</h3><p>短い要約、単純な分類、タグ付け、定型抽出、短文生成など大量の軽作業。高価格モデルの知能を使い切れない場合があります。</p></article>
+</section>
+
+<section id="models" class="section-block">
+  <div class="section-head"><div><h2>モデルは「一番賢いもの固定」にしない</h2><p>2026年9月4日時点のOpenAI公式モデル情報を基準にした考え方。</p></div></div>
+  <div class="table-wrap card"><table>
+    <thead><tr><th>モデル</th><th>入力 / 1M</th><th>出力 / 1M</th><th>主な使い分け</th></tr></thead>
+    <tbody>
+      <tr><td><strong>GPT-6 Astra</strong></td><td>$10</td><td>$50</td><td>高難度・長時間・複数ツール・最終検証がある仕事</td></tr>
+      <tr><td><strong>GPT-5.6 Sol</strong></td><td>$4</td><td>$20</td><td>高品質な一般業務、分析、開発</td></tr>
+      <tr><td><strong>GPT-5.6 Terra</strong></td><td>$2</td><td>$12</td><td>知能とコストのバランスが必要な中量処理</td></tr>
+      <tr><td><strong>GPT-5.6 Luna</strong></td><td>$0.20</td><td>$1.20</td><td>分類・抽出・大量処理などコスト重視</td></tr>
+    </tbody>
+  </table></div>
+  <p class="note"><strong>考え方：</strong>Astraに計画・難所・検証を任せ、軽量処理は安いモデルへ。見るべきはトークン単価だけでなく、人間の修正回数、再実行、見落とし損失、作業時間を含む「仕事全体のコスト」です。</p>
+</section>
+
+<section id="prompt" class="section-block">
+  <div class="section-head"><div><h2>Astra向け実用プロンプトの設計</h2><p>「役割」より「目的・完成条件・権限境界」を明示する。</p></div></div>
+  <article class="card">
+    <span class="label important">型</span>
+    <h3>5つの箱を埋める</h3>
+    <div class="flow"><div class="flow-box">目的</div><div class="arrow">→</div><div class="flow-box">成果物</div><div class="arrow">→</div><div class="flow-box">利用可能情報</div><div class="arrow">→</div><div class="flow-box">検証条件</div><div class="arrow">→</div><div class="flow-box approval">承認地点</div></div>
+  </article>
+  <div class="promptbox"><code>## 目的
+この作業によって達成したい状態：［目的］
+
+## 最終成果物
+提出するもの：［ファイル、表、レポート、実装済み機能など］
+完成条件：［具体的条件］
+
+## 使用してよい情報とツール
+参照してよい資料：［ファイル、URL、データ］
+使用してよいツール：［Web、ブラウザ、コード実行、表計算など］
+
+## 進め方
+1. 依頼内容と資料を確認
+2. 不足情報とリスクを整理
+3. 調査・分析・作成
+4. 成果物を実際に開いて検証
+5. 誤り・未確認事項・残作業を整理
+6. レビュー可能な状態で提出
+
+結果を大きく左右する不足情報だけ質問する。
+軽微な不足は妥当な仮定を置き、仮定を記録する。
+
+## 承認が必要な操作
+外部送信、購入・支払い・契約、公開・本番反映、削除、権限変更、取り消し困難な操作の直前で停止し、変更内容・根拠・影響範囲を示す。
+
+## 品質条件
+事実と推測を分ける。重要数値に出典を付ける。反証や例外も確認する。未確認事項を事実として書かない。成果物を開き、表示と動作を確認する。</code></div>
+  <p class="note warning"><strong>質問を全部禁止しない：</strong>「何でも質問して」では止まりやすく、「質問禁止」では重大前提を勝手に補う危険があります。「結果を大きく左右する不足だけ質問」が中間解です。</p>
+</section>
+
+<section id="weakness" class="section-block">
+  <div class="section-head"><div><h2>弱点・未確定事項も残る</h2><p>高性能＝何でも安心、ではない。</p></div></div>
+  <div class="grid-2">
+    <article class="card"><span class="label caution">注意</span><h3>独立した長期実績はまだ少ない</h3><p>公開翌日の段階では、先行企業・提携企業・早期利用者の事例が中心。長期間の平均コストや障害率はこれから。</p></article>
+    <article class="card"><span class="label caution">注意</span><h3>巨大コンテキストは万能倉庫ではない</h3><p>資料を全部詰めるより、検索できる知識基盤から必要箇所を取り出し、重要条件を別途明示する方が現実的。</p></article>
+    <article class="card"><span class="label caution">注意</span><h3>ネイティブ音声・動画モデルではない</h3><p>画像入力には対応するが、音声・動画を直接理解する設計ではない。文字起こしやフレーム抽出等が必要。</p></article>
+    <article class="card"><span class="label caution">注意</span><h3>安全機構で正当作業も止まることがある</h3><p>高リスク領域では安全確認が優先されるため、正当な研究・開発でも追加確認や制限が生じる場合があります。</p></article>
+  </div>
+</section>
+
+<section id="agi" class="section-block">
+  <div class="section-head"><div><h2>AstraはAGIなのか</h2><p>現時点では「完成した」と断定するより、仕事の自律範囲が大きく広がったと捉える方が正確。</p></div></div>
+  <article class="card">
+    <span class="label advanced">整理</span>
+    <h3>「AGIか？」より実務ではこちらを見る</h3>
+    <div class="grid-3"><div><strong>① どこまで自力で進むか</strong><p>質問→複数工程→検証まで。</p></div><div><strong>② どこで人間へ戻すか</strong><p>権限・責任・承認。</p></div><div><strong>③ 何を完了と判定するか</strong><p>成果物・動作・証拠。</p></div></div>
+    <p class="note"><strong>結論：</strong>Astraを「人工社員」と呼ぶかどうかより、業務工程のどこまでを安全に任せられるかを測る方が、実務上は意味があります。</p>
+  </article>
+</section>
+
+<section id="check" class="section-block">
+  <div class="section-head"><div><h2>理解チェック</h2><p>クリックして答えを確認。</p></div></div>
+  <div class="check-item card"><button aria-expanded="false">Q1. Astraの一番大きな変化は「文章が上手くなったこと」？</button><div class="answer"><strong>いいえ。</strong>重要なのは、調査・操作・作成・検証をつなぎ、仕事をレビュー可能な状態まで進める能力です。</div></div>
+  <div class="check-item card"><button aria-expanded="false">Q2. 105万トークン入るなら、社内資料を毎回全部入れるべき？</button><div class="answer"><strong>いいえ。</strong>コストと重要情報の埋没を考え、検索基盤から必要部分を取り出す設計が有効です。</div></div>
+  <div class="check-item card"><button aria-expanded="false">Q3. 高性能なので公開・削除まで自動化した方がよい？</button><div class="answer"><strong>原則いいえ。</strong>閲覧・分析・下書き・テストは進め、公開・削除・支払いなど取り消しにくい操作の前に人間承認を置きます。</div></div>
+  <div class="check-item card"><button aria-expanded="false">Q4. ベンチマーク99.9%なら、通常のChatGPT利用でも必ず99.9%成功する？</button><div class="answer"><strong>いいえ。</strong>推論設定、ツール、ハーネス、複数試行、評価条件が違えば結果も変わります。</div></div>
+  <div class="check-item card"><button aria-expanded="false">Q5. Astraを使うべき仕事の特徴は？</button><div class="answer"><strong>複数工程・複数ツール・長い文脈・検証がつながる仕事。</strong>単純分類や短文生成だけなら、より安価なモデルが適することがあります。</div></div>
+</section>
+
+<section id="sources" class="section-block">
+  <div class="section-head"><div><h2>公式情報・出典</h2><p>本文の核となる事実は、2026年9月4日時点で以下を確認。</p></div></div>
+  <article class="card"><ul class="source-list">
+    <li><a href="https://developers.openai.com/api/docs/models/gpt-6-astra" target="_blank" rel="noopener">OpenAI API — GPT-6 Astra model</a>：モデルID、コンテキスト、出力上限、知識カットオフ、価格、用途。</li>
+    <li><a href="https://developers.openai.com/api/docs/guides/latest-model?model=gpt-6-astra" target="_blank" rel="noopener">OpenAI Developers — Model guidance</a>：エンドツーエンド業務、Async tool calling、Mid-turn steering。</li>
+    <li><a href="https://help.openai.com/en/articles/6825453-chatgpt-release-notes" target="_blank" rel="noopener">ChatGPT Release Notes</a>：Astra発表と提供状況。</li>
+    <li><a href="https://openai.com/index/legora-financial-statement-review-with-astra/" target="_blank" rel="noopener">OpenAI — Legora case study</a>：41文書、4/4誤り発見、特定ワークフロー約40%改善。</li>
+    <li><a href="https://openai.com/index/playco-game-prototyping-with-astra/" target="_blank" rel="noopener">OpenAI — Playco case study</a>：ゲーム試作と人間の手修正50%減。</li>
+    <li><a href="https://openai.com/index/path-to-astra/" target="_blank" rel="noopener">OpenAI — Path to Astra</a>：Critical cybersecurity capabilityと安全対策。</li>
+    <li><a href="https://deploymentsafety.openai.com/gpt-6-astra" target="_blank" rel="noopener">OpenAI Deployment Safety Hub — GPT-6 Astra System Card</a>：安全性評価・監視・サイバー能力。</li>
+  </ul></article>
+  <p class="small muted">素材：ユーザー提供のX投稿全文「ChatGPT 6 Astra完全解説」。HTML化に際しては会話順・記事順をそのまま転記せず、「結論→全体像→詳細」に再設計しました。先行企業の主張と公式仕様を区別し、不明点を推測で補っていません。</p>
+</section>
+</main>
+<footer class="footer"><div class="wrap">GPT-6 Astra完全解説｜Knowledge HTML / visibility: Public / updated 2026-09-04</div></footer>
+<script src="./script.js"></script>
+</body>
+</html>
