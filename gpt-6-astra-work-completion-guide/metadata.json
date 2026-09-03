@@ -1,0 +1,17 @@
+{
+  "title": "GPT-6 Astra完全解説｜『答えるAI』から『仕事を完了するAI』へ",
+  "slug": "gpt-6-astra-work-completion-guide",
+  "type": "knowledge-html",
+  "visibility": "public",
+  "category": "IT・AI",
+  "tags": ["GPT-6 Astra", "ChatGPT", "AIエージェント", "Computer Use", "業務自動化", "OpenAI", "AI仕事術", "安全性"],
+  "summary": "GPT-6 Astraの本質を、ベンチマークの点数ではなく『質問への回答から、調査・操作・作成・検証まで一連の仕事を完了するAIへの転換』として初心者向けに図解。公式確認済み情報、先行事例、料金、弱点、安全設計、実用プロンプトまで整理。",
+  "level": "入門〜実務基礎",
+  "createdAt": "2026-09-04",
+  "updatedAt": "2026-09-04",
+  "githubRepo": "knowledge-html",
+  "githubPath": "gpt-6-astra-work-completion-guide/",
+  "publicUrl": "https://branzfamily01.github.io/knowledge-html/gpt-6-astra-work-completion-guide/",
+  "sourceType": "user-provided-x-article+official-web-research",
+  "sourceSummary": "X投稿『ChatGPT 6 Astra完全解説』の全文を素材に、2026-09-04時点のOpenAI公式モデル情報・リリースノート・開発者ガイド・Legora/Playco事例・安全性資料を照合して再構成。"
+}
