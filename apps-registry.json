@@ -1,10 +1,67 @@
 {
   "schemaVersion": 1,
-  "generatedAt": "2026-09-04T20:49:57.844Z",
+  "generatedAt": "2026-09-05T20:26:51.457Z",
   "owner": "branzfamily01",
   "type": "web-app-registry",
-  "count": 60,
+  "count": 62,
   "items": [
+    {
+      "title": "Blend English",
+      "slug": "blend-english-reader",
+      "type": "web-app",
+      "category": "Learning",
+      "tags": [
+        "英語",
+        "Reading",
+        "教材"
+      ],
+      "summary": "英文を読みやすい形に加工して学習する英語リーダー。",
+      "visibility": "public",
+      "status": "active",
+      "color": "green",
+      "githubRepo": "blend-english-reader",
+      "repoUrl": "https://github.com/branzfamily01/blend-english-reader",
+      "publicUrl": "https://branzfamily01.github.io/blend-english-reader/",
+      "updatedAt": "2026-09-05",
+      "sourceType": "github-pages-manifest"
+    },
+    {
+      "title": "在校生保護者 かんたん受付",
+      "slug": "guardian-tap-checkin",
+      "type": "web-app",
+      "category": "Tools",
+      "tags": [
+        "文化祭",
+        "受付",
+        "保護者",
+        "タップ操作"
+      ],
+      "summary": "学年・クラス・生徒名・保護者人数・同行者人数を大きなボタンで選ぶタップ式受付。",
+      "visibility": "public",
+      "status": "active",
+      "color": "blue",
+      "githubRepo": "guardian-tap-checkin",
+      "repoUrl": "https://github.com/branzfamily01/guardian-tap-checkin",
+      "publicUrl": "https://branzfamily01.github.io/guardian-tap-checkin/",
+      "updatedAt": "2026-09-05",
+      "sourceType": "github-pages-manifest"
+    },
+    {
+      "title": "第79回 目高祭｜東京都立目黒高等学校",
+      "slug": "mekousai-79",
+      "type": "web-app",
+      "category": "AI",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "violet",
+      "githubRepo": "mekousai-79",
+      "repoUrl": "https://github.com/branzfamily01/mekousai-79",
+      "publicUrl": "https://branzfamily01.github.io/mekousai-79/",
+      "updatedAt": "2026-09-05",
+      "sourceType": "github-pages-auto-index"
+    },
     {
       "title": "AI Investment Office",
       "slug": "ai-investment-office",
@@ -28,22 +85,6 @@
       "publicUrl": "https://branzfamily01.github.io/ai-investment-office/",
       "updatedAt": "2026-09-04",
       "sourceType": "github-pages-manifest"
-    },
-    {
-      "title": "第79回 目高祭｜東京都立目黒高等学校",
-      "slug": "mekousai-79",
-      "type": "web-app",
-      "category": "AI",
-      "tags": [],
-      "summary": "GitHub Pagesで公開しているWebアプリ。",
-      "visibility": "public",
-      "status": "active",
-      "color": "violet",
-      "githubRepo": "mekousai-79",
-      "repoUrl": "https://github.com/branzfamily01/mekousai-79",
-      "publicUrl": "https://branzfamily01.github.io/mekousai-79/",
-      "updatedAt": "2026-09-04",
-      "sourceType": "github-pages-auto-index"
     },
     {
       "title": "来校チェック",
@@ -203,6 +244,22 @@
       "sourceType": "github-pages-auto-index"
     },
     {
+      "title": "LESSON 9｜クリック型 詳説・誤答分析",
+      "slug": "lesson9-detailed-explanation",
+      "type": "web-app",
+      "category": "Learning",
+      "tags": [],
+      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "visibility": "public",
+      "status": "active",
+      "color": "green",
+      "githubRepo": "lesson9-detailed-explanation",
+      "repoUrl": "https://github.com/branzfamily01/lesson9-detailed-explanation",
+      "publicUrl": "https://branzfamily01.github.io/lesson9-detailed-explanation/",
+      "updatedAt": "2026-08-29",
+      "sourceType": "github-pages-auto-index"
+    },
+    {
       "title": "Signal Radar 30",
       "slug": "signal-radar-30",
       "type": "web-app",
@@ -230,17 +287,24 @@
       "title": "Workflow Map",
       "slug": "workflow-map",
       "type": "web-app",
-      "category": "Web Apps",
-      "tags": [],
-      "summary": "GitHub Pagesで公開しているWebアプリ。",
+      "category": "Productivity",
+      "tags": [
+        "案件管理",
+        "タスク共有",
+        "進捗管理",
+        "チーム",
+        "ワークフロー",
+        "PWA"
+      ],
+      "summary": "ワークごとに案件・工程・タスク・担当者を整理し、現在地と次の行動を見える化する共有アプリ。",
       "visibility": "public",
       "status": "active",
-      "color": "orange",
+      "color": "purple",
       "githubRepo": "workflow-map",
       "repoUrl": "https://github.com/branzfamily01/workflow-map",
       "publicUrl": "https://branzfamily01.github.io/workflow-map/",
       "updatedAt": "2026-08-28",
-      "sourceType": "github-pages-auto-index"
+      "sourceType": "github-pages-manifest"
     },
     {
       "title": "ワンクッションPDF",
@@ -541,26 +605,6 @@
       "repoUrl": "https://github.com/branzfamily01/juken-quest-os",
       "publicUrl": "https://branzfamily01.github.io/juken-quest-os/",
       "updatedAt": "2026-08-25",
-      "sourceType": "github-pages-auto-index"
-    },
-    {
-      "title": "Blend English",
-      "slug": "blend-english-reader",
-      "type": "web-app",
-      "category": "Learning",
-      "tags": [
-        "英語",
-        "Reading",
-        "教材"
-      ],
-      "summary": "英文を読みやすい形に加工して学習する英語リーダー。",
-      "visibility": "public",
-      "status": "active",
-      "color": "green",
-      "githubRepo": "blend-english-reader",
-      "repoUrl": "https://github.com/branzfamily01/blend-english-reader",
-      "publicUrl": "https://branzfamily01.github.io/blend-english-reader/",
-      "updatedAt": "2026-08-22",
       "sourceType": "github-pages-auto-index"
     },
     {
