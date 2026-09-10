@@ -1,16 +1,17 @@
 {
-  "title": "Cloudflare入門｜Public / Private Knowledgeを理解する",
+  "title": "Cloudflare超入門｜門番・Workers・Accessまで一気に理解",
   "slug": "cloudflare-basics",
   "type": "knowledge-html",
+  "visibility": "public",
   "category": "IT・AI",
-  "tags": ["Cloudflare","Cloudflare Workers","Workers Static Assets","Cloudflare Access","Zero Trust","DNS","CDN","Reverse Proxy","GitHub","GitHub Pages","Private Knowledge"],
-  "summary": "CloudflareのDNS・CDN・Reverse Proxy・Workers・Access・Zero Trustを、GitHub Pagesとの違いとPublic/Private Knowledge構成を軸に初心者向けに図解。2026年8月のWorkers Static Assets推奨とWorker単位Accessにも対応。",
+  "tags": ["Cloudflare","Cloudflare Workers","Workers Static Assets","Cloudflare Access","Zero Trust","DNS","Proxy","Reverse Proxy","CDN","Cache","SSL/TLS","GitHub","GitHub Pages","Private Knowledge"],
+  "summary": "CloudflareをWebの『入口・門番・配達網・実行場所』として、DNS・Proxy・CDN・Cache・SSL/TLS・Workers・Accessまで初心者向けに図解。通常サーバー型、Workers型、Access付き限定公開型の違いと、MX・Flexible・動的キャッシュの落とし穴も公式仕様で補正。",
   "level": "入門〜実務基礎",
   "createdAt": "2026-08-26",
-  "updatedAt": "2026-08-26",
+  "updatedAt": "2026-09-10",
   "githubRepo": "knowledge-html",
   "githubPath": "cloudflare-basics/",
   "publicUrl": "https://branzfamily01.github.io/knowledge-html/cloudflare-basics/",
-  "sourceType": "official-web-research+user-brief",
-  "sourceSummary": "Cloudflare公式ドキュメント、GitHub Pages公式ドキュメント、Netlify公式ドキュメントを2026-08-26に確認し、Public/Private Knowledge構想に沿って再構成。"
+  "sourceType": "x-post+conversation+official-web-research",
+  "sourceSummary": "X投稿『小学生でも分かるCloudflare超入門』と既存Cloudflare入門を素材に、Cloudflare公式ドキュメントを2026-09-10時点で再確認し、記事中の単純化を補正しつつ結論→全体像→詳細へ再設計。"
 }
